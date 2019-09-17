@@ -37,9 +37,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingQueue: () => {
-      dispatch(fetchingQueue());
-    }
+    fetchingQueue: () => {dispatch(fetchingQueue())}
     //prop : ()=>{dispatch(actionObj)}
   };
 };

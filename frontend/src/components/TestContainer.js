@@ -5,13 +5,19 @@ import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
 
 const TestContainer = props => {
-  console.log(props);
+    // console.log(props.queue)
   return (
     <div>
-      <TestSnippet />
+      <TestSnippet queue={props.queue} />
       <TestInput />
     </div>
   );
 };
 
-export default withRouter(TestContainer);
+const mapStateToProps = state => {
+  return {
+    queue: state.queue
+  };
+};
+
+export default connect(mapStateToProps)(TestContainer);

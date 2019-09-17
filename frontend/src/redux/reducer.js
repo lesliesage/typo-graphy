@@ -11,7 +11,7 @@ const typedTextReducer = (state = "", action) => {
 
 const queueReducer = (state = [], action) => {
   switch (action.type) {
-    case "FETCHED_SNIPPETS":
+    case "FETCHED_QUEUE":
       return action.payload;
     default:
       return state;
