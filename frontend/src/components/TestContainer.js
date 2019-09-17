@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
-import Snippet from "./Snippet";
+import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
 
 const TestContainer = props => {
+  console.log(props);
   return (
     <div>
-      <Snippet />
+      <TestSnippet />
       <TestInput />
     </div>
   );

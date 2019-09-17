@@ -10,10 +10,12 @@ import StatsContainer from "./components/StatsContainer";
 import About from "./components/About";
 import Privacy from "./components/Privacy";
 import Help from "./components/Help";
+import {fetchingQueue} from './redux/actions'
+
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchingSnippets();
+    this.props.fetchingQueue();
   }
 
   render() {
@@ -35,8 +37,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingSnippets: () => {
-      dispatch(fetchingSnippets());
+    fetchingQueue: () => {
+      dispatch(fetchingQueue());
     }
     //prop : ()=>{dispatch(actionObj)}
   };

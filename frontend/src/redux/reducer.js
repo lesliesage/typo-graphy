@@ -1,39 +1,26 @@
 import { combineReducers } from "redux";
 
-const searchTextReducer = (state = "", action) => {
+const typedTextReducer = (state = "", action) => {
   switch (action.type) {
-    case "CHANGE_SEARCH_TEXT":
+    case "CHANGE_TYPED_TEXT":
       return action.payload;
     default:
       return state;
   }
 };
 
-const snippetsReducer = (state = [], action) => {
+const queueReducer = (state = [], action) => {
   switch (action.type) {
     case "FETCHED_SNIPPETS":
-      return action.payload
-    case "UPDATE_SNIPPET":
-      return state.map(snippet => {
-        if (snippet.id === action.payload.snippetId) {
-          return {
-            ...snippet,
-            code: action.payload.code,
-            annotation: action.payload.annotation,
-            language_id: action.payload.language_id
-          };
-        } else {
-          return snippet;
-        }
-      });
+      return action.payload;
     default:
       return state;
   }
 };
 
 const rootReducer = combineReducers({
-  searchText: searchTextReducer,
-  snippets: snippetsReducer
+  typedText: typedTextReducer,
+  queue: queueReducer
 });
 
 export default rootReducer;
