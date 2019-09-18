@@ -10,7 +10,7 @@ const TestSnippet = props => {
         <textarea
           name="input"
           cols="80"
-          rows="15"
+          rows="10"
           disabled
           value={snippet ? snippet.code : "loading code"}
         ></textarea>
@@ -21,7 +21,7 @@ const TestSnippet = props => {
 
 const mapStateToProps = state => {
   return {
-    selectedSnippet: state.selectedSnippet
+    selectedSnippet: state.test.selectedSnippet
   };
 };
 

@@ -1,66 +1,38 @@
 import { combineReducers } from "redux";
 
-const currentTestLanguageReducer = (state = null, action) => {
+const initialState = {
+  currentTestLanguage: null,
+  queue: [],
+  snippetIndex: 0,
+  selectedSnippet: null,
+  typedText: "",
+  currentTestResults: []
+};
+
+const testReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CHANGED_LANGUAGE_SELECTION":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const queueReducer = (state = [], action) => {
-  switch (action.type) {
+      return { ...state, currentTestLanguage: action.payload };
     case "FETCHED_QUEUE":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const snippetIndexReducer = (state = 0, action) => {
-  switch (action.type) {
+      return { ...state, queue: action.payload };
     case "NEXT_SNIPPET":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const selectedSnippetReducer = (state = null, action) => {
-  switch (action.type) {
+      return { ...state, snippetIndex: action.payload };
     case "SELECTED_SNIPPET":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const typedTextReducer = (state = "", action) => {
-  switch (action.type) {
+      return { ...state, selectedSnippet: action.payload };
     case "CHANGE_TYPED_TEXT":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const currentTestResultsReducer = (state = [], action) => {
-  switch (action.type) {
+      return { ...state, typedText: action.payload };
     case "ADD_TO_TEST_RESULTS":
-      return state.concat([action.payload]);
+      return {
+        ...state,
+        currentTestResults: state.currentTestResults.concat([action.payload])
+      };
     default:
       return state;
   }
 };
 
 const rootReducer = combineReducers({
-  currentTestLanguage: currentTestLanguageReducer,
-  queue: queueReducer,
-  snippetIndex: snippetIndexReducer,
-  selectedSnippet: selectedSnippetReducer,
-  typedText: typedTextReducer,
-  currentTestResults: currentTestResultsReducer
+  test: testReducer
 });
 
 export default rootReducer;

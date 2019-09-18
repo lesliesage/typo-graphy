@@ -13,9 +13,25 @@ const TestContainer = props => {
   );
 };
 
+// 
+const analyzeAccuracy = props => {
+
+}
+
+// 
+const handleTestFinish = props => {
+
+}
+
+// 
+const processResults = props => {
+
+}
+
 const mapStateToProps = state => {
   return {
-    queue: state.queue
+    queue: state.queue,
+    currentTestResults: state.currentTestResults
   };
 };
 

@@ -24,7 +24,7 @@ function fetchingQueue() {
         dispatch(fetchedQueue(snippets));
       })
       .then(() => {
-        dispatch(selectedSnippet(getState().queue[getState().snippetIndex]));
+        dispatch(selectedSnippet(getState().test.queue[getState().test.snippetIndex]));
       });
   };
 }
