@@ -1,27 +1,28 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
+const TestSnippet = props => {
+  const snippet = props.selectedSnippet;
+  return (
+    <div>
+      <form>
+        <textarea
+          name="input"
+          cols="80"
+          rows="15"
+          disabled
+          value={snippet ? snippet.code : "loading code"}
+        ></textarea>
+      </form>
+    </div>
+  );
+};
 
-class TestSnippet extends Component {
-  state = {snippetCode: "" }
+const mapStateToProps = state => {
+  return {
+    selectedSnippet: state.selectedSnippet
+  };
+};
 
-  componentDidMount() {
-    console.log(this.props.queue)
-    // this.setState({snippetCode: this.props.queue[0].code})
-  }
-
-  render() { 
-    return (
-      <div>
-        <form>
-          {/* <textarea name="input" cols="80" rows="15" disabled value={this.state.snippetCode}></textarea> */}
-          <textarea name="input" cols="80" rows="15" disabled value="sad"></textarea>
-        </form>
-      </div>
-    );
-  }
-}
-
-
-export default withRouter(TestSnippet);
+export default connect(mapStateToProps)(TestSnippet);

@@ -1,4 +1,3 @@
-// action creators
 const URL = "http://localhost:3000/queue";
 
 function changeTypedText(value) {
@@ -9,16 +8,21 @@ function fetchedQueue(snippets) {
   return { type: "FETCHED_QUEUE", payload: snippets };
 }
 
-// function selectedSnippet(snippet) {
-//   return { type: "SELECTED_SNIPPET", payload: snippet };
-// }
+function selectedSnippet(snippet) {
+  return { type: "SELECTED_SNIPPET", payload: snippet };
+}
 
 function fetchingQueue() {
-  return dispatch => {
+  return (dispatch, getState) => {
     fetch(URL)
       .then(res => res.json())
-      .then(snippets => {dispatch(fetchedQueue(snippets))})
-      };
+      .then(snippets => {
+        dispatch(fetchedQueue(snippets));
+      })
+      .then(() => {
+        dispatch(selectedSnippet(getState().queue[getState().snippetIndex]));
+      });
   };
+}
 
 export { changeTypedText, fetchedQueue, fetchingQueue };
