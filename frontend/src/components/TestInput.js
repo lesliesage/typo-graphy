@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { changeTypedText } from "../redux/actions.js";
+import { changeTypedText, addToTestResults } from "../redux/actions.js";
 
 const TestInput = props => {
   return (
@@ -13,7 +13,14 @@ const TestInput = props => {
           name="input"
           cols="80"
           rows="15"
-          onChange={e => props.onChange(e.target.value)}
+          onChange={e =>
+            props.onChange(e.target.value, [
+              e.target.selectionStart,
+              e.target.textLength,
+              e.nativeEvent.data,
+              e.timeStamp
+            ])
+          }
         ></textarea>
       </form>
     </div>
@@ -22,14 +29,15 @@ const TestInput = props => {
 
 const mapStateToProps = state => {
   return {
-    value: state.typedText
+    typedText: state.typedText
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChange: typedText => {
+    onChange: (typedText, resultSubArray) => {
       dispatch(changeTypedText(typedText));
+      dispatch(addToTestResults(resultSubArray));
     }
   };
 };

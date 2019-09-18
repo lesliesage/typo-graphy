@@ -47,8 +47,8 @@ const typedTextReducer = (state = "", action) => {
 
 const currentTestResultsReducer = (state = [], action) => {
   switch (action.type) {
-    case "CHANGED_INPUT":
-      return action.payload;
+    case "ADD_TO_TEST_RESULTS":
+      return state.concat([action.payload]);
     default:
       return state;
   }
