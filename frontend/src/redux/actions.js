@@ -37,17 +37,17 @@ const showModal = ({ modalProps, modalType }) => dispatch => {
   });
 };
 
-const hideModal = () => dispatch => {
-  dispatch({
-    type: ActionTypes.HIDE_MODAL
-  });
-};
+// const hideModal = () => dispatch => {
+//   dispatch({
+//     type: ActionTypes.HIDE_MODAL
+//   });
+// };
 
 export {
   onChange,
   fetchedQueue,
   selectedSnippet,
   fetchingQueue,
-  showModal,
-  hideModal
+  showModal
+  // hideModal
 };

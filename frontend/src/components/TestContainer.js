@@ -1,22 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
-import TestFinishedModal from "./Modals/TestFinishedModal";
-import ModalContainer from "./ModalContainer";
-import { hideModal, showModal } from "../redux/actions";
+import { showModal } from "../redux/actions";
 
 const TestContainer = props => {
-  const openAlertModal = () => {
+  const openFinishedModal = () => {
     props.showModal(
       {
         open: true,
-        title: "Alert Modal",
+        title: "Finished Modal",
         message: "WE DID IT",
         closeModal: props.closeModal
       },
-      "alert"
+      "finished"
     );
   };
 
@@ -24,8 +22,7 @@ const TestContainer = props => {
     <div>
       <TestSnippet />
       <TestInput />
-      {props.isAccurate && props.isComplete && openAlertModal() }
-      {props.modalOpen && <TestFinishedModal />}
+      {props.isAccurate && props.isComplete && openFinishedModal() }
     </div>
   );
 };
@@ -42,7 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      hideModal: () => dispatch(hideModal()),
+    //   hideModal: () => dispatch(hideModal()),
       showModal: (modalProps, modalType) => {
         dispatch(showModal({ modalProps, modalType }));
       }
