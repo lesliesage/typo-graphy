@@ -1,11 +1,7 @@
 const URL = "http://localhost:3000/queue";
 
-function changeTypedText(typedText) {
-  return { type: "CHANGE_TYPED_TEXT", payload: typedText };
-}
-
-function addToTestResults(resultSubArray) {
-  return { type: "ADD_TO_TEST_RESULTS", payload: resultSubArray}
+function onChange(onChangeObj) {
+  return { type: "ON_CHANGE", payload: onChangeObj };
 }
 
 function fetchedQueue(snippets) {
@@ -29,4 +25,4 @@ function fetchingQueue() {
   };
 }
 
-export { changeTypedText, addToTestResults, fetchedQueue, fetchingQueue };
+export { onChange, fetchedQueue, selectedSnippet, fetchingQueue };

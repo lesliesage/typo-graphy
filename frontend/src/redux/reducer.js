@@ -6,7 +6,9 @@ const initialState = {
   snippetIndex: 0,
   selectedSnippet: null,
   typedText: "",
-  currentTestResults: []
+  currentTestResults: [],
+  isAccurate: true,
+  isComplete: false
 };
 
 const testReducer = (state = initialState, action) => {
@@ -19,12 +21,14 @@ const testReducer = (state = initialState, action) => {
       return { ...state, snippetIndex: action.payload };
     case "SELECTED_SNIPPET":
       return { ...state, selectedSnippet: action.payload };
-    case "CHANGE_TYPED_TEXT":
-      return { ...state, typedText: action.payload };
-    case "ADD_TO_TEST_RESULTS":
+    case "ON_CHANGE":
       return {
         ...state,
-        currentTestResults: state.currentTestResults.concat([action.payload])
+        typedText: action.payload.typedText,
+        currentTestResults: state.currentTestResults.concat([
+          action.payload.resultSubArray
+        ])
+        // figure out isAccurate & isComplete
       };
     default:
       return state;
