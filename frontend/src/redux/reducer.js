@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
+import ActionTypes from "../constants/ActionTypes";
 
-const initialState = {
+const initialTestState = {
   currentTestLanguage: null,
   queue: [],
   snippetIndex: 0,
@@ -11,7 +12,7 @@ const initialState = {
   isComplete: false
 };
 
-const testReducer = (state = initialState, action) => {
+const testReducer = (state = initialTestState, action) => {
   switch (action.type) {
     case "CHANGED_LANGUAGE_SELECTION":
       return { ...state, currentTestLanguage: action.payload };
@@ -27,16 +28,44 @@ const testReducer = (state = initialState, action) => {
         typedText: action.payload.typedText,
         currentTestResults: state.currentTestResults.concat([
           action.payload.resultSubArray
-        ])
-        // figure out isAccurate & isComplete
+        ]),
+        isAccurate:
+          state.selectedSnippet.code.slice(
+            0,
+            action.payload.typedText.length
+          ) === action.payload.typedText,
+        isComplete:
+          state.selectedSnippet.code.length === action.payload.typedText.length
       };
     default:
       return state;
   }
 };
 
+const initialModalState = {
+  modalType: null,
+  modalProps: {},
+  // modalOpen: false  // this is probably wrong
+};
+
+const modalReducer = (state = initialModalState, action) => {
+  switch (action.type) {
+    case ActionTypes.SHOW_MODAL:
+      return {
+        modalProps: action.modalProps,
+        modalType: action.modalType,
+        type: action.type
+      };
+    case ActionTypes.HIDE_MODAL:
+      return initialModalState;
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
-  test: testReducer
+  test: testReducer,
+  modal: modalReducer
 });
 
 export default rootReducer;

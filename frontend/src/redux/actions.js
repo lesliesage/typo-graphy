@@ -1,3 +1,5 @@
+import ActionTypes from "../constants/ActionTypes";
+
 const URL = "http://localhost:3000/queue";
 
 function onChange(onChangeObj) {
@@ -20,9 +22,32 @@ function fetchingQueue() {
         dispatch(fetchedQueue(snippets));
       })
       .then(() => {
-        dispatch(selectedSnippet(getState().test.queue[getState().test.snippetIndex]));
+        dispatch(
+          selectedSnippet(getState().test.queue[getState().test.snippetIndex])
+        );
       });
   };
 }
 
-export { onChange, fetchedQueue, selectedSnippet, fetchingQueue };
+const showModal = ({ modalProps, modalType }) => dispatch => {
+  dispatch({
+    type: ActionTypes.SHOW_MODAL,
+    modalProps,
+    modalType
+  });
+};
+
+const hideModal = () => dispatch => {
+  dispatch({
+    type: ActionTypes.HIDE_MODAL
+  });
+};
+
+export {
+  onChange,
+  fetchedQueue,
+  selectedSnippet,
+  fetchingQueue,
+  showModal,
+  hideModal
+};

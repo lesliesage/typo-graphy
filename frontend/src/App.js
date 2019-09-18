@@ -10,8 +10,7 @@ import StatsContainer from "./components/StatsContainer";
 import About from "./components/About";
 import Privacy from "./components/Privacy";
 import Help from "./components/Help";
-import {fetchingQueue} from './redux/actions'
-
+import { fetchingQueue, hideModal, showModal } from "./redux/actions";
 
 class App extends Component {
   componentDidMount() {
@@ -37,8 +36,14 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingQueue: () => {dispatch(fetchingQueue())}
+    fetchingQueue: () => {
+      dispatch(fetchingQueue());
+    },
     //prop : ()=>{dispatch(actionObj)}
+    hideModal: () => dispatch(hideModal()),
+    showModal: (modalProps, modalType) => {
+      dispatch(showModal({ modalProps, modalType }));
+    }
   };
 };
 

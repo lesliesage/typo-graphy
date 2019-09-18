@@ -15,13 +15,13 @@ const TestInput = props => {
           rows="15"
           onChange={e =>
             props.onChange({
-                typedText: e.target.value, 
-                resultSubArray: [
-                    e.target.selectionStart,
-                    e.target.textLength,
-                    e.nativeEvent.data,
-                    e.timeStamp
-                ]
+              typedText: e.target.value,
+              resultSubArray: [
+                e.target.selectionStart,
+                e.target.textLength,
+                e.nativeEvent.data,
+                e.timeStamp
+              ]
             })
           }
         ></textarea>
@@ -38,7 +38,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChange: (onChangeObj) => {
+    onChange: onChangeObj => {
       dispatch(onChange(onChangeObj));
     }
   };
