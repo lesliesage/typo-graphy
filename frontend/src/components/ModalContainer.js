@@ -32,6 +32,7 @@ class ModalContainer extends Component {
   }
 
   render() {
+    console.log(this.props.currentTestResults)
     if (!this.props.modalType) {
       return null;
     }

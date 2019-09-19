@@ -5,6 +5,10 @@ import TestInput from "./TestInput";
 import { showModal } from "../redux/actions";
 import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
 
+
+
+
+
 const TestContainer = props => {
   const openFinishedModal = () => {
     props.showModal(

@@ -1,6 +1,7 @@
 import ActionTypes from "../constants/ActionTypes";
 
-const URL = "http://localhost:3000/queue";
+const URL_BASE = "http://localhost:3000/";
+const URL_QUEUE = URL_BASE+"queue";
 
 function onChange(onChangeObj) {
   return { type: "ON_CHANGE", payload: onChangeObj };
@@ -16,7 +17,7 @@ function selectedSnippet(snippet) {
 
 function fetchingQueue() {
   return (dispatch, getState) => {
-    fetch(URL)
+    fetch(URL_QUEUE)
       .then(res => res.json())
       .then(snippets => {
         dispatch(fetchedQueue(snippets));
