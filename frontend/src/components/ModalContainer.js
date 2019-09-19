@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import ReactModal from "react-modal";
 
-class ModalContainer extends React.Component {
+class ModalContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +47,7 @@ class ModalContainer extends React.Component {
           <h2 ref={subtitle => (this.subtitle = subtitle)}>
             completed in x seconds
           </h2>
-          <button onClick={this.closeModal}>view your stats</button>
+          <button to="/stats" onClick={this.closeModal} >view your stats</button>
         </ReactModal>
       </div>
     );

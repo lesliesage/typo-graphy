@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchingSnippets } from "./redux/actions";
 import "./App.css";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
