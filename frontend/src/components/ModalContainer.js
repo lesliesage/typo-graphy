@@ -25,8 +25,10 @@ class ModalContainer extends Component {
   }
 
   completionTime() {
-    const resultsArray = this.props.currentTestResults
-    return (resultsArray[-1][3] - resultsArray[0][3])
+    const res = this.props.currentTestResults;
+    const start = res[0][3];
+    const end = res[res.length - 1][3];
+    return res[0] ? ((end - start) / 1000).toFixed(2) : "x";
   }
 
   render() {
@@ -65,7 +67,8 @@ class ModalContainer extends Component {
 const mapStateToProps = state => {
   return {
     ...state.modal,
-    currentTestResults: state.test.currentTestResults
+    // currentTestResults: state.test.currentTestResults
+    ...state.test
   };
 };
 
