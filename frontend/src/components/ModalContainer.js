@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
 
 class ModalContainer extends Component {
@@ -22,6 +22,11 @@ class ModalContainer extends Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+
+  completionTime() {
+    const resultsArray = this.props.currentTestResults
+    return (resultsArray[-1][3] - resultsArray[0][3])
   }
 
   render() {
@@ -46,18 +51,23 @@ class ModalContainer extends Component {
             <span aria-hidden="true">&times;</span>
           </button>
           <h2 ref={subtitle => (this.subtitle = subtitle)}>
-            completed in x seconds
+            completed in {this.completionTime()} seconds
           </h2>
-          <Link to="/stats" onClick={this.closeModal}>view your stats</Link>
+          <Link to="/stats" onClick={this.closeModal}>
+            view your stats
+          </Link>
         </ReactModal>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  ...state.modal
-});
+const mapStateToProps = state => {
+  return {
+    ...state.modal,
+    currentTestResults: state.test.currentTestResults
+  };
+};
 
 export default connect(
   mapStateToProps,
