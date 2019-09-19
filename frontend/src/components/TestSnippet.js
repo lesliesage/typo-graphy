@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { Link, withRouter, Route, Switch } from "react-router-dom";
+import React from "react";
 import { connect } from "react-redux";
 
 const TestSnippet = props => {

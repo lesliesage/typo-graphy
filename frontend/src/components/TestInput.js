@@ -1,5 +1,4 @@
 import React from "react";
-import { Link, withRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { onChange } from "../redux/actions.js";
 
@@ -7,7 +6,6 @@ const TestInput = props => {
   return (
     <div>
       <button>skip</button>
-      <button>start</button>
       <form>
         <textarea
           name="input"

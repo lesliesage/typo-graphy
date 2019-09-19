@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
 import { showModal } from "../redux/actions";
+import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
 
 const TestContainer = props => {
   const openFinishedModal = () => {

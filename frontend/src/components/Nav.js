@@ -1,8 +1,8 @@
-import React from "react";
-import { Link, withRouter, Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
 
-const Nav = props => {
+import React from "react";
+import { withRouter } from "react-router-dom";
+
+const Nav = () => {
   return (
     <div>
       <a href="/">

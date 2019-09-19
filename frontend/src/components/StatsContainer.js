@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, withRouter, Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import GraphSpeedPerChar from "./GraphSpeedPerChar";
 import GraphSppedPerCharType from "./GraphSppedPerCharType";
 import GraphImprovement from "./GraphImprovement";

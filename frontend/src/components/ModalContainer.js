@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {Link} from "react-router-dom"
 import ReactModal from "react-modal";
 
 class ModalContainer extends Component {
@@ -11,7 +12,7 @@ class ModalContainer extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     if (nextProps !== this.props) {
       this.setState({
         modalIsOpen: nextProps.modalProps.open
@@ -47,7 +48,7 @@ class ModalContainer extends Component {
           <h2 ref={subtitle => (this.subtitle = subtitle)}>
             completed in x seconds
           </h2>
-          <button to="/stats" onClick={this.closeModal} >view your stats</button>
+          <Link to="/stats" onClick={this.closeModal}>view your stats</Link>
         </ReactModal>
       </div>
     );
