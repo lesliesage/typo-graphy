@@ -9,8 +9,9 @@ const TestInput = props => {
       <form>
         <textarea
           name="input"
-          cols="80"
+          cols="68"
           rows="10"
+          className="code"
           onChange={e =>
             props.onChange({
               typedText: e.target.value,

@@ -31,6 +31,10 @@ code {
   background: #eee;
 }
 
+.code {
+  font-family: Menlo;
+}
+
 #bad-snippet {
   color: red;
 }

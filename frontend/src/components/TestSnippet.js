@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 function findAccuratePos(snippet, typed) {
-  var mistakeIndex = snippet.split("").findIndex((char, i) => {
+  const mistakeIndex = snippet.split("").findIndex((char, i) => {
     return char !== typed[i];
   });
   return mistakeIndex;
@@ -11,13 +11,21 @@ function findAccuratePos(snippet, typed) {
 const TestSnippet = props => {
   const snippet = props.selectedSnippet;
   const pos = snippet && findAccuratePos(snippet.code, props.typedText);
-  const goodSnippet = snippet && snippet.code.slice(0, pos);
+  // const needsSpace = snippet && (snippet.code[pos] === " ")
+  // const gotspace = <span>{needsSpace ? '\u00A0' : ""}</span>
+  const goodSnippet = snippet && (snippet.code.slice(0, pos));
   const badSnippet = snippet && snippet.code.slice(pos);
+  // console.log(needsSpace)
   return (
     <div id="snippet-container">
       <div id="snippet-field">
-        <span id="good-snippet">{snippet ? goodSnippet : "loading code"}</span>
-        <span id="bad-snippet">{snippet ? badSnippet : ""}</span>
+        <span id="good-snippet" className="code">{snippet ? goodSnippet : "loading code"}</span>
+        {/* {gotspace} */}
+        {/* {needsSpace ? '\u00A0' : ""} */}
+        {/* <span>{needsSpace ? '&nbsp;' : ""}</span> */}
+        {/* <span>&nbsp;</span> */}
+        {/* {'\u00A0'} */}
+        <span id="bad-snippet" className="code">{snippet ? badSnippet : ""}</span>
       </div>
     </div>
   );
