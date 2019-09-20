@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import GraphSpeedPerChar from "./GraphSpeedPerChar";
-import GraphSppedPerCharType from "./GraphSppedPerCharType";
+import GraphSppedPerCharType from "./GraphSpeedPerCharType";
 import GraphImprovement from "./GraphImprovement";
 import GraphSpeedPerLanguage from "./GraphSpeedPerLanguage";
 
