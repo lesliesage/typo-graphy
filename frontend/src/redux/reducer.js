@@ -9,7 +9,8 @@ const initialTestState = {
   typedText: "",
   currentTestResults: [],
   isAccurate: true,
-  isComplete: false
+  isComplete: false,
+  testSummary: {}
 };
 
 const testReducer = (state = initialTestState, action) => {
@@ -37,6 +38,8 @@ const testReducer = (state = initialTestState, action) => {
         isComplete:
           state.selectedSnippet.code.length === action.payload.typedText.length
       };
+      case "SAVED_TEST":
+        return { ...state, testSummary: action.payload };
     default:
       return state;
   }
