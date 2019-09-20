@@ -7,7 +7,7 @@ import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
 
 const TestContainer = props => {
   const openFinishedModal = () => {
-    savingTest(testToSave(props));
+    props.savingTest(testToSave(props));
     props.showModal(
       {
         open: true,
@@ -135,7 +135,7 @@ const TestContainer = props => {
           return ["close_bracket", el[1]];
         case "|":
           return ["pipe", el[1]];
-        case "/":
+        case "\\":
           return ["backslash", el[1]];
         case ":":
           return ["colon", el[1]];
@@ -185,11 +185,12 @@ const TestContainer = props => {
   }
 
   const testToSave = props => {
-    return processAverages(
+    let ans = processAverages(
       renameChars(
         removeSpaces(calculateTimes(handleDeletes(props.currentTestResults)))
       )
     );
+    return ans;
   };
 
   return (

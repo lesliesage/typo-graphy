@@ -10,7 +10,7 @@ const TestInput = props => {
         <textarea
           name="input"
           cols="80"
-          rows="15"
+          rows="10"
           onChange={e =>
             props.onChange({
               typedText: e.target.value,

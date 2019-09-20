@@ -30,3 +30,30 @@ code {
 .btn:hover {
   background: #eee;
 }
+
+#bad-snippet {
+  color: red;
+}
+
+div#snippet-container {
+  display: flex;
+  justify-content: center;
+}
+
+div#snippet-field {
+  height: 28px;
+  overflow: auto;
+  padding: 2px;
+  resize: both;
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  background-color: -moz-field;
+  border: 1px solid darkgray;
+  box-shadow: 1px 1px 1px 0 lightgray inset;
+  font: -moz-field;
+  font: -webkit-small-control;
+  margin-top: 5px;
+  padding: 2px 3px;
+  width: 494px;
+  display: flex;
+}

@@ -5,6 +5,7 @@ class TestsController < ApplicationController
     end
 
     def create
+        byebug
         test = Test.create(test_params)
         render json: test.to_json(test_serializer)
     end

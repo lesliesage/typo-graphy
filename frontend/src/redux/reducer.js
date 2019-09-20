@@ -8,6 +8,7 @@ const initialTestState = {
   selectedSnippet: null,
   typedText: "",
   currentTestResults: [],
+  accuratePos: 0,
   isAccurate: true,
   isComplete: false,
   testSummary: {}
@@ -30,7 +31,8 @@ const testReducer = (state = initialTestState, action) => {
         currentTestResults: state.currentTestResults.concat([
           action.payload.resultSubArray
         ]),
-        isAccurate:
+        accuratePos: 3, // add code here so it's not hardcoded...
+        isAccurate: 
           state.selectedSnippet.code.slice(
             0,
             action.payload.typedText.length
