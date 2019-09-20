@@ -10,11 +10,12 @@ import About from "./components/About";
 import Privacy from "./components/Privacy";
 import Help from "./components/Help";
 import ModalContainer from "./components/ModalContainer";
-import { fetchingQueue } from "./redux/actions";
+import { fetchingQueue, fetchingTests } from "./redux/actions";
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchingQueue();
+    this.props.fetchingTests();
   }
 
   render() {
@@ -40,6 +41,9 @@ const mapDispatchToProps = dispatch => {
     fetchingQueue: () => {
       dispatch(fetchingQueue());
     },
+    fetchingTests: () => {
+      dispatch(fetchingTests());
+    }
     //prop : ()=>{dispatch(actionObj)}
   };
 };

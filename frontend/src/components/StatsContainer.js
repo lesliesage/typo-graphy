@@ -5,16 +5,15 @@ import GraphSppedPerCharType from "./GraphSpeedPerCharType";
 import GraphImprovement from "./GraphImprovement";
 import GraphSpeedPerLanguage from "./GraphSpeedPerLanguage";
 
-
 const StatsContainer = props => {
-    return (
-        <div>
-            <GraphSpeedPerChar />
-            <GraphSppedPerCharType />
-            <GraphImprovement />
-            <GraphSpeedPerLanguage />
-        </div>
-    )
-}
+  return (
+    <div>
+      <GraphSpeedPerChar />
+      <GraphSppedPerCharType />
+      <GraphImprovement />
+      <GraphSpeedPerLanguage />
+    </div>
+  );
+};
 
 export default withRouter(StatsContainer);

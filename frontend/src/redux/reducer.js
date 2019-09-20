@@ -66,9 +66,23 @@ const modalReducer = (state = initialModalState, action) => {
   }
 };
 
+const initialStatsState = {
+  allTests: {}
+};
+
+const statsReducer = (state = initialStatsState, action) => {
+  switch (action.type) {
+    case "FETCHED_TESTS":
+      return { ...state, allTests: action.payload };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   test: testReducer,
-  modal: modalReducer
+  modal: modalReducer,
+  stats: statsReducer
 });
 
 export default rootReducer;

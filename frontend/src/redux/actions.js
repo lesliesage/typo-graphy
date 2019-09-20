@@ -61,6 +61,26 @@ const hideModal = () => dispatch => {
   });
 };
 
+function fetchingTests() {
+  return (dispatch, getState) => {
+    fetch(URL_TESTS)
+      .then(res => res.json())
+      .then(allTests => {
+        dispatch(fetchedTests(allTests));
+      })
+      // .then(() => {
+      //   dispatch(
+      //     selectedSnippet(getState().test.queue[getState().test.snippetIndex])
+      //   );
+      // });
+  };
+}
+
+function fetchedTests(allTests) {
+  return { type: "FETCHED_TESTS", payload: allTests };
+}
+
+
 export {
   onChange,
   fetchedQueue,
@@ -69,5 +89,6 @@ export {
   showModal,
   // savedTest,
   savingTest,
-  hideModal
+  hideModal,
+  fetchingTests
 };

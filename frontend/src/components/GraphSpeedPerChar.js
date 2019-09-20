@@ -18,6 +18,24 @@ const data = {
   ]
 };
 
+// const data = props => {
+//   console.log(props)
+//   return {
+//     labels: props.allTests.last.keys,
+//     datasets: [
+//       {
+//         label: "My First dataset",
+//         backgroundColor: "rgba(255,99,132,0.2)",
+//         borderColor: "rgba(255,99,132,1)",
+//         borderWidth: 1,
+//         hoverBackgroundColor: "rgba(255,99,132,0.4)",
+//         hoverBorderColor: "rgba(255,99,132,1)",
+//         data: props.allTests.last.values
+//       }
+//     ]
+//   };
+// };
+
 const GraphSpeedPerChar = props => {
   return (
     <div>
@@ -32,4 +50,15 @@ const GraphSpeedPerChar = props => {
   );
 };
 
-export default withRouter(GraphSpeedPerChar);
+const mapStateToProps = state => {
+  return {
+    selectedSnippet: state.test.selectedSnippet,
+    currentTestResults: state.test.currentTestResults,
+    savedTest: state.test.testSummary,
+    allTests: state.stats.allTests
+  };
+};
+
+export default connect(mapStateToProps)(GraphSpeedPerChar);
+
+// export default withRouter(GraphSpeedPerChar);
