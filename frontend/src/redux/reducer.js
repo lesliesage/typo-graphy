@@ -30,7 +30,7 @@ const testReducer = (state = initialTestState, action) => {
         currentTestResults: state.currentTestResults.concat([
           action.payload.resultSubArray
         ]),
-        isAccurate: 
+        isAccurate:
           state.selectedSnippet.code.slice(
             0,
             action.payload.typedText.length
@@ -38,8 +38,8 @@ const testReducer = (state = initialTestState, action) => {
         isComplete:
           state.selectedSnippet.code.length === action.payload.typedText.length
       };
-      case "SAVED_TEST":
-        return { ...state, testSummary: action.payload };
+    case "SAVED_TEST":
+      return { ...state, testSummary: action.payload, isComplete: false };
     default:
       return state;
   }
@@ -47,7 +47,7 @@ const testReducer = (state = initialTestState, action) => {
 
 const initialModalState = {
   modalType: null,
-  modalProps: {},
+  modalProps: {}
   // modalOpen: false  // this is probably wrong
 };
 

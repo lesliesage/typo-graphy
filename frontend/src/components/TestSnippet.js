@@ -15,10 +15,10 @@ const TestSnippet = props => {
   const badSnippet = snippet && snippet.code.slice(pos);
   return (
     <div id="snippet-container">
-    <div id="snippet-field">
-      <span id="good-snippet">{snippet ? goodSnippet : "loading code"}</span>
-      <span id="bad-snippet">{snippet ? badSnippet : ""}</span>
-    </div>
+      <div id="snippet-field">
+        <span id="good-snippet">{snippet ? goodSnippet : "loading code"}</span>
+        <span id="bad-snippet">{snippet ? badSnippet : ""}</span>
+      </div>
     </div>
   );
 };

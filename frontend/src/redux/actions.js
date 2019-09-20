@@ -36,7 +36,7 @@ function fetchingQueue() {
 }
 
 function savingTest(testToSave) {
-  return (dispatch) => {
+  return dispatch => {
     fetch(URL_TESTS, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
