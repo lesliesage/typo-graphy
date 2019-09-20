@@ -163,16 +163,14 @@ const TestContainer = props => {
     });
   }
 
-  function processAverages(arr, props) {
+  function processAverages(arr) {
     const n = {};
     FIELDS.forEach(field => {
       if (field === "user_id") {
-        n[field] = 1;
-      } // replace "1" with current user id
-      else if (field === "snippet_id") {
-        n[field] = 1;
-      } //replace "1 with current snippet id"
-      else {
+        n[field] = 15;
+      } else if (field === "snippet_id") {
+        n[field] = props.selectedSnippet.id;
+      } else {
         const matchSet = arr.filter(el => {
           return el[0] === field;
         });

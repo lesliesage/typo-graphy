@@ -16,10 +16,8 @@ function selectedSnippet(snippet) {
   return { type: "SELECTED_SNIPPET", payload: snippet };
 }
 
-function savedTest(testToSave) {
-  console.log("inside savedTest in actions");
-  console.log(testToSave);
-  return { type: "SAVED_TEST", payload: testToSave };
+function savedTest(t) {
+  return { type: "SAVED_TEST", payload: t };
 }
 
 function fetchingQueue() {
@@ -38,19 +36,14 @@ function fetchingQueue() {
 }
 
 function savingTest(testToSave) {
-  return (dispatch, getState) => {
-    console.log("inside return");
-    console.log(testToSave);
+  return (dispatch) => {
     fetch(URL_TESTS, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(testToSave)
     })
       .then(res => res.json())
-      .then(t => {
-        console.log(t);
-        dispatch(savedTest(t));
-      });
+      .then(t => dispatch(savedTest(t)));
   };
 }
 
