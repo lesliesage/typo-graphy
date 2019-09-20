@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+textarea.code {
+  width: 500px;
+  height: 40px;
+}
+
 .title {
   font-size: 18px;
   font-weight: bold;
@@ -35,7 +40,7 @@ code {
   font-family: Menlo;
 }
 
-#bad-snippet {
+.bad {
   color: red;
 }
 
@@ -45,7 +50,7 @@ div#snippet-container {
 }
 
 div#snippet-field {
-  height: 28px;
+  height: 40px;
   overflow: auto;
   padding: 2px;
   resize: both;
@@ -58,6 +63,6 @@ div#snippet-field {
   font: -webkit-small-control;
   margin-top: 5px;
   padding: 2px 3px;
-  width: 494px;
+  width: 500px;
   display: flex;
 }

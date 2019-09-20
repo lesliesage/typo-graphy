@@ -11,21 +11,15 @@ function findAccuratePos(snippet, typed) {
 const TestSnippet = props => {
   const snippet = props.selectedSnippet;
   const pos = snippet && findAccuratePos(snippet.code, props.typedText);
-  // const needsSpace = snippet && (snippet.code[pos] === " ")
-  // const gotspace = <span>{needsSpace ? '\u00A0' : ""}</span>
+  const needsSpace = snippet && (snippet.code[pos] === " " || snippet.code[pos-1] === " " )
   const goodSnippet = snippet && (snippet.code.slice(0, pos));
   const badSnippet = snippet && snippet.code.slice(pos);
-  // console.log(needsSpace)
   return (
     <div id="snippet-container">
       <div id="snippet-field">
-        <span id="good-snippet" className="code">{snippet ? goodSnippet : "loading code"}</span>
-        {/* {gotspace} */}
-        {/* {needsSpace ? '\u00A0' : ""} */}
-        {/* <span>{needsSpace ? '&nbsp;' : ""}</span> */}
-        {/* <span>&nbsp;</span> */}
-        {/* {'\u00A0'} */}
-        <span id="bad-snippet" className="code">{snippet ? badSnippet : ""}</span>
+        <span className="good code">{snippet ? goodSnippet : "loading code"}</span>
+        {needsSpace && <span>&nbsp;&nbsp;</span>}
+        <span className="bad code" >{snippet ? badSnippet : ""}</span>
       </div>
     </div>
   );
