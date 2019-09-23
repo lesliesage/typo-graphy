@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
 import { showModal, hideModal, savingTest } from "../redux/actions";
+import GraphThisTest from "./GraphThisTest";
 
 const TestContainer = props => {
   const openFinishedModal = () => {
@@ -166,7 +167,7 @@ const TestContainer = props => {
     const n = {};
     FIELDS.forEach(field => {
       if (field === "user_id") {
-        n[field] = 15;
+        n[field] = 17;
       } else if (field === "snippet_id") {
         n[field] = props.selectedSnippet.id;
       } else {
@@ -194,6 +195,7 @@ const TestContainer = props => {
     <div>
       <TestSnippet />
       <TestInput />
+      <GraphThisTest />
       {props.isAccurate && props.isComplete && openFinishedModal()}
     </div>
   );

@@ -18,7 +18,7 @@ const TestSnippet = props => {
     <div id="snippet-container">
       <div id="snippet-field">
         <span className="good code">{snippet ? goodSnippet : "loading code"}</span>
-        {needsSpace && <span>&nbsp;&nbsp;</span>}
+        {needsSpace && <span className="code">&nbsp;</span>}
         <span className="bad code" >{snippet ? badSnippet : ""}</span>
       </div>
     </div>

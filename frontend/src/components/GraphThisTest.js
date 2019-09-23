@@ -112,7 +112,7 @@ const GraphThisTest = props => {
 
   return (
     <div>
-      <h2>the play-by-play [this test]</h2>
+      <h2>play-by-play</h2>
       <Line
         data={data}
         options={options}
