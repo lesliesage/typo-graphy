@@ -1,9 +1,8 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Bar } from "react-chartjs-2";
 
-const GraphSpeedPerChar = props => {
+const GraphMillisecPerChar = props => {
   const FIELDKEY = {
     alpha: "a-z",
     numeric: "0-9",
@@ -62,61 +61,70 @@ const GraphSpeedPerChar = props => {
   }
 
   function getValues(arr) {
-    // return values for y-axis, rounding to integer
+    // return values for y-axis
     return arr.map(el => {
-      return Math.round(el[1]);
+      return Math.round(el[1]); // milliseconds per character
+      // return Math.round((1 / el[1]) * 1000000) / 1000; // char per second
     });
   }
+
+  const options = {
+    title: {
+      display: false
+    },
+    legend: {
+      display: false
+    },
+    scales: {
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true
+          },
+          gridLines: {
+            color: "rgba(0, 0, 0, 0)",
+            display: false
+          }
+        }
+      ],
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: "ms / char"
+          },
+          ticks: {
+            min: 0
+          },
+          gridLines: {
+            color: "rgba(0, 0, 0, 0)",
+            display: false
+          }
+        }
+      ]
+    },
+    layout: {
+      padding: {
+        left: 50,
+        right: 50,
+        top: 0,
+        bottom: 0
+      }
+    }
+  };
 
   const data = {
     labels: getKeys(arrayify(props.testSummary)),
     datasets: [
       {
-        // label: ,
         backgroundColor: "lightgrey",
         borderColor: "grey",
-        borderWidth: 0,
+        borderWidth: 1,
         hoverBackgroundColor: "grey",
         hoverBorderColor: "black",
         data: getValues(arrayify(props.testSummary)),
         legend: {
           display: false
-        },
-        options: {
-          title: {
-            display: false
-          },
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [
-              {
-                ticks: {
-                  display: false
-                },
-                gridLines: {
-                  color: "rgba(0, 0, 0, 0)",
-                  linewidth: 0,
-                  drawOnChartArea: false,
-                  display: false
-                }
-              }
-            ],
-            yAxes: [
-              {
-                ticks: {
-                  display: false
-                },
-                gridLines: {
-                  color: "rgba(0, 0, 0, 0)",
-                  linewidth: 0,
-                  drawOnChartArea: false,
-                  display: false
-                }
-              }
-            ]
-          }
         }
       }
     ]
@@ -124,13 +132,10 @@ const GraphSpeedPerChar = props => {
 
   return (
     <div>
-      <h2>GraphSpeedPerChar</h2>
+      <h2>average milliseconds per character</h2>
       <Bar
         data={data}
-        // width={100}
-        // height={50}
-        // options={{ maintainAspectRatio: false }}
-        // options={options}
+        options={options}
       />
     </div>
   );
@@ -145,5 +150,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(GraphSpeedPerChar);
-// export default withRouter(GraphSpeedPerChar);
+export default connect(mapStateToProps)(GraphMillisecPerChar);
