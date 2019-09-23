@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
 import { showModal, hideModal, savingTest } from "../redux/actions";
-import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
 
 const TestContainer = props => {
   const openFinishedModal = () => {

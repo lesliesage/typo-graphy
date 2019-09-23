@@ -1,74 +1,52 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
-const GraphMillisecPerChar = props => {
-  const FIELDKEY = {
-    alpha: "a-z",
-    numeric: "0-9",
-    tilde: "~",
-    backtick: "`",
-    exclamation: "!",
-    at: "@",
-    octothorpe: "#",
-    dollar: "$",
-    percent: "%",
-    carrot: "^",
-    ampersand: "&",
-    star: "*",
-    open_paren: "(",
-    close_paren: ")",
-    long_dash: "_",
-    dash: "-",
-    plus: "+",
-    equals: "=",
-    open_curly: "{",
-    close_curly: "}",
-    open_bracket: "[",
-    close_bracket: "]",
-    pipe: "|",
-    backslash: "\\",
-    colon: ":",
-    semicolon: ";",
-    doublequote: '"',
-    singlequote: "'",
-    open_angle: "<",
-    close_angle: ">",
-    comma: ",",
-    period: ".",
-    question: "?",
-    slash: "/"
-  };
+const GraphThisTest = props => {
+  function handleDeletes(arr) {
+    const newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      const existingPos = newArr.map(el => el[0]);
+      if (!!arr[i][2] && !existingPos.includes(arr[i][0])) {
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
+  }
 
-  function arrayify(obj) {
-    // turn test result into array, remove metadata (id, created_at, user_id, etc.)
-    const arr = Object.entries(obj).filter(el => {
-      return Object.keys(FIELDKEY).includes(el[0]);
+  function calculateTimes(arr) {
+    const newArr = [];
+    for (let i = 0; i < arr.length - 1; i++) {
+      const newEl = [];
+      newEl.push(arr[i][2]);
+      newEl.push(arr[i + 1][3] - arr[i][3]);
+      newArr.push(newEl);
+    }
+    return newArr;
+  }
+
+  function removeSpaces(arr) {
+    return arr.filter(el => {
+      return el[0] !== " ";
     });
-    // remove unused characters and sort ascending by typing speed
-    return arr
-      .filter(el => el[1])
-      .sort((a, b) => {
-        return a[1] > b[1] ? 1 : -1;
-      });
   }
 
   function getKeys(arr) {
-    // return keys for x-axis, replacing char's text label with symbol
+    // return keys for x-axis
     return arr.map(el => {
-      return FIELDKEY[el[0]];
+      return el[0];
     });
   }
 
   function getValues(arr) {
+    console.log(props.currentTestResults)
     // return values for y-axis
     return arr.map(el => {
       return Math.round(el[1]); // milliseconds per character
-      // return Math.round((1 / el[1]) * 1000000) / 1000; // char per second
     });
   }
 
-  const cleanedResult = arrayify(props.testSummary)
+  const cleanedResult = removeSpaces(calculateTimes(handleDeletes(props.currentTestResults)))
 
   const options = {
     title: {
@@ -134,8 +112,11 @@ const GraphMillisecPerChar = props => {
 
   return (
     <div>
-      <h2>average milliseconds per character [this test]</h2>
-      <Bar data={data} options={options} />
+      <h2>the play-by-play [this test]</h2>
+      <Line
+        data={data}
+        options={options}
+      />
     </div>
   );
 };
@@ -149,4 +130,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(GraphMillisecPerChar);
+export default connect(mapStateToProps)(GraphThisTest);
