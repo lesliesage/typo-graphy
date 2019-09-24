@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import GraphSpeedPerChar from "./GraphMillisecPerChar";
-import GraphSppedPerCharType from "./GraphSpeedPerCharType";
+import GraphComparedToMedian from "./GraphComparedToMedian";
 import GraphImprovement from "./GraphImprovement";
 import GraphThisTest from "./GraphThisTest";
 
@@ -10,8 +10,8 @@ const StatsContainer = props => {
     <div>
       <GraphThisTest />
       <GraphSpeedPerChar />
-      <GraphSppedPerCharType />
-      <GraphImprovement />
+      <GraphComparedToMedian />
+      {/* <GraphImprovement /> */}
     </div>
   );
 };

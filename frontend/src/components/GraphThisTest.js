@@ -126,10 +126,7 @@ function removeSpaces(arr) {
 
 const mapStateToProps = state => {
   return {
-    selectedSnippet: state.test.selectedSnippet,
-    currentTestResults: state.test.currentTestResults,
-    testSummary: state.test.testSummary,
-    allTests: state.stats.allTests
+    currentTestResults: state.test.currentTestResults
   };
 };
 

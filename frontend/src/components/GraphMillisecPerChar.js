@@ -146,10 +146,7 @@ const GraphMillisecPerChar = props => {
 
 const mapStateToProps = state => {
   return {
-    selectedSnippet: state.test.selectedSnippet,
-    currentTestResults: state.test.currentTestResults,
-    testSummary: state.test.testSummary,
-    allTests: state.stats.allTests
+    testSummary: state.test.testSummary
   };
 };
 
