@@ -39,7 +39,6 @@ function removeSpaces(arr) {
   }
 
   function getValues(arr) {
-    console.log(props.currentTestResults);
     // return values for y-axis
     return arr.map(el => {
       return Math.round(el[1]); // milliseconds per character

@@ -3,6 +3,7 @@ import ActionTypes from "../constants/ActionTypes";
 const URL_BASE = "http://localhost:3000/";
 const URL_QUEUE = URL_BASE + "queue";
 const URL_TESTS = URL_BASE + "tests";
+const URL_MEDIANS = URL_BASE + "medians";
 
 function onChange(onChangeObj) {
   return { type: "ON_CHANGE", payload: onChangeObj };
@@ -61,25 +62,35 @@ const hideModal = () => dispatch => {
   });
 };
 
-function fetchingTests() {
-  return (dispatch, getState) => {
-    fetch(URL_TESTS)
+////// I really don't need all this on the frontend
+
+// function fetchingTests() {
+//   return (dispatch) => {
+//     fetch(URL_TESTS)
+//       .then(res => res.json())
+//       .then(allTests => {
+//         dispatch(fetchedTests(allTests));
+//       })
+//   };
+// }
+
+// function fetchedTests(allTests) {
+//   return { type: "FETCHED_TESTS", payload: allTests };
+// }
+
+function fetchingMedians() {
+  return dispatch => {
+    fetch(URL_MEDIANS)
       .then(res => res.json())
-      .then(allTests => {
-        dispatch(fetchedTests(allTests));
-      })
-      // .then(() => {
-      //   dispatch(
-      //     selectedSnippet(getState().test.queue[getState().test.snippetIndex])
-      //   );
-      // });
+      .then(medianSet => {
+        dispatch(fetchedMedians(medianSet));
+      });
   };
 }
 
-function fetchedTests(allTests) {
-  return { type: "FETCHED_TESTS", payload: allTests };
+function fetchedMedians(medianSet) {
+  return { type: "FETCHED_MEDIANS", payload: medianSet };
 }
-
 
 export {
   onChange,
@@ -90,5 +101,6 @@ export {
   // savedTest,
   savingTest,
   hideModal,
-  fetchingTests
+  // fetchingTests,
+  fetchingMedians
 };

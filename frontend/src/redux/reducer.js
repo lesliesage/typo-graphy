@@ -67,13 +67,16 @@ const modalReducer = (state = initialModalState, action) => {
 };
 
 const initialStatsState = {
-  allTests: {}
+  // allTests: {},
+  medianSet: null
 };
 
 const statsReducer = (state = initialStatsState, action) => {
   switch (action.type) {
-    case "FETCHED_TESTS":
-      return { ...state, allTests: action.payload };
+    // case "FETCHED_TESTS":
+    //   return { ...state, allTests: action.payload };
+    case "FETCHED_MEDIANS":
+        return { ...state, medianSet: action.payload };
     default:
       return state;
   }
