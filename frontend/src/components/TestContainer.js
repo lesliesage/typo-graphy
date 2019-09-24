@@ -192,10 +192,11 @@ const TestContainer = props => {
   };
 
   return (
-    <div>
+    <div className="test-container">
+      <button className="next-btn">next</button>
       <TestSnippet />
       <TestInput />
-      <GraphThisTest />
+      <div className="graph"><GraphThisTest /></div>
       {props.isAccurate && props.isComplete && openFinishedModal()}
     </div>
   );

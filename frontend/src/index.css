@@ -7,14 +7,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */
 
 textarea.code {
   height: 100px;
   width: 600px;
+  border: 1px solid darkgrey;
+  resize: vertical;
+}
+
+div#snippet-container {
+  display: flex;
+  justify-content: center;
+}
+
+div#snippet-field {
+  height: 100px;
+  width: 600px;
+  overflow: auto;
+  padding: 2px;
+  resize: vertical;
+  border: 1px solid darkgrey;
+  margin-bottom: 15px;
+  display: flex;
+  text-align: left; 
 }
 
 .title {
@@ -38,34 +57,38 @@ textarea.code {
 
 .code {
   font-family: Menlo;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .bad {
   color: red;
 }
 
-div#snippet-container {
+.graph-area {
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  /* min-width: 1000px; */
 }
 
-div#snippet-field {
-  height: 100px;
-  width: 600px;
-  overflow: auto;
-  padding: 2px;
-  resize: vertical;
-  -moz-appearance: textfield;
-  -webkit-appearance: textfield;
-  background-color: -moz-field;
-  border: 1px solid darkgray;
-  box-shadow: 1px 1px 1px 0 lightgray inset;
-  /* font: -moz-field;
-  font: -webkit-small-control; */
-  margin-top: 5px;
-  padding: 2px 3px;
+.graph-title-div {
+  align-items: center;
+}
+
+.graph {
+  min-width: 1000px;
+  min-height: 500px;
+  align-items: center;
+}
+
+.test-container {
   display: flex;
-  text-align: left; 
-  /* font-family: Menlo; */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.next-btn {
+  margin-left: auto;
 }

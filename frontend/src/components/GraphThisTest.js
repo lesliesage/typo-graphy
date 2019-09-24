@@ -3,33 +3,33 @@ import { connect } from "react-redux";
 import { Line } from "react-chartjs-2";
 
 const GraphThisTest = props => {
-  function handleDeletes(arr) {
+  function handleDeletes(arr){
     const newArr = [];
-    for (let i = 0; i < arr.length; i++) {
-      const existingPos = newArr.map(el => el[0]);
-      if (!!arr[i][2] && !existingPos.includes(arr[i][0])) {
-        newArr.push(arr[i]);
-      }
+    for(let i=arr.length-1; i>=0; i--){
+        const existingPos = newArr.map(el => el[0])
+        if (!!arr[i][2] && !existingPos.includes(arr[i][0])) {
+            newArr.push(arr[i])
+        }
     }
-    return newArr;
-  }
+    return newArr
+}
 
-  function calculateTimes(arr) {
-    const newArr = [];
-    for (let i = 0; i < arr.length - 1; i++) {
-      const newEl = [];
-      newEl.push(arr[i][2]);
-      newEl.push(arr[i + 1][3] - arr[i][3]);
-      newArr.push(newEl);
-    }
-    return newArr;
+function calculateTimes(arr) {
+  const newArr = [];
+  for (let i = 0; i < arr.length - 1; i++) {
+    const newEl = [];
+    newEl.push(arr[i][2]);
+    newEl.push(arr[i][3]-arr[i + 1][3]);
+    newArr.push(newEl);
   }
+  return newArr;
+}
 
-  function removeSpaces(arr) {
-    return arr.filter(el => {
-      return el[0] !== " ";
-    });
-  }
+function removeSpaces(arr) {
+  return arr.filter(el => {
+    return el[0] !== " ";
+  });
+}
 
   function getKeys(arr) {
     // return keys for x-axis
@@ -39,14 +39,16 @@ const GraphThisTest = props => {
   }
 
   function getValues(arr) {
-    console.log(props.currentTestResults)
+    console.log(props.currentTestResults);
     // return values for y-axis
     return arr.map(el => {
       return Math.round(el[1]); // milliseconds per character
     });
   }
 
-  const cleanedResult = removeSpaces(calculateTimes(handleDeletes(props.currentTestResults)))
+  const cleanedResult = removeSpaces(
+    calculateTimes(handleDeletes(props.currentTestResults)).reverse()
+  );
 
   const options = {
     title: {
@@ -74,7 +76,8 @@ const GraphThisTest = props => {
             labelString: "ms / char"
           },
           ticks: {
-            min: 0
+            min: 0,
+            autoSkip: false
           },
           gridLines: {
             color: "rgba(0, 0, 0, 0)",
@@ -111,12 +114,13 @@ const GraphThisTest = props => {
   };
 
   return (
-    <div>
-      <h2>play-by-play</h2>
-      <Line
-        data={data}
-        options={options}
-      />
+    <div className="graph-area">
+      <div className="graph-title-div">
+        <h2>play-by-play</h2>
+      </div>
+      <div className="graph">
+        <Line data={data} options={options} />
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { onChange } from "../redux/actions.js";
 const TestInput = props => {
   return (
     <div>
-      <button>skip</button>
+
       <form>
         <textarea
           name="input"
