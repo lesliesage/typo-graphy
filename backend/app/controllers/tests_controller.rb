@@ -11,6 +11,11 @@ class TestsController < ApplicationController
         render json: test.to_json(test_serializer)
     end
 
+    def medians
+        median_set = Test.medians()
+        render json: median_set.to_json()
+    end
+
     private
 
     def test_serializer 
