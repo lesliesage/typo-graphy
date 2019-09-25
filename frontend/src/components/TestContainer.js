@@ -2,21 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
-import { showModal, hideModal, savingTest, nextIndex } from "../redux/actions";
+import { openingModal, closingModal, settingModalType, savingTest, nextIndex } from "../redux/actions";
 import GraphThisTest from "./GraphThisTest";
 
 const TestContainer = props => {
-  const openFinishedModal = () => {
+  
+  const openModal = () => {
+    console.log("hitting openModal in TestContainer")
     props.savingTest(testToSave(props));
-    props.showModal(
-      {
-        open: true,
-        title: "Finished Modal",
-        message: "WE DID IT",
-        closeModal: props.closeModal
-      },
-      "finished"
-    );
+    props.openingModal()
   };
 
   const FIELDS = [
@@ -197,7 +191,7 @@ const TestContainer = props => {
       <TestSnippet />
       <TestInput />
       <div className="graph"><GraphThisTest /></div>
-      {props.isAccurate && props.isComplete && openFinishedModal()}
+      {props.isAccurate && props.isComplete && openModal()}
     </div>
   );
 };
@@ -206,9 +200,8 @@ const mapStateToProps = state => {
   return {
     isAccurate: state.test.isAccurate,
     isComplete: state.test.isComplete,
-    closeModal: state.modal.closeModal,
-    // showModal: state.modal.showModal,
-    modalOpen: state.modal.modalProps.open,
+    modalStatus: state.modal.modalStatus,
+    modalType: state.modal.modalType,
     selectedSnippet: state.test.selectedSnippet,
     currentTestResults: state.test.currentTestResults,
     savedTest: state.test.testSummary,
@@ -219,14 +212,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    hideModal: () => dispatch(hideModal()),
-    showModal: (modalProps, modalType) => {
-      dispatch(showModal({ modalProps, modalType }));
-    },
     savingTest: testToSave => {
       dispatch(savingTest(testToSave));
     },
-    nextIndex: () => dispatch(nextIndex())
+    nextIndex: () => dispatch(nextIndex()),
+    openingModal: () => dispatch(openingModal()),
+    closingModal: () => dispatch(closingModal()),
+    settingModalType: type => dispatch(settingModalType(type))
   };
 };
 

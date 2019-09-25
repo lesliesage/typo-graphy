@@ -2,92 +2,76 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
-import { nextIndex } from "../redux/actions";
+import {
+  nextIndex,
+  openingModal,
+  closingModal,
+  settingModalType
+} from "../redux/actions";
 
-class ModalContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalIsOpen: false
-    };
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  componentDidUpdate(nextProps) {
-    if (nextProps !== this.props) {
-      this.setState({
-        modalIsOpen: nextProps.modalProps.open
-      });
-    }
-  }
-
-  closeModal() {
-    this.setState({ modalIsOpen: false });
-  }
-
-  completionTime() {
-    const res = this.props.currentTestResults;
+const ModalContainer = props => {
+  function completionTime() {
+    const res = props.currentTestResults;
     const start = res[0][3];
     const end = res[res.length - 1][3];
     return res[0] ? ((end - start) / 1000).toFixed(2) : "x";
   }
 
-  modalGoAgain() {
-    console.log(this.props);
-    this.props.nextIndex();
-    this.closeModal();
+  function modalGoAgain() {
+    props.nextIndex();
+    props.closingModal();
   }
 
-  render() {
-    if (!this.props.modalType) {
-      return null;
-    }
+  if (!props.modalStatus) {
+    return null;
+  } else {
     return (
       <div>
         <ReactModal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
+          isOpen={props.modalOpen}
+          // onAfterOpen={afterOpenModal}
+          onRequestClose={props.closingModal}
+          contentLabel="Test Finished"
           ariaHideApp={false}
         >
           <button
             type="button"
             className="close"
             aria-label="Close"
-            onClick={this.closeModal}
+            onClick={props.closingModal}
           >
             <span aria-hidden="true">&times;</span>
           </button>
-          <h2 ref={subtitle => (this.subtitle = subtitle)}>
-            completed in {this.completionTime()} seconds
-          </h2>
-          <Link to="/stats" onClick={this.closeModal}>
+
+          <h2>completed in {completionTime()} seconds</h2>
+
+          <Link to="/stats" onClick={props.closingModal}>
             view your stats
           </Link>
-          <Link to="/" onClick={this.closeModal}>
-            {/* <Link to="/" onClick={this.modalGoAgain}> */}
+
+          <Link to="/" onClick={modalGoAgain}>
             go again
           </Link>
         </ReactModal>
       </div>
     );
   }
-}
+};
 
 const mapStateToProps = state => {
   return {
-    ...state.modal,
-    ...state.test
+    modalStatus: state.modal.modalStatus,
+    modalType: state.modal.modalType,
+    currentTestResults: state.test.currentTestResults
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    nextIndex: () => dispatch(nextIndex())
-    // savingTest: testToSave => {
-    //   dispatch(savingTest(testToSave));
-    // }
+    nextIndex: () => dispatch(nextIndex()),
+    openingModal: () => dispatch(openingModal()),
+    closingModal: () => dispatch(closingModal()),
+    settingModalType: type => dispatch(settingModalType(type))
   };
 };
 

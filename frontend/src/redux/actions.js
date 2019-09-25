@@ -1,4 +1,3 @@
-import ActionTypes from "../constants/ActionTypes";
 import store from "../redux/store";
 
 const URL_BASE = "http://localhost:3000/";
@@ -26,6 +25,33 @@ function savedTest(t) {
   return { type: "SAVED_TEST", payload: t };
 }
 
+function modalStatus(status) {
+  return { type: "MODAL_STATUS", payload: status };
+}
+
+function modalType(type) {
+  return { type: "MODAL_TYPE", payload: type };
+}
+
+function openingModal() {
+  console.log("hitting openingModal in Actions")
+  return dispatch => {
+    dispatch(modalStatus(true));
+  }
+}
+
+function closingModal() {
+  return dispatch => {
+    dispatch(modalStatus(false));
+  }
+}
+
+function settingModalType(type) {
+  return dispatch => {
+    dispatch(modalType(type));
+  }
+}
+
 function fetchingQueue() {
   return dispatch => {
     fetch(URL_QUEUE)
@@ -51,20 +77,6 @@ function savingTest(testToSave) {
   };
 }
 
-const showModal = ({ modalProps, modalType }) => dispatch => {
-  dispatch({
-    type: ActionTypes.SHOW_MODAL,
-    modalProps,
-    modalType
-  });
-};
-
-const hideModal = () => dispatch => {
-  dispatch({
-    type: ActionTypes.HIDE_MODAL
-  });
-};
-
 function nextIndex() {
   return dispatch => {
     const queue = store.getState().test.queue
@@ -79,7 +91,6 @@ function nextIndex() {
     const nextSnippetIndex =
       unusedIndeces[Math.floor(Math.random() * unusedIndeces.length)];
     usedIndeces.push(nextSnippetIndex);
-    console.log(usedIndeces);
     const nextSnippet = queue[nextSnippetIndex];
     dispatch(usedSnippets(usedIndeces));
     dispatch(snippetIndex(snippetIndex));
@@ -132,9 +143,11 @@ export {
   snippetIndex,
   usedSnippets,
   onChange,
-  showModal,
-  // savedTest,
   savingTest,
-  hideModal,
-  fetchingMedians
+  fetchingMedians,
+  modalStatus,
+  modalType,
+  openingModal,
+  closingModal,
+  settingModalType
 };

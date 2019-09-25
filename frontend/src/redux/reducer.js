@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import ActionTypes from "../constants/ActionTypes";
 
 const initialTestState = {
   // currentTestLanguage: null,
@@ -49,21 +48,16 @@ const testReducer = (state = initialTestState, action) => {
 };
 
 const initialModalState = {
-  modalType: null,
-  modalProps: {}
-  // modalOpen: false  // this is probably wrong
+  modalStatus: false,
+  modalType: null
 };
 
 const modalReducer = (state = initialModalState, action) => {
   switch (action.type) {
-    case ActionTypes.SHOW_MODAL:
-      return {
-        modalProps: action.modalProps,
-        modalType: action.modalType,
-        type: action.type
-      };
-    case ActionTypes.HIDE_MODAL:
-      return initialModalState;
+    case "MODAL_STATUS":
+      return { ...state, modalStatus: action.payload };
+    case "MODAL_TYPE":
+        return { ...state, modalType: action.payload };
     default:
       return state;
   }
