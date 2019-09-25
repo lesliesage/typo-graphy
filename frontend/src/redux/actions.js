@@ -79,7 +79,7 @@ function nextIndex() {
     const nextSnippetIndex =
       unusedIndeces[Math.floor(Math.random() * unusedIndeces.length)];
     usedIndeces.push(nextSnippetIndex);
-    console.log(usedIndeces)
+    console.log(usedIndeces);
     const nextSnippet = queue[nextSnippetIndex];
     dispatch(usedSnippets(usedIndeces));
     dispatch(snippetIndex(snippetIndex));

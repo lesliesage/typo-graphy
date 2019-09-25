@@ -79,9 +79,9 @@ const options = {
   title: {
     display: false
   },
-  legend: {
-    display: false
-  },
+  // legend: {
+  //   display: false
+  // },
   scales: {
     xAxes: [
       {

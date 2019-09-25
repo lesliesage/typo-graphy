@@ -32,6 +32,12 @@ class ModalContainer extends Component {
     return res[0] ? ((end - start) / 1000).toFixed(2) : "x";
   }
 
+  modalGoAgain() {
+    console.log(this.props);
+    this.props.nextIndex();
+    this.closeModal();
+  }
+
   render() {
     if (!this.props.modalType) {
       return null;
@@ -60,6 +66,7 @@ class ModalContainer extends Component {
             view your stats
           </Link>
           <Link to="/" onClick={this.closeModal}>
+            {/* <Link to="/" onClick={this.modalGoAgain}> */}
             go again
           </Link>
         </ReactModal>
