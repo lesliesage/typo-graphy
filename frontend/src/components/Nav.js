@@ -1,6 +1,11 @@
 
 import React, {Component} from "react";
+import { connect } from "react-redux";
 import { withRouter, NavLink } from "react-router-dom";
+import {
+  nextIndex,
+  onNext
+} from "../redux/actions";
 
 class Nav extends Component {
   state = {
@@ -32,7 +37,13 @@ class Nav extends Component {
     });
   };
 
-  homeButton = (<NavLink className="btn" exact to="/">typo-graphy</NavLink>);
+  homeRefresh = () => {
+    this.props.nextIndex();
+    if (!!document.getElementById("input")) {document.getElementById("input").value = ""};
+    this.props.onNext();
+  }
+
+  homeButton = (<NavLink className="btn" exact to="/" onClick={this.homeRefresh}>typo-graphy</NavLink>);
   statsButton = (<NavLink className="btn" exact to="/stats">stats</NavLink>);
   loginButton = (<NavLink className="btn" exact to="/">login</NavLink>);
   signupButton = (<NavLink className="btn" exact to="/">signup</NavLink>);
@@ -40,7 +51,6 @@ class Nav extends Component {
   aboutButton = (<NavLink className="btn" exact to="/about">about</NavLink>);
   privacyButton = (<NavLink className="btn" exact to="/privacy">privacy</NavLink>);
   helpButton = (<NavLink className="btn" exact to="/help">help</NavLink>);
-
 
   render() {
     return (
@@ -58,4 +68,16 @@ class Nav extends Component {
   }
 }
 
-export default withRouter(Nav);
+const mapDispatchToProps = dispatch => {
+  return {
+    nextIndex: () => dispatch(nextIndex()),
+    onNext: () => dispatch(onNext())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Nav);
+
+// export default withRouter(Nav);

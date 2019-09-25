@@ -125,7 +125,7 @@ const GraphComparedToMedian = props => {
   return (
     <div className="graph-area">
       <div className="graph-title-div">
-        <h2>your speeds v. median speeds</h2>
+        <h2>your last test v. median speeds for all users</h2>
       </div>
       <div className="graph">
         <Scatter data={data(props)} options={options} />

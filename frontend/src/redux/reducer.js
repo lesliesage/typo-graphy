@@ -38,6 +38,8 @@ const testReducer = (state = initialTestState, action) => {
         isComplete:
           state.selectedSnippet.code.length === action.payload.typedText.length
       };
+    case "ON_NEXT":
+      return { ...state, typedText: "", currentTestResults: [], isAccurate: true, isComplete: false };
     case "SAVED_TEST":
       return { ...state, testSummary: action.payload, isComplete: false };
     case "SNIPPET_INDEX":
@@ -49,7 +51,7 @@ const testReducer = (state = initialTestState, action) => {
 
 const initialModalState = {
   modalStatus: false,
-  modalType: null
+  modalType: ""
 };
 
 const modalReducer = (state = initialModalState, action) => {
@@ -57,7 +59,7 @@ const modalReducer = (state = initialModalState, action) => {
     case "MODAL_STATUS":
       return { ...state, modalStatus: action.payload };
     case "MODAL_TYPE":
-        return { ...state, modalType: action.payload };
+      return { ...state, modalType: action.payload };
     default:
       return state;
   }

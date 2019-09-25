@@ -9,6 +9,10 @@ function onChange(onChangeObj) {
   return { type: "ON_CHANGE", payload: onChangeObj };
 }
 
+function onNext() {
+  return { type: "ON_NEXT" };
+}
+
 function fetchedQueue(snippets) {
   return { type: "FETCHED_QUEUE", payload: snippets };
 }
@@ -34,22 +38,21 @@ function modalType(type) {
 }
 
 function openingModal() {
-  console.log("hitting openingModal in Actions")
   return dispatch => {
     dispatch(modalStatus(true));
-  }
+  };
 }
 
 function closingModal() {
   return dispatch => {
     dispatch(modalStatus(false));
-  }
+  };
 }
 
 function settingModalType(type) {
   return dispatch => {
     dispatch(modalType(type));
-  }
+  };
 }
 
 function fetchingQueue() {
@@ -73,7 +76,8 @@ function savingTest(testToSave) {
       body: JSON.stringify(testToSave)
     })
       .then(res => res.json())
-      .then(t => dispatch(savedTest(t)));
+      .then(t => dispatch(savedTest(t)))
+      // .then(x => dispatch(onNext()))
   };
 }
 
@@ -95,6 +99,8 @@ function nextIndex() {
     dispatch(usedSnippets(usedIndeces));
     dispatch(snippetIndex(snippetIndex));
     dispatch(selectedSnippet(nextSnippet));
+    // dispatch(onNext);
+    // dispatch(onNext());
   };
 }
 
@@ -143,6 +149,7 @@ export {
   snippetIndex,
   usedSnippets,
   onChange,
+  onNext,
   savingTest,
   fetchingMedians,
   modalStatus,

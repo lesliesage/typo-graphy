@@ -15,7 +15,6 @@ import { fetchingQueue, fetchingMedians } from "./redux/actions";
 class App extends Component {
   componentDidMount() {
     this.props.fetchingQueue();
-    // this.props.fetchingTests();
     this.props.fetchingMedians();
   }
 
@@ -42,9 +41,6 @@ const mapDispatchToProps = dispatch => {
     fetchingQueue: () => {
       dispatch(fetchingQueue());
     },
-    // fetchingTests: () => {
-    //   dispatch(fetchingTests());
-    // },
     fetchingMedians: () => {
       dispatch(fetchingMedians());
     }

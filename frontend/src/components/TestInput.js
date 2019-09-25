@@ -5,10 +5,10 @@ import { onChange } from "../redux/actions.js";
 const TestInput = props => {
   return (
     <div>
-
       <form>
-        <textarea
+      <textarea
           name="input"
+          id="input"
           className="code"
           onChange={e =>
             props.onChange({

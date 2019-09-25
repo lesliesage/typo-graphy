@@ -2,17 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
-import { openingModal, closingModal, settingModalType, savingTest, nextIndex } from "../redux/actions";
+import {
+  openingModal,
+  closingModal,
+  settingModalType,
+  savingTest,
+  nextIndex,
+  onNext
+} from "../redux/actions";
 import GraphThisTest from "./GraphThisTest";
 
 const TestContainer = props => {
-  
-  const openModal = () => {
-    console.log("hitting openModal in TestContainer")
-    props.savingTest(testToSave(props));
-    props.openingModal()
-  };
-
   const FIELDS = [
     "user_id",
     "snippet_id",
@@ -185,12 +185,27 @@ const TestContainer = props => {
     return ans;
   };
 
+  const openModal = () => {
+    props.savingTest(testToSave(props));
+    props.openingModal();
+  };
+
+  const nextSnippet = () => {
+    props.nextIndex();
+    document.getElementById("input").value = "";
+    props.onNext();
+  };
+
   return (
     <div className="test-container">
-      <button className="next-btn" onClick={props.nextIndex}>next</button>
+      <button className="next-btn" onClick={nextSnippet}>
+        next
+      </button>
       <TestSnippet />
       <TestInput />
-      <div className="graph"><GraphThisTest /></div>
+      <div className="graph">
+        <GraphThisTest />
+      </div>
       {props.isAccurate && props.isComplete && openModal()}
     </div>
   );
@@ -204,6 +219,7 @@ const mapStateToProps = state => {
     modalType: state.modal.modalType,
     selectedSnippet: state.test.selectedSnippet,
     currentTestResults: state.test.currentTestResults,
+    typedText: state.test.typedText,  //probably don't need this
     savedTest: state.test.testSummary,
     queue: state.test.queue,
     used: state.test.used
@@ -218,7 +234,8 @@ const mapDispatchToProps = dispatch => {
     nextIndex: () => dispatch(nextIndex()),
     openingModal: () => dispatch(openingModal()),
     closingModal: () => dispatch(closingModal()),
-    settingModalType: type => dispatch(settingModalType(type))
+    settingModalType: type => dispatch(settingModalType(type)),
+    onNext: () => dispatch(onNext())
   };
 };
 

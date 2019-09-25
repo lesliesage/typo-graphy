@@ -135,7 +135,7 @@ const GraphMillisecPerChar = props => {
   return (
     <div className="graph-area">
       <div className="graph-title-div">
-        <h2>this test: average time per character</h2>
+        <h2>your last test: average time per character</h2>
       </div>
       <div className="graph">
         <Bar data={data} options={options} />
