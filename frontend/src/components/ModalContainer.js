@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
 import {
   nextIndex,
-  openingModal,
   closingModal,
   settingModalType,
   onNext
@@ -68,7 +67,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     nextIndex: () => dispatch(nextIndex()),
-    openingModal: () => dispatch(openingModal()),
     closingModal: () => dispatch(closingModal()),
     settingModalType: type => dispatch(settingModalType(type)),
     onNext: () => dispatch(onNext())

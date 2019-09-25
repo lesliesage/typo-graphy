@@ -4,7 +4,6 @@ import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
 import {
   openingModal,
-  closingModal,
   settingModalType,
   savingTest,
   nextIndex,
@@ -193,6 +192,7 @@ const TestContainer = props => {
   const nextSnippet = () => {
     props.nextIndex();
     document.getElementById("input").value = "";
+    document.getElementById("input").focus();
     props.onNext();
   };
 
@@ -215,14 +215,8 @@ const mapStateToProps = state => {
   return {
     isAccurate: state.test.isAccurate,
     isComplete: state.test.isComplete,
-    modalStatus: state.modal.modalStatus,
-    modalType: state.modal.modalType,
     selectedSnippet: state.test.selectedSnippet,
     currentTestResults: state.test.currentTestResults,
-    typedText: state.test.typedText,  //probably don't need this
-    savedTest: state.test.testSummary,
-    queue: state.test.queue,
-    used: state.test.used
   };
 };
 
@@ -233,7 +227,6 @@ const mapDispatchToProps = dispatch => {
     },
     nextIndex: () => dispatch(nextIndex()),
     openingModal: () => dispatch(openingModal()),
-    closingModal: () => dispatch(closingModal()),
     settingModalType: type => dispatch(settingModalType(type)),
     onNext: () => dispatch(onNext())
   };

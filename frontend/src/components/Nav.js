@@ -39,7 +39,10 @@ class Nav extends Component {
 
   homeRefresh = () => {
     this.props.nextIndex();
-    if (!!document.getElementById("input")) {document.getElementById("input").value = ""};
+    if (!!document.getElementById("input")) {
+      document.getElementById("input").value = "";
+      document.getElementById("input").focus();
+    };
     this.props.onNext();
   }
 

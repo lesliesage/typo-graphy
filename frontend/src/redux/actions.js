@@ -77,7 +77,6 @@ function savingTest(testToSave) {
     })
       .then(res => res.json())
       .then(t => dispatch(savedTest(t)))
-      // .then(x => dispatch(onNext()))
   };
 }
 
@@ -99,8 +98,6 @@ function nextIndex() {
     dispatch(usedSnippets(usedIndeces));
     dispatch(snippetIndex(snippetIndex));
     dispatch(selectedSnippet(nextSnippet));
-    // dispatch(onNext);
-    // dispatch(onNext());
   };
 }
 

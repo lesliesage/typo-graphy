@@ -1,35 +1,69 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { onChange } from "../redux/actions.js";
 
-const TestInput = props => {
-  return (
-    <div>
-      <form>
-      <textarea
-          name="input"
-          id="input"
-          className="code"
-          onChange={e =>
-            props.onChange({
-              typedText: e.target.value,
-              resultSubArray: [
-                e.target.selectionStart,
-                e.target.textLength,
-                e.nativeEvent.data,
-                e.timeStamp
-              ]
-            })
-          }
-        ></textarea>
-      </form>
-    </div>
-  );
-};
+class TestInput extends Component {
+  componentDidMount = () => {
+    const cursorToEnd = (input, pos) => {
+      if (input.setSelectionRange) {
+        input.focus();
+        input.setSelectionRange(pos, pos);
+      } else if (input.createTextRange) {
+        const range = input.createTextRange();
+        range.collapse(true);
+        range.moveEnd("character", pos);
+        range.moveStart("character", pos);
+        range.select();
+      }
+    };
+    document.getElementById("input").onkeydown = function(event) {
+      let ev;
+      ev = ev || event;
+      let key = ev.keyCode;
+      if ([13, 37, 38, 39, 40].includes(key)) {
+        ev.cancelBubble = true;
+        ev.returnValue = false;
+      }
+    };
+    document.getElementById("input").focus();
+    document.getElementById("input").onclick = () => {
+      cursorToEnd(
+        document.getElementById("input"),
+        this.props.typedText.length
+      );
+    };
+  };
+
+  render() {
+    return (
+      <div>
+        <form>
+          <textarea
+            name="input"
+            id="input"
+            className="code"
+            onpaste="return false;"
+            onChange={e =>
+              this.props.onChange({
+                typedText: e.target.value,
+                resultSubArray: [
+                  e.target.selectionStart,
+                  e.target.textLength,
+                  e.nativeEvent.data,
+                  e.timeStamp
+                ]
+              })
+            }
+          ></textarea>
+        </form>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
-    givenSnippetText: state.selectedSnippet ? state.selectedSnippet.code : ""
+    typedText: state.test.typedText
   };
 };
 
