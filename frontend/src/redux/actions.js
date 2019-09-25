@@ -1,4 +1,5 @@
 import ActionTypes from "../constants/ActionTypes";
+import store from "../redux/store";
 
 const URL_BASE = "http://localhost:3000/";
 const URL_QUEUE = URL_BASE + "queue";
@@ -17,21 +18,23 @@ function selectedSnippet(snippet) {
   return { type: "SELECTED_SNIPPET", payload: snippet };
 }
 
+function usedSnippets(arr) {
+  return { type: "USED_SNIPPETS", payload: arr };
+}
+
 function savedTest(t) {
   return { type: "SAVED_TEST", payload: t };
 }
 
 function fetchingQueue() {
-  return (dispatch, getState) => {
+  return dispatch => {
     fetch(URL_QUEUE)
       .then(res => res.json())
       .then(snippets => {
         dispatch(fetchedQueue(snippets));
       })
       .then(() => {
-        dispatch(
-          selectedSnippet(getState().test.queue[getState().test.snippetIndex])
-        );
+        dispatch(selectingSnippet());
       });
   };
 }
@@ -62,21 +65,49 @@ const hideModal = () => dispatch => {
   });
 };
 
-////// I really don't need all this on the frontend
+function nextIndex() {
+  return dispatch => {
+    const queue = store.getState().test.queue
+      ? store.getState().test.queue
+      : null;
+    const queueIndeces = queue ? [...Array(queue.length).keys()] : null;
+    let usedIndeces = store.getState().test.used;
+    if (queueIndeces.length === usedIndeces.length) {
+      usedIndeces = [];
+    }
+    const unusedIndeces = queueIndeces.filter(el => !usedIndeces.includes(el));
+    const nextSnippetIndex =
+      unusedIndeces[Math.floor(Math.random() * unusedIndeces.length)];
+    usedIndeces.push(nextSnippetIndex);
+    console.log(usedIndeces)
+    const nextSnippet = queue[nextSnippetIndex];
+    dispatch(usedSnippets(usedIndeces));
+    dispatch(snippetIndex(snippetIndex));
+    dispatch(selectedSnippet(nextSnippet));
+  };
+}
 
-// function fetchingTests() {
-//   return (dispatch) => {
-//     fetch(URL_TESTS)
-//       .then(res => res.json())
-//       .then(allTests => {
-//         dispatch(fetchedTests(allTests));
-//       })
-//   };
-// }
+function snippetIndex(i) {
+  return { type: "SNIPPET_INDEX", payload: i };
+}
 
-// function fetchedTests(allTests) {
-//   return { type: "FETCHED_TESTS", payload: allTests };
-// }
+function selectingSnippet() {
+  return dispatch => {
+    const queue = store.getState().test.queue
+      ? store.getState().test.queue
+      : null;
+    const queueIndeces = queue ? [...Array(queue.length).keys()] : null;
+    let usedIndeces = [];
+    usedIndeces = [];
+    const nextSnippetIndex =
+      queueIndeces[Math.floor(Math.random() * queueIndeces.length)];
+    usedIndeces.push(nextSnippetIndex);
+    const nextSnippet = queue[nextSnippetIndex];
+    dispatch(usedSnippets(usedIndeces));
+    dispatch(snippetIndex(snippetIndex));
+    dispatch(selectedSnippet(nextSnippet));
+  };
+}
 
 function fetchingMedians() {
   return dispatch => {
@@ -93,14 +124,17 @@ function fetchedMedians(medianSet) {
 }
 
 export {
-  onChange,
-  fetchedQueue,
-  selectedSnippet,
   fetchingQueue,
+  fetchedQueue,
+  selectingSnippet,
+  selectedSnippet,
+  nextIndex,
+  snippetIndex,
+  usedSnippets,
+  onChange,
   showModal,
   // savedTest,
   savingTest,
   hideModal,
-  // fetchingTests,
   fetchingMedians
 };

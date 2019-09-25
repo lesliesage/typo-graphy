@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
+import { nextIndex } from "../redux/actions";
 
 class ModalContainer extends Component {
   constructor(props) {
@@ -32,7 +33,6 @@ class ModalContainer extends Component {
   }
 
   render() {
-    // console.log(this.props.currentTestResults)
     if (!this.props.modalType) {
       return null;
     }
@@ -59,6 +59,9 @@ class ModalContainer extends Component {
           <Link to="/stats" onClick={this.closeModal}>
             view your stats
           </Link>
+          <Link to="/" onClick={this.closeModal}>
+            go again
+          </Link>
         </ReactModal>
       </div>
     );
@@ -68,12 +71,20 @@ class ModalContainer extends Component {
 const mapStateToProps = state => {
   return {
     ...state.modal,
-    // currentTestResults: state.test.currentTestResults
     ...state.test
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    nextIndex: () => dispatch(nextIndex())
+    // savingTest: testToSave => {
+    //   dispatch(savingTest(testToSave));
+    // }
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ModalContainer);

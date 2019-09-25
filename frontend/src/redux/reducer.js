@@ -2,11 +2,12 @@ import { combineReducers } from "redux";
 import ActionTypes from "../constants/ActionTypes";
 
 const initialTestState = {
-  currentTestLanguage: null,
+  // currentTestLanguage: null,
   queue: [],
-  snippetIndex: 0,
   selectedSnippet: null,
+  used: [],
   typedText: "",
+  snippetIndex: 0,
   currentTestResults: [],
   isAccurate: true,
   isComplete: false,
@@ -19,10 +20,10 @@ const testReducer = (state = initialTestState, action) => {
       return { ...state, currentTestLanguage: action.payload };
     case "FETCHED_QUEUE":
       return { ...state, queue: action.payload };
-    case "NEXT_SNIPPET":
-      return { ...state, snippetIndex: action.payload };
     case "SELECTED_SNIPPET":
       return { ...state, selectedSnippet: action.payload };
+    case "USED_SNIPPETS":
+      return { ...state, used: action.payload };
     case "ON_CHANGE":
       return {
         ...state,
@@ -40,6 +41,8 @@ const testReducer = (state = initialTestState, action) => {
       };
     case "SAVED_TEST":
       return { ...state, testSummary: action.payload, isComplete: false };
+    case "SNIPPET_INDEX":
+      return { ...state, snippetIndex: action.payload };
     default:
       return state;
   }
@@ -67,16 +70,13 @@ const modalReducer = (state = initialModalState, action) => {
 };
 
 const initialStatsState = {
-  // allTests: {},
   medianSet: null
 };
 
 const statsReducer = (state = initialStatsState, action) => {
   switch (action.type) {
-    // case "FETCHED_TESTS":
-    //   return { ...state, allTests: action.payload };
     case "FETCHED_MEDIANS":
-        return { ...state, medianSet: action.payload };
+      return { ...state, medianSet: action.payload };
     default:
       return state;
   }

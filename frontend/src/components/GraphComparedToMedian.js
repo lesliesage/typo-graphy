@@ -13,16 +13,13 @@ const dataSetMaker = props => {
       const key = medianKeys[i];
       const x = Math.round(medianValues[i]);
       const y = Math.round(props.testSummary[key]);
-      // console.log("key:", key, ", x:", x, ", y:", y);
       if (x && y) {
         if (y <= x) {
           dataObj.faster.push({ x, y });
           dataObj.keys.push(key);
-          // console.log("faster", { x, y });
         } else if (y > x) {
           dataObj.slower.push({ x, y });
           dataObj.keys.push(key);
-          // console.log("slower", { x, y });
         }
       }
     }

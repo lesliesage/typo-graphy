@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
-import { showModal, hideModal, savingTest } from "../redux/actions";
+import { showModal, hideModal, savingTest, nextIndex } from "../redux/actions";
 import GraphThisTest from "./GraphThisTest";
 
 const TestContainer = props => {
@@ -193,7 +193,7 @@ const TestContainer = props => {
 
   return (
     <div className="test-container">
-      <button className="next-btn">next</button>
+      <button className="next-btn" onClick={props.nextIndex}>next</button>
       <TestSnippet />
       <TestInput />
       <div className="graph"><GraphThisTest /></div>
@@ -211,7 +211,9 @@ const mapStateToProps = state => {
     modalOpen: state.modal.modalProps.open,
     selectedSnippet: state.test.selectedSnippet,
     currentTestResults: state.test.currentTestResults,
-    savedTest: state.test.testSummary
+    savedTest: state.test.testSummary,
+    queue: state.test.queue,
+    used: state.test.used
   };
 };
 
@@ -223,7 +225,8 @@ const mapDispatchToProps = dispatch => {
     },
     savingTest: testToSave => {
       dispatch(savingTest(testToSave));
-    }
+    },
+    nextIndex: () => dispatch(nextIndex())
   };
 };
 
