@@ -1,10 +1,10 @@
 import store from "../redux/store";
-
-const URL_BASE = "http://localhost:3000/";
-const URL_QUEUE = URL_BASE + "queue";
-const URL_TESTS = URL_BASE + "tests";
-const URL_MEDIANS = URL_BASE + "medians";
-const URL_HELP_ARTICLES = URL_BASE + "help_articles";
+import {
+  URL_QUEUE,
+  URL_TESTS,
+  URL_MEDIANS,
+  URL_HELP_ARTICLES
+} from "../constants/constants";
 
 function onChange(onChangeObj) {
   return { type: "ON_CHANGE", payload: onChangeObj };
@@ -77,7 +77,7 @@ function savingTest(testToSave) {
       body: JSON.stringify(testToSave)
     })
       .then(res => res.json())
-      .then(t => dispatch(savedTest(t)))
+      .then(t => dispatch(savedTest(t)));
   };
 }
 

@@ -58,9 +58,7 @@ export default withRouter(
   )(App)
 );
 
-
-
-// deal with copy/paste: 
+// deal with copy/paste:
 
 // // Register onpaste on inputs and textareas in browsers that don't
 // // natively support it.

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { connect } from "react-redux";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
@@ -10,48 +10,12 @@ import {
   onNext
 } from "../redux/actions";
 import GraphThisTest from "./GraphThisTest";
+import {FIELDS} from "../constants/constants"
 
-const TestContainer = props => {
-  const FIELDS = [
-    "user_id",
-    "snippet_id",
-    "alpha",
-    "numeric",
-    "tilde",
-    "backtick",
-    "exclamation",
-    "at",
-    "octothorpe",
-    "dollar",
-    "percent",
-    "carrot",
-    "ampersand",
-    "star",
-    "open_paren",
-    "close_paren",
-    "long_dash",
-    "dash",
-    "plus",
-    "equals",
-    "open_curly",
-    "close_curly",
-    "open_bracket",
-    "close_bracket",
-    "pipe",
-    "backslash",
-    "colon",
-    "semicolon",
-    "doublequote",
-    "singlequote",
-    "open_angle",
-    "close_angle",
-    "comma",
-    "period",
-    "question",
-    "slash"
-  ];
+class TestContainer extends Component {
+  state = {};
 
-  function handleDeletes(arr) {
+  handleDeletes = arr => {
     const newArr = [];
     for (let i = arr.length - 1; i >= 0; i--) {
       const existingPos = newArr.map(el => el[0]);
@@ -60,9 +24,9 @@ const TestContainer = props => {
       }
     }
     return newArr;
-  }
+  };
 
-  function calculateTimes(arr) {
+  calculateTimes = arr => {
     const newArr = [];
     for (let i = 0; i < arr.length - 1; i++) {
       const newEl = [];
@@ -71,15 +35,15 @@ const TestContainer = props => {
       newArr.push(newEl);
     }
     return newArr;
-  }
+  };
 
-  function removeSpaces(arr) {
+  removeSpaces = arr => {
     return arr.filter(el => {
       return el[0] !== " ";
     });
-  }
+  };
 
-  function renameChars(arr) {
+  renameChars = arr => {
     return arr.map(el => {
       switch (el[0]) {
         case el[0].match(/^[A-Z]+$/i) ? el[0].match(/^[A-Z]+$/i)[0] : null:
@@ -154,15 +118,15 @@ const TestContainer = props => {
           return null;
       }
     });
-  }
+  };
 
-  function processAverages(arr) {
+  processAverages = arr => {
     const n = {};
     FIELDS.forEach(field => {
       if (field === "user_id") {
         n[field] = 17;
       } else if (field === "snippet_id") {
-        n[field] = props.selectedSnippet.id;
+        n[field] = this.props.selectedSnippet.id;
       } else {
         const matchSet = arr.filter(el => {
           return el[0] === field;
@@ -173,50 +137,50 @@ const TestContainer = props => {
       }
     });
     return n;
-  }
+  };
 
-  const testToSave = props => {
-    let ans = processAverages(
-      renameChars(
-        removeSpaces(calculateTimes(handleDeletes(props.currentTestResults)))
+  testToSave = props => {
+    let ans = this.processAverages(
+      this.renameChars(
+        this.removeSpaces(this.calculateTimes(this.handleDeletes(this.props.currentTestResults)))
       )
     );
     return ans;
   };
 
-  const openModal = () => {
-    props.savingTest(testToSave(props));
-    props.openingModal();
+  openModal = () => {
+    this.props.savingTest(this.testToSave(this.props));
+    this.props.openingModal();
   };
 
-  const nextSnippet = () => {
-    props.nextIndex();
+  nextSnippet = () => {
+    this.props.nextIndex();
     document.getElementById("input").value = "";
     document.getElementById("input").focus();
-    props.onNext();
+    this.props.onNext();
   };
 
-  const aboutSnippet = () => {
-    
-  };
+  aboutSnippet = () => {};
 
-  return (
-    <div className="test-container">
-      <button className="test-btn" onClick={nextSnippet}>
-        next
-      </button>
-      <button className="test-btn" onClick={aboutSnippet}>
-        about
-      </button>
-      <TestSnippet />
-      <TestInput />
-      <div className="graph">
-        <GraphThisTest />
+  render() {
+    return (
+      <div className="test-container">
+        <button className="test-btn" onClick={this.nextSnippet}>
+          next
+        </button>
+        <button className="test-btn" onClick={this.aboutSnippet}>
+          about
+        </button>
+        <TestSnippet />
+        <TestInput />
+        <div className="graph">
+          <GraphThisTest />
+        </div>
+        {this.props.isAccurate && this.props.isComplete && this.openModal()}
       </div>
-      {props.isAccurate && props.isComplete && openModal()}
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {

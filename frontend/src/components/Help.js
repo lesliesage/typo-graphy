@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import HelpArticle from "./HelpArticle";
-import { URL_HELP_ARTICLES } from "../redux/actions.js";
+import { URL_HELP_ARTICLES } from "../constants/constants.js";
 
 class Help extends Component {
   state = {
