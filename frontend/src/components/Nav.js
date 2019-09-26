@@ -48,8 +48,8 @@ class Nav extends Component {
 
   homeButton = (<NavLink className="btn" exact to="/" onClick={this.homeRefresh}>typo-graphy</NavLink>);
   statsButton = (<NavLink className="btn" exact to="/stats">stats</NavLink>);
-  loginButton = (<NavLink className="btn" exact to="/">login</NavLink>);
-  signupButton = (<NavLink className="btn" exact to="/">signup</NavLink>);
+  loginButton = (<NavLink className="btn" exact to="/login">login</NavLink>);
+  signupButton = (<NavLink className="btn" exact to="/signup">signup</NavLink>);
   // contactButton = (<NavLink className="btn" exact to="/">contact</NavLink>);
   aboutButton = (<NavLink className="btn" exact to="/about">about</NavLink>);
   privacyButton = (<NavLink className="btn" exact to="/privacy">privacy</NavLink>);

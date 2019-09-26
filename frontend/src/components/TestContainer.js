@@ -196,10 +196,17 @@ const TestContainer = props => {
     props.onNext();
   };
 
+  const aboutSnippet = () => {
+    
+  };
+
   return (
     <div className="test-container">
-      <button className="next-btn" onClick={nextSnippet}>
+      <button className="test-btn" onClick={nextSnippet}>
         next
+      </button>
+      <button className="test-btn" onClick={aboutSnippet}>
+        about
       </button>
       <TestSnippet />
       <TestInput />
@@ -216,7 +223,7 @@ const mapStateToProps = state => {
     isAccurate: state.test.isAccurate,
     isComplete: state.test.isComplete,
     selectedSnippet: state.test.selectedSnippet,
-    currentTestResults: state.test.currentTestResults,
+    currentTestResults: state.test.currentTestResults
   };
 };
 
