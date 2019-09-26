@@ -1,7 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import TestSnippet from "./TestSnippet";
 import TestInput from "./TestInput";
+import ReactModal from "react-modal";
 import {
   openingModal,
   settingModalType,
@@ -10,10 +11,10 @@ import {
   onNext
 } from "../redux/actions";
 import GraphThisTest from "./GraphThisTest";
-import {FIELDS} from "../constants/constants"
+import { FIELDS } from "../constants/constants";
 
 class TestContainer extends Component {
-  state = {};
+  state = { showAboutModal: false };
 
   handleDeletes = arr => {
     const newArr = [];
@@ -142,7 +143,9 @@ class TestContainer extends Component {
   testToSave = props => {
     let ans = this.processAverages(
       this.renameChars(
-        this.removeSpaces(this.calculateTimes(this.handleDeletes(this.props.currentTestResults)))
+        this.removeSpaces(
+          this.calculateTimes(this.handleDeletes(this.props.currentTestResults))
+        )
       )
     );
     return ans;
@@ -160,7 +163,9 @@ class TestContainer extends Component {
     this.props.onNext();
   };
 
-  aboutSnippet = () => {};
+  toggleAboutModal = () => {
+    this.setState({ showAboutModal: !this.state.showAboutModal });
+  };
 
   render() {
     return (
@@ -168,7 +173,7 @@ class TestContainer extends Component {
         <button className="test-btn" onClick={this.nextSnippet}>
           next
         </button>
-        <button className="test-btn" onClick={this.aboutSnippet}>
+        <button className="test-btn" onClick={this.toggleAboutModal}>
           about
         </button>
         <TestSnippet />
@@ -177,6 +182,26 @@ class TestContainer extends Component {
           <GraphThisTest />
         </div>
         {this.props.isAccurate && this.props.isComplete && this.openModal()}
+
+        <ReactModal
+          isOpen={this.state.showAboutModal}
+          onRequestClose={this.toggleAboutModal}
+          contentLabel="About Snippet Modal"
+          ariaHideApp={false}
+        >
+          <button
+            type="button"
+            className="close"
+            aria-label="Close"
+            onClick={this.toggleAboutModal}
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p>
+            {this.props.selectedSnippet &&
+              this.props.selectedSnippet.annotation}
+          </p>
+        </ReactModal>
       </div>
     );
   }

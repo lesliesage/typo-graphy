@@ -42,7 +42,7 @@ class TestInput extends Component {
             name="input"
             id="input"
             className="code"
-            onpaste="return false;"
+            // onPaste={() => {return false}}
             onChange={e =>
               this.props.onChange({
                 typedText: e.target.value,
