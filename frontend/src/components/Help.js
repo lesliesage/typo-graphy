@@ -23,13 +23,16 @@ class Help extends Component {
     return (
       <div>
         <h1>help</h1>
-        <input onChange={this.handleChange} placeHolder="search for help topics"></input>
+        <input
+          onChange={this.handleChange}
+          placeHolder="search for help topics"
+        ></input>
         {this.state.helpArticles.map(helpArticle => {
           if (helpArticle.help_text.includes(this.state.searchText)) {
             return (
               <HelpArticle helpArticle={helpArticle} key={helpArticle.id} />
             );
-          }
+          } else return null;
         })}
       </div>
     );
