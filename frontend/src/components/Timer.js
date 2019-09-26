@@ -4,10 +4,19 @@ import { connect } from "react-redux";
 import { Pie } from "react-chartjs-2";
 
 const Timer = props => {
+  const typedLength = () => {
+    return props.typedText && props.typedText.length;
+  };
+  const untypedLength = () => {
+    return (
+      props.selectedSnippet &&
+      props.selectedSnippet.code.length - props.typedText.length
+    );
+  };
   const data = {
     datasets: [
       {
-        data: [20, 40],
+        data: [typedLength(), untypedLength()],
         backgroundColor: ["black", "white"],
         hoverBackgroundColor: ["black", "white"],
         borderColor: "white",
@@ -37,4 +46,15 @@ const Timer = props => {
   );
 };
 
-export default withRouter(Timer);
+const mapStateToProps = state => {
+  return {
+    selectedSnippet: state.test.selectedSnippet,
+    currentTestResults: state.test.currentTestResults,
+    typedText: state.test.typedText
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Timer);
