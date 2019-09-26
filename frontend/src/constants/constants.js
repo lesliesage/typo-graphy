@@ -43,8 +43,46 @@ const FIELDS = [
   "slash"
 ];
 
+const FIELDKEY = {
+  alpha: "a-z",
+  numeric: "0-9",
+  tilde: "~",
+  backtick: "`",
+  exclamation: "!",
+  at: "@",
+  octothorpe: "#",
+  dollar: "$",
+  percent: "%",
+  carrot: "^",
+  ampersand: "&",
+  star: "*",
+  open_paren: "(",
+  close_paren: ")",
+  long_dash: "_",
+  dash: "-",
+  plus: "+",
+  equals: "=",
+  open_curly: "{",
+  close_curly: "}",
+  open_bracket: "[",
+  close_bracket: "]",
+  pipe: "|",
+  backslash: "\\",
+  colon: ":",
+  semicolon: ";",
+  doublequote: '"',
+  singlequote: "'",
+  open_angle: "<",
+  close_angle: ">",
+  comma: ",",
+  period: ".",
+  question: "?",
+  slash: "/"
+};
+
 export {
   FIELDS,
+  FIELDKEY,
   URL_BASE,
   URL_QUEUE,
   URL_TESTS,

@@ -1,44 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Bar } from "react-chartjs-2";
+import {FIELDKEY} from "../constants/constants"
 
 const GraphMillisecPerChar = props => {
-  const FIELDKEY = {
-    alpha: "a-z",
-    numeric: "0-9",
-    tilde: "~",
-    backtick: "`",
-    exclamation: "!",
-    at: "@",
-    octothorpe: "#",
-    dollar: "$",
-    percent: "%",
-    carrot: "^",
-    ampersand: "&",
-    star: "*",
-    open_paren: "(",
-    close_paren: ")",
-    long_dash: "_",
-    dash: "-",
-    plus: "+",
-    equals: "=",
-    open_curly: "{",
-    close_curly: "}",
-    open_bracket: "[",
-    close_bracket: "]",
-    pipe: "|",
-    backslash: "\\",
-    colon: ":",
-    semicolon: ";",
-    doublequote: '"',
-    singlequote: "'",
-    open_angle: "<",
-    close_angle: ">",
-    comma: ",",
-    period: ".",
-    question: "?",
-    slash: "/"
-  };
 
   function arrayify(obj) {
     // turn test result into array, remove metadata (id, created_at, user_id, etc.)

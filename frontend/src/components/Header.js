@@ -6,8 +6,8 @@ import Timer from "./Timer";
 
 const Header = props => {
     return (
-        <div>
-            * * * <Timer /> * * *
+        <div className="header">
+            <Timer />
         </div>
     )
 }
