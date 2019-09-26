@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 
 const About = props => {
   return (
-    <div className="about">
+    <div className="info-page">
+      <h1>about</h1>
       <span className="title">typo-graphy</span> is a single-page web app built in 2019 by leslie
       sage. the app is built on a <b>ruby/rails</b> backend and{" "}
       <b>react/redux</b> frontend, with <b>less</b> for styling, <b>chart.js</b>{" "}

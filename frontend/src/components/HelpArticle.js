@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 const HelpArticle = props => {
     return (
-        <div>HelpArticle</div>
+        <div className="help-article">{props.helpArticle.help_text}</div>
     )
 }
 

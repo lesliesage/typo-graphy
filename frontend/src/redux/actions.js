@@ -4,6 +4,7 @@ const URL_BASE = "http://localhost:3000/";
 const URL_QUEUE = URL_BASE + "queue";
 const URL_TESTS = URL_BASE + "tests";
 const URL_MEDIANS = URL_BASE + "medians";
+const URL_HELP_ARTICLES = URL_BASE + "help_articles";
 
 function onChange(onChangeObj) {
   return { type: "ON_CHANGE", payload: onChangeObj };
@@ -153,5 +154,6 @@ export {
   modalType,
   openingModal,
   closingModal,
-  settingModalType
+  settingModalType,
+  URL_HELP_ARTICLES
 };
