@@ -27,7 +27,6 @@ const ModalContainer = props => {
   return (
     <ReactModal
       isOpen={props.modalStatus}
-      // onAfterOpen={afterOpenModal}
       onRequestClose={props.closingModal}
       contentLabel="Test Finished Modal"
       ariaHideApp={false}

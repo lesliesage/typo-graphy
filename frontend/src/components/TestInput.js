@@ -36,25 +36,27 @@ class TestInput extends Component {
 
   render() {
     return (
-        <div className="input-field">
-          <textarea
-            name="input"
-            id="input"
-            className="code"
-            // onPaste={() => {return false}}
-            onChange={e =>
-              this.props.onChange({
-                typedText: e.target.value,
-                resultSubArray: [
-                  e.target.selectionStart,
-                  e.target.textLength,
-                  e.nativeEvent.data,
-                  e.timeStamp
-                ]
-              })
-            }
-          ></textarea>
-        </div>
+      <div className="input-field">
+        <input
+          type="text"
+          name="input"
+          id="input"
+          className="code"
+          placeholder="start your typing test"
+          // onPaste={() => {return false}}
+          onChange={e =>
+            this.props.onChange({
+              typedText: e.target.value,
+              resultSubArray: [
+                e.target.selectionStart,
+                e.target.textLength,
+                e.nativeEvent.data,
+                e.timeStamp
+              ]
+            })
+          }
+        ></input>
+      </div>
     );
   }
 }

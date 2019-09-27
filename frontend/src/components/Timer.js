@@ -16,11 +16,11 @@ const Timer = props => {
     datasets: [
       {
         data: [typedLength(), untypedLength()],
-        backgroundColor: ["black", "white"],
-        hoverBackgroundColor: ["black", "white"],
+        backgroundColor: ["#214f6a", "#214f6a"],
+        hoverBackgroundColor: ["#214f6a", "#214f6a"],
         borderColor: "white",
-        hoverBorderColor: "white"
-        // borderWidth: 1,
+        hoverBorderColor: "white",
+        borderWidth: 3
       }
     ]
   };
@@ -39,8 +39,8 @@ const Timer = props => {
   };
 
   return (
-    <div className="timer">
-      <Pie data={data} options={options} height={20} />
+    <div className="timer-div">
+      <Pie data={data} options={options} height={50} />
     </div>
   );
 };

@@ -23,9 +23,9 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Nav />
+        <Header />
         <div className="main">
-          <Header />
+          <Nav />
           <ModalContainer />
           <Switch>
             <Route exact path="/stats" component={StatsContainer} />

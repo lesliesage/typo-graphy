@@ -1,3 +1,17 @@
+:root {
+  --cream: #f9f6f0;
+  --lightgrey: #e3e7e6;
+  --grey: #bdc5c8;
+  --darkgrey: #89979c;
+  --darkergrey: #636d70;
+  --darkestgrey: #4b5254;
+  --lightblue: #a1bacd;
+  --blue: #647b88;
+  --darkblue: #214f6a;
+  --dark: #002733;
+  --red: #cc0000;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,25 +19,39 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--dark);
+  /* font: normal 10px Verdana, Arial, sans-serif; */
 }
 
 .app {
-  display: flex;
-}
-
-.navbar {
-  display: flex;
-  flex-direction: column;
-}
-
-.main {
   display: flex;
   flex-direction: column;
 }
 
 .header {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  /* justify-content: center; */
+  margin-top: 15px;
+  height: 100px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  /* height: 100vh; */
+  /* overflow-y: auto; */
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
 }
 
 .test-container {
@@ -40,7 +68,7 @@ body {
 
 .test-buttons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: right;
 }
 
@@ -53,21 +81,25 @@ body {
   height: 30px;
   width: 700px;
   overflow: auto;
-  padding: 2px;
-  resize: vertical;
+  padding: 4px;
   border: 1px solid darkgrey;
   margin-bottom: 15px;
-  text-align: left; 
+  text-align: left;
   /* the following centers text (in child spans) vertically in snippet textarea (div) */
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
-textarea.code {
+input.code {
   height: 30px;
   width: 700px;
+  padding: 4px;
   border: 1px solid darkgrey;
   resize: vertical;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }
 
 .title {
@@ -95,7 +127,7 @@ textarea.code {
 }
 
 .bad {
-  color: red;
+  color: var(--red);
 }
 
 .graph-area {
@@ -115,7 +147,6 @@ textarea.code {
   min-height: 500px;
   align-items: center;
 }
-
 
 /* .test-btn {
   margin-left: auto;
