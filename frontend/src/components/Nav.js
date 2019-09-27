@@ -56,7 +56,7 @@ class Nav extends Component {
 
   render() {
     return (
-      <div id="navbar">
+      <div className="navbar">
         {this.homeButton}
         {this.statsButton}
         {this.props.user ? null : this.loginButton}

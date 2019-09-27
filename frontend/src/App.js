@@ -24,17 +24,19 @@ class App extends Component {
     return (
       <div className="app">
         <Nav />
-        <Header />
-        <ModalContainer />
-        <Switch>
-          <Route exact path="/stats" component={StatsContainer} />
-          <Route exact path="/login" component={LogIn} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/privacy" component={Privacy} />
-          <Route exact path="/help" component={Help} />
-          <Route path="/" component={TestContainer} />
-        </Switch>
+        <div className="main">
+          <Header />
+          <ModalContainer />
+          <Switch>
+            <Route exact path="/stats" component={StatsContainer} />
+            <Route exact path="/login" component={LogIn} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/privacy" component={Privacy} />
+            <Route exact path="/help" component={Help} />
+            <Route path="/" component={TestContainer} />
+          </Switch>
+        </div>
       </div>
     );
   }

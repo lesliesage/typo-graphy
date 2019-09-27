@@ -2,10 +2,12 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import Timer from "./Timer";
 
-const Header = props => {
+const Header = () => {
   return (
     <div className="header">
+      *
       <Timer />
+      *
     </div>
   );
 };

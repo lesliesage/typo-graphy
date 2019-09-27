@@ -7,24 +7,49 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
-
-textarea.code {
-  height: 30px;
-  width: 700px;
-  border: 1px solid darkgrey;
-  resize: vertical;
+.app {
+  display: flex;
 }
 
-div#snippet-container {
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
   display: flex;
   justify-content: center;
 }
 
-div#snippet-field {
+.test-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.test-tools {
+  display: flex;
+  flex-direction: column;
+}
+
+.test-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.snippet-container {
+  display: flex;
+  justify-content: center;
+}
+
+.snippet-field {
   height: 30px;
   width: 700px;
   overflow: auto;
@@ -32,8 +57,17 @@ div#snippet-field {
   resize: vertical;
   border: 1px solid darkgrey;
   margin-bottom: 15px;
-  display: flex;
   text-align: left; 
+  /* the following centers text (in child spans) vertically in snippet textarea (div) */
+  display: flex;
+  align-items: center; 
+}
+
+textarea.code {
+  height: 30px;
+  width: 700px;
+  border: 1px solid darkgrey;
+  resize: vertical;
 }
 
 .title {
@@ -82,13 +116,7 @@ div#snippet-field {
   align-items: center;
 }
 
-.test-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 
-.test-btn {
+/* .test-btn {
   margin-left: auto;
-}
+} */

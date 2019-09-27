@@ -36,8 +36,7 @@ class TestInput extends Component {
 
   render() {
     return (
-      <div>
-        <form>
+        <div className="input-field">
           <textarea
             name="input"
             id="input"
@@ -55,8 +54,7 @@ class TestInput extends Component {
               })
             }
           ></textarea>
-        </form>
-      </div>
+        </div>
     );
   }
 }

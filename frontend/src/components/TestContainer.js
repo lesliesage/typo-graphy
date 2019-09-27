@@ -170,19 +170,20 @@ class TestContainer extends Component {
   render() {
     return (
       <div className="test-container">
-        <button className="test-btn" onClick={this.nextSnippet}>
-          next
-        </button>
-        <button className="test-btn" onClick={this.toggleAboutModal}>
-          about
-        </button>
+        <div className="test-tools">
+        <div className="test-buttons">
+          <button className="test-btn" onClick={this.nextSnippet}>
+            next
+          </button>
+          <button className="test-btn" onClick={this.toggleAboutModal}>
+            about
+          </button>
+        </div>
         <TestSnippet />
         <TestInput />
-        <div className="graph">
-          <GraphThisTest />
         </div>
+        <GraphThisTest />
         {this.props.isAccurate && this.props.isComplete && this.openModal()}
-
         <ReactModal
           isOpen={this.state.showAboutModal}
           onRequestClose={this.toggleAboutModal}

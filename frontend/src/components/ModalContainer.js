@@ -25,34 +25,32 @@ const ModalContainer = props => {
   }
 
   return (
-    <div>
-      <ReactModal
-        isOpen={props.modalStatus}
-        // onAfterOpen={afterOpenModal}
-        onRequestClose={props.closingModal}
-        contentLabel="Test Finished Modal"
-        ariaHideApp={false}
+    <ReactModal
+      isOpen={props.modalStatus}
+      // onAfterOpen={afterOpenModal}
+      onRequestClose={props.closingModal}
+      contentLabel="Test Finished Modal"
+      ariaHideApp={false}
+    >
+      <button
+        type="button"
+        className="close"
+        aria-label="Close"
+        onClick={props.closingModal}
       >
-        <button
-          type="button"
-          className="close"
-          aria-label="Close"
-          onClick={props.closingModal}
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <span aria-hidden="true">&times;</span>
+      </button>
 
-        <h2>completed in {completionTime()} seconds</h2>
+      <h2>completed in {completionTime()} seconds</h2>
 
-        <Link to="/stats" onClick={props.closingModal}>
-          view your stats
-        </Link>
+      <Link to="/stats" onClick={props.closingModal}>
+        view your stats
+      </Link>
 
-        <Link to="/" onClick={modalGoAgain}>
-          go again
-        </Link>
-      </ReactModal>
-    </div>
+      <Link to="/" onClick={modalGoAgain}>
+        go again
+      </Link>
+    </ReactModal>
   );
 };
 
