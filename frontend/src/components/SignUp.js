@@ -9,8 +9,8 @@ class SignUp extends Component {
   };
   render() {
     return (
-      <div>
-        <div className="coming-soon">coming soon</div>
+      <div className="main signup">
+        <h1>signup coming sooon</h1>
         {/* <form>
           username: <input></input>
           email: <input></input>

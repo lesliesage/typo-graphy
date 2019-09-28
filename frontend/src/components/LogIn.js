@@ -9,8 +9,8 @@ class LogIn extends Component {
   };
   render() {
     return (
-      <div>
-        <div className="coming-soon">coming soon</div>
+      <div className="main login">
+        <h1>login coming sooon</h1>
         {/* <form>
           username: <input></input>
           password: <input></input>

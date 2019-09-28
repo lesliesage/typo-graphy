@@ -21,7 +21,7 @@ class Help extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
         <h1>help</h1>
         <input
           onChange={this.handleChange}

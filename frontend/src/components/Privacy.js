@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 const Privacy = props => {
   return (
-    <div className="info-page">
+    <div className="main privacy">
       <h1>privacy</h1>
       <p>typo-graphy will never display ads or sell your data.</p>
       <p>

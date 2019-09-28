@@ -7,7 +7,7 @@ import GraphThisTest from "./GraphThisTest";
 
 const StatsContainer = props => {
   return (
-    <div>
+    <div className="main">
       <GraphThisTest />
       <GraphSpeedPerChar />
       <GraphComparedToMedian />

@@ -89,8 +89,8 @@ function removeSpaces(arr) {
       padding: {
         left: 50,
         right: 50,
-        top: 0,
-        bottom: 0
+        top: 20,
+        bottom: 20
       }
     }
   };

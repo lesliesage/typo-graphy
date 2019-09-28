@@ -169,7 +169,7 @@ class TestContainer extends Component {
 
   render() {
     return (
-      <div className="test-container">
+      <div className="main">
         <div className="test-tools">
         <div className="test-buttons">
           <button className="test-btn" onClick={this.nextSnippet}>
