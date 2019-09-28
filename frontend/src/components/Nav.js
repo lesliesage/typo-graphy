@@ -45,26 +45,26 @@ class Nav extends Component {
     this.props.onNext();
   }
 
-  homeButton = (<NavLink className="btn" exact to="/" onClick={this.homeRefresh}>home</NavLink>);
-  statsButton = (<NavLink className="btn" exact to="/stats">stats</NavLink>);
-  loginButton = (<NavLink className="btn" exact to="/login">login</NavLink>);
-  signupButton = (<NavLink className="btn" exact to="/signup">signup</NavLink>);
-  // contactButton = (<NavLink className="btn" exact to="/">contact</NavLink>);
-  aboutButton = (<NavLink className="btn" exact to="/about">about</NavLink>);
-  privacyButton = (<NavLink className="btn" exact to="/privacy">privacy</NavLink>);
-  helpButton = (<NavLink className="btn" exact to="/help">help</NavLink>);
+  home = (<NavLink className="navlink" exact to="/" onClick={this.homeRefresh}>home</NavLink>);
+  stats = (<NavLink className="navlink" exact to="/stats">stats</NavLink>);
+  login = (<NavLink className="navlink" exact to="/login">login</NavLink>);
+  signup = (<NavLink className="navlink" exact to="/signup">signup</NavLink>);
+  // contact = (<NavLink className="navlink" exact to="/">contact</NavLink>);
+  about = (<NavLink className="navlink" exact to="/about">about</NavLink>);
+  privacy = (<NavLink className="navlink" exact to="/privacy">privacy</NavLink>);
+  help = (<NavLink className="navlink" exact to="/help">help</NavLink>);
 
   render() {
     return (
       <div className="navbar">
-        {this.homeButton}
-        {this.statsButton}
-        {this.props.user ? null : this.loginButton}
-        {this.props.user ? null : this.signupButton}
+        {this.home}
+        {this.stats}
+        {this.props.user ? null : this.login}
+        {this.props.user ? null : this.signup}
         {/* {this.props.user ? this.logoutButton : null} */}
-        {this.aboutButton}
-        {this.privacyButton}
-        {this.helpButton}
+        {this.about}
+        {this.privacy}
+        {this.help}
       </div>
     );
   }
@@ -81,5 +81,3 @@ export default connect(
   null,
   mapDispatchToProps
 )(Nav);
-
-// export default withRouter(Nav);

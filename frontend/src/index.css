@@ -20,15 +20,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--dark);
+  color: var(--darkblue);
   /* font: normal 10px Verdana, Arial, sans-serif; */
   height: 100vh;
   width: 100vw;
-  overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
-  margin: 0px;  /*removes default style*/
-  display: flex;  /*enables flex content for its children*/
+  overflow: hidden; /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
+  margin: 0px; /*removes default style*/
+  display: flex; /*enables flex content for its children*/
   box-sizing: border-box;
-    background: var(--lightgrey);
+  background: var(--lightgrey);
 }
 
 .app {
@@ -36,7 +36,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 100%
+  width: 100%;
 }
 
 .header {
@@ -59,7 +59,6 @@ body {
   width: 100vw;
   flex-direction: row;
   height: calc(100% - 70px);
-
 }
 
 .navbar {
@@ -87,7 +86,7 @@ body {
   margin-bottom: 10px;
   margin-right: 10px;
   padding-top: 20px;
-  box-shadow: 1px 1px 1px 0px var(--shadow)
+  box-shadow: 1px 1px 1px 0px var(--shadow);
 }
 
 .about {
@@ -101,9 +100,69 @@ body {
 
 .test-buttons {
   display: flex;
+  flex-direction: row-reverse;
+}
+
+.btn,
+.close {
+  margin-bottom: 10px;
+  margin-left: 8px;
+  margin-top: 1px;
+  padding: 3px;
+  border: 1px solid var(--darkgrey);
+  border-radius: 5px;
+  color: var(--darkblue) !important  ;
+  font-weight: 700;
+  font-size: 12px;
+  width: 120px;
+  white-space: nowrap;
+}
+
+.btn:hover,
+.close:hover {
+  background-color: var(--lightblue);
+  margin-bottom: 11px;
+  margin-top: 0px;
+  box-shadow: 1px 1px 1px 0px var(--shadow);
+}
+
+.btn:focus,
+.close:focus {
+  outline: none;
+}
+
+.close {
+  width: 30px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-top: 1px;
+}
+
+.close:hover {
+  margin-top: 0px;
+  margin-bottom: 1px;
+}
+
+.modal-banner {
+  text-align: center;
+  font-size: 24px;
+}
+
+.modalnav-container {
+  display: flex;
   flex-direction: row;
-  align-items: right;
-  justify-content: right;
+  justify-content: center;
+  align-items: space-between;
+  padding: 20px;
+  margin: 20px;
+}
+
+.modalnav {
+  text-decoration: none;
+  text-align: center;
+  margin-left: 15px;
+  margin-right: 15px;
+  box-shadow: 1px 1px 1px 0px var(--shadow);
 }
 
 .snippet-container {
@@ -132,7 +191,8 @@ input.code {
   resize: vertical;
 }
 
-textarea:focus, input:focus{
+textarea:focus,
+input:focus {
   outline: none;
 }
 
@@ -141,7 +201,7 @@ textarea:focus, input:focus{
   font-weight: bold;
 }
 
-.btn {
+.navlink {
   align-self: flex-end;
   margin: 4px;
   margin-left: 8px;
@@ -152,11 +212,11 @@ textarea:focus, input:focus{
   text-decoration: none;
 }
 
-a.btn:hover {
+a.navlink:hover {
   background: var(--grey);
 }
 
-.btn.active {
+.navlink.active {
   padding-bottom: 11px;
   border-bottom-style: solid;
 }
@@ -185,10 +245,4 @@ a.btn:hover {
   min-width: 1000px; /* flex-basis? */
   min-height: 500px;
   align-items: center;
-}
-
-button.test-btn {
-  align-items: right;
-  justify-content: right;
-  align-self: right;
 }

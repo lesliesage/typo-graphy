@@ -172,11 +172,11 @@ class TestContainer extends Component {
       <div className="main">
         <div className="test-tools">
         <div className="test-buttons">
-          <button className="test-btn" onClick={this.nextSnippet}>
-            next
+          <button className="btn" onClick={this.nextSnippet}>
+            next snippet
           </button>
-          <button className="test-btn" onClick={this.toggleAboutModal}>
-            about
+          <button className="btn" onClick={this.toggleAboutModal}>
+            about this regex
           </button>
         </div>
         <TestSnippet />

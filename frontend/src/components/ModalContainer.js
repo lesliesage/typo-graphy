@@ -24,12 +24,35 @@ const ModalContainer = props => {
     props.onNext();
   }
 
+  const style = {
+    content: {
+      bottom: "auto",
+      height: "200px",
+      left: "50%",
+      padding: "1rem",
+      position: "fixed",
+      right: "auto",
+      top: "30%",
+      transform: "translate(-50%,-" + "100px" + ")",
+      width: "50%",
+      maxWidth: "40rem",
+      border: "1px solid #89979c",
+      borderRadius: "5px",
+      color: "#214f6a !important",
+      fontWeight: "700",
+      fontSize: "12px",
+      whiteSpace: "nowrap",
+      boxShadow: "1px 1px 1px 0px rgba(0, 0, 0, 0.2)"
+    }
+  };
+
   return (
     <ReactModal
       isOpen={props.modalStatus}
       onRequestClose={props.closingModal}
       contentLabel="Test Finished Modal"
       ariaHideApp={false}
+      style={style}
     >
       <button
         type="button"
@@ -40,15 +63,16 @@ const ModalContainer = props => {
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <h2>completed in {completionTime()} seconds</h2>
+      <p className="modal-banner">completed in {completionTime()} seconds</p>
+      <div className="modalnav-container">
+        <Link to="/stats" onClick={props.closingModal} className="btn modalnav">
+          view your stats
+        </Link>
 
-      <Link to="/stats" onClick={props.closingModal}>
-        view your stats
-      </Link>
-
-      <Link to="/" onClick={modalGoAgain}>
-        go again
-      </Link>
+        <Link to="/" onClick={modalGoAgain} className="btn modalnav">
+          go again
+        </Link>
+      </div>
     </ReactModal>
   );
 };
