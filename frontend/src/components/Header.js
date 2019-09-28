@@ -41,7 +41,7 @@ const Header = props => {
 
   return (
     <div className="header">
-      typo-graphy<Pie data={data} options={options} height={40} width={200} />
+      t • y • p • o • - • g • r • a • p • h • y<Pie data={data} options={options} height={40} width={200} />
     </div>
   );
 };

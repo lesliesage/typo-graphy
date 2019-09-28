@@ -45,11 +45,13 @@ body {
   justify-content: center;
   align-items: center;
   margin: 10px;
+  padding-left: 10px;
   height: 50px;
+  background: white;
+  box-shadow: 1px 1px 1px 0px var(--shadow);
   font-size: 24px;
   color: var(--darkblue);
-  background: white;
-  box-shadow: 1px 1px 1px 0px var(--shadow)
+  white-space: nowrap;
 }
 
 .sub-header {
@@ -72,7 +74,7 @@ body {
   margin-right: 10px;
   margin-left: 10px;
   margin-bottom: 10px;
-  box-shadow: 1px 1px 1px 0px var(--shadow)
+  box-shadow: 1px 1px 1px 0px var(--shadow);
 }
 
 .main {
@@ -139,51 +141,24 @@ textarea:focus, input:focus{
   font-weight: bold;
 }
 
-/* .btn {
-  border: none;
-  background-color: inherit;
-  padding: 14px 28px;
-  font-size: 16px;
-  cursor: pointer;
-  display: inline-block;
-}*/
-
-/* On mouse-over */
-/* 
-.btn:hover {
-  background: #eee;
-} */
-
 .btn {
+  align-self: flex-end;
+  margin: 4px;
+  margin-left: 8px;
+  margin-right: 8px;
   font-size: 24px;
   padding: 14px;
-  align-self: flex-end;
-  /* font-weight: 700; */
-  /* transition: color 0.1s ease; */
-
-  /* float: right; */
-  /* box-shadow: none; */
-  /* border-radius: 0; */
-  /* display: inline-flex; */
-  /* -webkit-box-align: center; */
-  /* align-items: center; */
-  /* box-sizing: inherit; */
-  /* -webkit-box-direction: inherit; */
+  color: var(--darkblue);
+  text-decoration: none;
 }
 
 a.btn:hover {
-  color: #59b3f0 !important;
-  border-color: #59b3f0;
+  background: var(--grey);
 }
 
 .btn.active {
-  border-color: #4a9fda;
-  border-bottom-width: 2px;
+  padding-bottom: 11px;
   border-bottom-style: solid;
-}
-
-.btn.visited {
-  color: green;
 }
 
 .code {
