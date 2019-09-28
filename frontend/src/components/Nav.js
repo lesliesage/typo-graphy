@@ -45,7 +45,7 @@ class Nav extends Component {
     this.props.onNext();
   }
 
-  homeButton = (<NavLink className="btn" exact to="/" onClick={this.homeRefresh}>typo-graphy</NavLink>);
+  homeButton = (<NavLink className="btn" exact to="/" onClick={this.homeRefresh}>home</NavLink>);
   statsButton = (<NavLink className="btn" exact to="/stats">stats</NavLink>);
   loginButton = (<NavLink className="btn" exact to="/login">login</NavLink>);
   signupButton = (<NavLink className="btn" exact to="/signup">signup</NavLink>);

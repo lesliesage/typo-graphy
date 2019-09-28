@@ -22,7 +22,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--dark);
   /* font: normal 10px Verdana, Arial, sans-serif; */
-  height: 100%;   
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
   margin: 0px;  /*removes default style*/
   display: flex;  /*enables flex content for its children*/
@@ -35,18 +36,16 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%
 }
 
 .header {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
-  justify-content: left;
-  padding-left: 350px;
+  justify-content: center;
   align-items: center;
   margin: 10px;
   height: 50px;
-  width: auto;
   font-size: 24px;
   color: var(--darkblue);
   background: white;
@@ -55,14 +54,18 @@ body {
 
 .sub-header {
   display: flex;
+  width: 100vw;
   flex-direction: row;
+  height: calc(100% - 70px);
+
 }
 
 .navbar {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  flex-shrink: 0;
+  justify-content: space-evenly;
+  padding-top: 100px;
+  padding-bottom: 100px;
   position: -webkit-sticky;
   position: sticky;
   background: white;
@@ -74,9 +77,9 @@ body {
 
 .main {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   overflow-y: auto;
   background: white;
   margin-bottom: 10px;
@@ -136,18 +139,51 @@ textarea:focus, input:focus{
   font-weight: bold;
 }
 
-.btn {
+/* .btn {
   border: none;
   background-color: inherit;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
   display: inline-block;
-}
+}*/
 
 /* On mouse-over */
+/* 
 .btn:hover {
   background: #eee;
+} */
+
+.btn {
+  font-size: 24px;
+  padding: 14px;
+  align-self: flex-end;
+  /* font-weight: 700; */
+  /* transition: color 0.1s ease; */
+
+  /* float: right; */
+  /* box-shadow: none; */
+  /* border-radius: 0; */
+  /* display: inline-flex; */
+  /* -webkit-box-align: center; */
+  /* align-items: center; */
+  /* box-sizing: inherit; */
+  /* -webkit-box-direction: inherit; */
+}
+
+a.btn:hover {
+  color: #59b3f0 !important;
+  border-color: #59b3f0;
+}
+
+.btn.active {
+  border-color: #4a9fda;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+
+.btn.visited {
+  color: green;
 }
 
 .code {
@@ -171,7 +207,7 @@ textarea:focus, input:focus{
 }
 
 .graph {
-  min-width: 1000px;
+  min-width: 1000px; /* flex-basis? */
   min-height: 500px;
   align-items: center;
 }
