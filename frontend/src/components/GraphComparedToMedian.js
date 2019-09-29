@@ -70,6 +70,8 @@ const data = props => {
 const options = () => {
   let darkblue = COLORS["darkblue"];
   let grey = COLORS["grey"];
+  let darkgrey = COLORS["darkgrey"];
+  let midgrey = COLORS["midgrey"];
   return {
     tooltips: {
       callbacks: {
@@ -89,7 +91,8 @@ const options = () => {
           return darkblue;
         }
       },
-      backgroundColor: grey,
+      backgroundColor: midgrey, // change to grey if border works
+      borderColor: darkgrey,  // figure out why this doesn't work
       bodyFontFamily: "Menlo",
       bodyFontColor: darkblue,
       bodyFontSize: 14,

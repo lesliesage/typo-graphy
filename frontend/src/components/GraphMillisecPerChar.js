@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Bar } from "react-chartjs-2";
-import {FIELDKEY} from "../constants/constants"
+import { FIELDKEY, COLORS } from "../constants/constants";
 
 const GraphMillisecPerChar = props => {
-
   function arrayify(obj) {
     // turn test result into array, remove metadata (id, created_at, user_id, etc.)
     const arr = Object.entries(obj).filter(el => {
@@ -35,66 +34,94 @@ const GraphMillisecPerChar = props => {
 
   const cleanedResult = arrayify(props.testSummary);
 
-  const options = {
-    title: {
-      display: false
-    },
-    legend: {
-      display: false
-    },
-    scales: {
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true
+  const options = () => {
+    let darkblue = COLORS["darkblue"];
+    let grey = COLORS["grey"];
+    let darkgrey = COLORS["darkgrey"];
+    let midgrey = COLORS["midgrey"];
+    return {
+      tooltips: {
+        callbacks: {
+          title: function() {
+            return false
           },
-          gridLines: {
-            color: "rgba(0, 0, 0, 0)",
-            display: false
+          label: function(tooltipItem) {
+            return "character:  " + tooltipItem.label;
+          },
+          afterLabel: function(tooltipItem) {
+            return "\ntime:       " + tooltipItem.value + " ms";
           }
-        }
-      ],
-      yAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: "ms / char"
-          },
-          ticks: {
-            min: 0
-          },
-          gridLines: {
-            color: "rgba(0, 0, 0, 0)",
-            display: false
+        },
+        backgroundColor: midgrey, // change to grey if border works
+        borderColor: darkgrey,  // figure out why this doesn't work
+        bodyFontFamily: "Menlo",
+        bodyFontColor: darkblue,
+        bodyFontSize: 14,
+        displayColors: false,
+        xPadding: 20,
+        yPadding: 20,
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [
+          {
+            scaleLabel: {
+              display: true
+            },
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+              display: false
+            }
           }
+        ],
+        yAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: "ms / char"
+            },
+            ticks: {
+              min: 0
+            },
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+              display: false
+            }
+          }
+        ]
+      },
+      layout: {
+        padding: {
+          left: 50,
+          right: 50,
+          top: 0,
+          bottom: 0
         }
-      ]
-    },
-    layout: {
-      padding: {
-        left: 50,
-        right: 50,
-        top: 0,
-        bottom: 0
       }
-    }
+    };
   };
 
-  const data = {
+  const data = () => {
+    const grey = COLORS["grey"];
+    const darkgrey = COLORS["darkgrey"];
+    const darkestgrey = COLORS["darkestgrey"];
+    return {
     labels: getKeys(cleanedResult),
     datasets: [
       {
-        backgroundColor: "lightgrey",
-        borderColor: "grey",
+        backgroundColor: grey,
+        borderColor: darkgrey,
         borderWidth: 1,
-        hoverBackgroundColor: "grey",
-        hoverBorderColor: "black",
+        hoverBackgroundColor: darkgrey,
+        hoverBorderColor: darkestgrey,
         data: getValues(cleanedResult),
         legend: {
           display: false
         }
       }
-    ]
+    ]}
   };
 
   return (
@@ -103,7 +130,7 @@ const GraphMillisecPerChar = props => {
         <h2>your last test: average time per character</h2>
       </div>
       <div className="graph">
-        <Bar data={data} options={options} />
+        <Bar data={data()} options={options()} />
       </div>
     </div>
   );

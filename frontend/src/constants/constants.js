@@ -105,6 +105,7 @@ const MODAL_STYLE = {
 const COLORS = {
   cream: "#f9f6f0",
   lightgrey: "#e3e7e6",
+  midgrey: "#dedede",
   grey: "#bdc5c8",
   darkgrey: "#89979c",
   darkergrey: "#636d70",
@@ -115,7 +116,7 @@ const COLORS = {
   dark: "#002733",
   red: "#cc0000",
   shadow: "rgba(0, 0, 0, 0.2)"
-}
+};
 
 export {
   FIELDS,
