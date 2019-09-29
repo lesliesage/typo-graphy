@@ -102,6 +102,21 @@ const MODAL_STYLE = {
   }
 };
 
+const COLORS = {
+  cream: "#f9f6f0",
+  lightgrey: "#e3e7e6",
+  grey: "#bdc5c8",
+  darkgrey: "#89979c",
+  darkergrey: "#636d70",
+  darkestgrey: "#4b5254",
+  lightblue: "#a1bacd",
+  blue: "#647b88",
+  darkblue: "#214f6a",
+  dark: "#002733",
+  red: "#cc0000",
+  shadow: "rgba(0, 0, 0, 0.2)"
+}
+
 export {
   FIELDS,
   FIELDKEY,
@@ -110,5 +125,6 @@ export {
   URL_TESTS,
   URL_MEDIANS,
   URL_HELP_ARTICLES,
-  MODAL_STYLE
+  MODAL_STYLE,
+  COLORS
 };
