@@ -5,9 +5,10 @@ import ReactModal from "react-modal";
 import {
   nextIndex,
   closingModal,
-  settingModalType,
+  // settingModalType,
   onNext
 } from "../redux/actions";
+import { MODAL_STYLE } from "../constants/constants";
 
 const ModalContainer = props => {
   function completionTime() {
@@ -24,35 +25,13 @@ const ModalContainer = props => {
     props.onNext();
   }
 
-  const style = {
-    content: {
-      bottom: "auto",
-      height: "200px",
-      left: "50%",
-      padding: "1rem",
-      position: "fixed",
-      right: "auto",
-      top: "30%",
-      transform: "translate(-50%,-" + "100px" + ")",
-      width: "50%",
-      maxWidth: "40rem",
-      border: "1px solid #89979c",
-      borderRadius: "5px",
-      color: "#214f6a !important",
-      fontWeight: "700",
-      fontSize: "12px",
-      whiteSpace: "nowrap",
-      boxShadow: "1px 1px 1px 0px rgba(0, 0, 0, 0.2)"
-    }
-  };
-
   return (
     <ReactModal
       isOpen={props.modalStatus}
       onRequestClose={props.closingModal}
       contentLabel="Test Finished Modal"
       ariaHideApp={false}
-      style={style}
+      style={MODAL_STYLE}
     >
       <button
         type="button"
@@ -80,7 +59,7 @@ const ModalContainer = props => {
 const mapStateToProps = state => {
   return {
     modalStatus: state.modal.modalStatus,
-    modalType: state.modal.modalType,
+    // modalType: state.modal.modalType,
     currentTestResults: state.test.currentTestResults
   };
 };
@@ -89,7 +68,7 @@ const mapDispatchToProps = dispatch => {
   return {
     nextIndex: () => dispatch(nextIndex()),
     closingModal: () => dispatch(closingModal()),
-    settingModalType: type => dispatch(settingModalType(type)),
+    // settingModalType: type => dispatch(settingModalType(type)),
     onNext: () => dispatch(onNext())
   };
 };

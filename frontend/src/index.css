@@ -162,7 +162,26 @@ body {
   text-align: center;
   margin-left: 15px;
   margin-right: 15px;
-  box-shadow: 1px 1px 1px 0px var(--shadow);
+}
+
+.annotation {
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-left: 80px;
+  margin-right: 80px;
+  white-space: pre-wrap; /* CSS3 */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap; /* Opera <7 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* IE */
+  font-size: 18px;
+  overflow-y: auto;
+}
+
+.annotation-preface {
+  margin-bottom: 18px;
+  font-size: 22px;
 }
 
 .snippet-container {

@@ -34,9 +34,9 @@ function modalStatus(status) {
   return { type: "MODAL_STATUS", payload: status };
 }
 
-function modalType(type) {
-  return { type: "MODAL_TYPE", payload: type };
-}
+// function modalType(type) {
+//   return { type: "MODAL_TYPE", payload: type };
+// }
 
 function openingModal() {
   return dispatch => {
@@ -50,11 +50,11 @@ function closingModal() {
   };
 }
 
-function settingModalType(type) {
-  return dispatch => {
-    dispatch(modalType(type));
-  };
-}
+// function settingModalType(type) {
+//   return dispatch => {
+//     dispatch(modalType(type));
+//   };
+// }
 
 function fetchingQueue() {
   return dispatch => {
@@ -151,9 +151,9 @@ export {
   savingTest,
   fetchingMedians,
   modalStatus,
-  modalType,
+  // modalType,
   openingModal,
   closingModal,
-  settingModalType,
+  // settingModalType,
   URL_HELP_ARTICLES
 };

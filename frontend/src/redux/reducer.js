@@ -50,16 +50,16 @@ const testReducer = (state = initialTestState, action) => {
 };
 
 const initialModalState = {
-  modalStatus: false,
-  modalType: ""
+  modalStatus: false
+  // modalType: ""
 };
 
 const modalReducer = (state = initialModalState, action) => {
   switch (action.type) {
     case "MODAL_STATUS":
       return { ...state, modalStatus: action.payload };
-    case "MODAL_TYPE":
-      return { ...state, modalType: action.payload };
+    // case "MODAL_TYPE":
+    //   return { ...state, modalType: action.payload };
     default:
       return state;
   }

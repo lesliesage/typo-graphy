@@ -5,13 +5,13 @@ import TestInput from "./TestInput";
 import ReactModal from "react-modal";
 import {
   openingModal,
-  settingModalType,
+  // settingModalType,
   savingTest,
   nextIndex,
   onNext
 } from "../redux/actions";
 import GraphThisTest from "./GraphThisTest";
-import { FIELDS } from "../constants/constants";
+import { FIELDS, MODAL_STYLE } from "../constants/constants";
 
 class TestContainer extends Component {
   state = { showAboutModal: false };
@@ -171,16 +171,16 @@ class TestContainer extends Component {
     return (
       <div className="main">
         <div className="test-tools">
-        <div className="test-buttons">
-          <button className="btn" onClick={this.nextSnippet}>
-            next snippet
-          </button>
-          <button className="btn" onClick={this.toggleAboutModal}>
-            about this regex
-          </button>
-        </div>
-        <TestSnippet />
-        <TestInput />
+          <div className="test-buttons">
+            <button className="btn" onClick={this.nextSnippet}>
+              next snippet
+            </button>
+            <button className="btn" onClick={this.toggleAboutModal}>
+              about this regex
+            </button>
+          </div>
+          <TestSnippet />
+          <TestInput />
         </div>
         <GraphThisTest />
         {this.props.isAccurate && this.props.isComplete && this.openModal()}
@@ -189,6 +189,7 @@ class TestContainer extends Component {
           onRequestClose={this.toggleAboutModal}
           contentLabel="About Snippet Modal"
           ariaHideApp={false}
+          style={MODAL_STYLE}
         >
           <button
             type="button"
@@ -198,10 +199,11 @@ class TestContainer extends Component {
           >
             <span aria-hidden="true">&times;</span>
           </button>
-          <p>
+          <div className="annotation">
+            <div className="annotation-preface">this regex script lets you:</div >
             {this.props.selectedSnippet &&
               this.props.selectedSnippet.annotation}
-          </p>
+          </div>
         </ReactModal>
       </div>
     );
@@ -224,7 +226,7 @@ const mapDispatchToProps = dispatch => {
     },
     nextIndex: () => dispatch(nextIndex()),
     openingModal: () => dispatch(openingModal()),
-    settingModalType: type => dispatch(settingModalType(type)),
+    // settingModalType: type => dispatch(settingModalType(type)),
     onNext: () => dispatch(onNext())
   };
 };

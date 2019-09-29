@@ -80,6 +80,28 @@ const FIELDKEY = {
   slash: "/"
 };
 
+const MODAL_STYLE = {
+  content: {
+    bottom: "auto",
+    height: "200px",
+    left: "50%",
+    padding: "1rem",
+    position: "fixed",
+    right: "auto",
+    top: "30%",
+    transform: "translate(-50%, -100px)",
+    width: "50%",
+    maxWidth: "40rem",
+    border: "1px solid #89979c",
+    borderRadius: "5px",
+    color: "#214f6a !important",
+    fontWeight: "700",
+    fontSize: "12px",
+    whiteSpace: "nowrap",
+    boxShadow: "1px 1px 1px 0px rgba(0, 0, 0, 0.2)"
+  }
+};
+
 export {
   FIELDS,
   FIELDKEY,
@@ -87,5 +109,6 @@ export {
   URL_QUEUE,
   URL_TESTS,
   URL_MEDIANS,
-  URL_HELP_ARTICLES
+  URL_HELP_ARTICLES,
+  MODAL_STYLE
 };
