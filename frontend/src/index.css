@@ -22,7 +22,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--darkblue);
-  /* font: normal 10px Verdana, Arial, sans-serif; */
   height: 100vh;
   width: 100vw;
   overflow: hidden; /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
@@ -90,8 +89,56 @@ body {
   box-shadow: 1px 1px 1px 0px var(--shadow);
 }
 
-.about {
-  display: block;
+.info-pg {
+  display: flex;
+  flex-direction: column;
+  padding-left: 100px;
+  padding-right: 100px;
+  font-size: 20px;
+}
+
+.info-pg h1 {
+  text-align: center;
+}
+
+.info-pg ul li {
+  padding: 5px;
+}
+
+.info-pg a,
+.info-pg a:visited {
+  color: var(--darkblue);
+  font-weight: bold;
+}
+
+.info-pg p {
+  margin: 0px;
+}
+
+.info-block {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-container {
+  display: flex;
+  align-items: left; /* figure out if I can keep this aligned with text on wide screens  */
+  width: 100%;
+  max-width: 800px;
+}
+
+.search {
+  height: 30px;
+  min-width: 50%;
+  padding: 4px;
+  border: 1px solid var(--darkgrey);
+  font-size: 20px;
+  color: var(--darkblue);
+}
+
+.help-article {
+  padding-top: 20px;
 }
 
 .test-tools {
@@ -195,7 +242,7 @@ body {
   width: 700px;
   overflow: auto;
   padding: 4px;
-  border: 1px solid darkgrey;
+  border: 1px solid var(--darkgrey);
   margin-bottom: 15px;
   text-align: left;
   /* the following centers text (in child spans) vertically in snippet textarea (div) */
@@ -207,7 +254,7 @@ input.code {
   height: 30px;
   width: 700px;
   padding: 4px;
-  border: 1px solid darkgrey;
+  border: 1px solid var(--darkgrey);
   resize: vertical;
 }
 
@@ -217,8 +264,9 @@ input:focus {
 }
 
 .title {
-  font-size: 18px;
+  font-size: 30px;
   font-weight: bold;
+  margin-bottom: 3px;
 }
 
 .navlink {
@@ -244,6 +292,7 @@ a.navlink:hover {
 .code {
   font-family: Menlo;
   font-size: 20px;
+  color: var(--darkblue);
 }
 
 .bad {
@@ -265,4 +314,33 @@ a.navlink:hover {
   min-width: 1000px; /* flex-basis? */
   min-height: 500px;
   align-items: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px
+}
+
+.form-inputs-container div {
+  margin: 10px;
+}
+
+.form-labels-container input {
+  padding: 30px;
+}
+
+.form-label {
+  margin-bottom: 24px;
+  margin-right: 20px;
+  padding: 3px;
+}
+
+.form-input {
+  margin-bottom: 20px;
+  padding: 3px;
+  padding: 4px;
+  border: 1px solid var(--darkgrey);
+  font-size: 20px;
+  color: var(--darkblue);
 }

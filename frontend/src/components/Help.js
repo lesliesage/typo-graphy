@@ -21,19 +21,25 @@ class Help extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div className="main info-pg">
         <h1>help</h1>
-        <input
-          onChange={this.handleChange}
-          placeHolder="search for help topics"
-        ></input>
-        {this.state.helpArticles.map(helpArticle => {
-          if (helpArticle.help_text.includes(this.state.searchText)) {
-            return (
-              <HelpArticle helpArticle={helpArticle} key={helpArticle.id} />
-            );
-          } else return null;
-        })}
+        <div className="search-container">
+          <input
+            type="text"
+            className="search"
+            placeHolder="search for help topics"
+            onChange={this.handleChange}
+          ></input>
+        </div>
+        <div className="info-block">
+          {this.state.helpArticles.map(helpArticle => {
+            if (helpArticle.help_text.includes(this.state.searchText)) {
+              return (
+                <HelpArticle helpArticle={helpArticle} key={helpArticle.id} />
+              );
+            } else return null;
+          })}
+        </div>
       </div>
     );
   }

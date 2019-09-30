@@ -9,13 +9,23 @@ class LogIn extends Component {
   };
   render() {
     return (
-      <div className="main login">
-        <h1>login coming sooon</h1>
-        {/* <form>
-          username: <input></input>
-          password: <input></input>
-          <button onClick={submitSignUp}>log in</button>
-        </form> */}
+      <div className="main info-pg login">
+        <h1>login</h1>
+        <div className="form-container">
+          <div className="form-labels-container">
+            <div className="form-label">email:</div>
+            <div className="form-label">password:</div>
+          </div>
+          <form className="form-inputs-container">
+            <input className="form-input" id="email"></input>
+            <br />
+            <input className="form-input" id="password"></input>
+            <br />
+          </form>
+        </div>
+        <button onClick={e => this.submitSignUp} className="btn">
+          sign up
+        </button>
       </div>
     );
   }
