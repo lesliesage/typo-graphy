@@ -1,9 +1,26 @@
+require 'jwt'
 class UsersController < ApplicationController
+    # skip_before_action :verify_authenticity_token
+
+    def show
+      token = request.headers["Authentication"].split(" ")[1]
+      user = User.find(decode(token)["user_id"])
+      render json: {
+          authenticated: true,
+          message: "logging in...",
+          user: user,
+          token: token
+      }, status: :accepted
+    end
 
     def create
-        user = user.create(user_params)
-        render json: user.to_json(user_serializer)
-    end
+        user = User.create(user_params)
+        if @user.valid?
+          render json: { user: UserSerializer.new(user) }, status: :created
+        else
+          render json: { error: 'failed to create user' }, status: :not_acceptable
+        end
+      end
 
     private
 

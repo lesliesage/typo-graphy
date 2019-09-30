@@ -3,6 +3,8 @@ const URL_QUEUE = URL_BASE + "queue";
 const URL_TESTS = URL_BASE + "tests";
 const URL_MEDIANS = URL_BASE + "medians";
 const URL_HELP_ARTICLES = URL_BASE + "help_articles";
+const URL_LOGIN = URL_BASE + "login";
+const URL_PROFILE = URL_BASE + "profile";
 
 const FIELDS = [
   "user_id",
@@ -126,6 +128,8 @@ export {
   URL_TESTS,
   URL_MEDIANS,
   URL_HELP_ARTICLES,
+  URL_LOGIN,
+  URL_PROFILE,
   MODAL_STYLE,
   COLORS
 };

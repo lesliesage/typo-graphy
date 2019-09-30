@@ -319,7 +319,7 @@ a.navlink:hover {
 .form-container {
   display: flex;
   flex-direction: row;
-  margin-top: 20px
+  margin-top: 20px;
 }
 
 .form-inputs-container div {

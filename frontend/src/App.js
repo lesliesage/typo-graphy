@@ -11,13 +11,34 @@ import SignUp from "./components/SignUp";
 import About from "./components/About";
 import Privacy from "./components/Privacy";
 import Help from "./components/Help";
+import NotFound from "./components/NotFound";
 import ModalContainer from "./components/ModalContainer";
-import { fetchingQueue, fetchingMedians } from "./redux/actions";
+import {
+  updateUser,
+  loading,
+  fetchingQueue,
+  fetchingMedians
+} from "./redux/actions";
+import { URL_PROFILE } from "./constants/constants.js";
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchingQueue();
     this.props.fetchingMedians();
+
+    if (localStorage.getItem("token")) {
+      fetch(URL_PROFILE, {
+        headers: {
+          Authentication: `Bearer ${localStorage.getItem("token")}`
+        }
+      })
+        .then(res => res.json())
+        .then(user => {
+          this.props.updateUser(user);
+        });
+    } else {
+      this.props.loading();
+    }
   }
 
   render() {
@@ -28,13 +49,15 @@ class App extends Component {
           <Nav />
           <ModalContainer />
           <Switch>
+            <Route exact path="/" component={TestContainer} />
+            <Route exact path="/profile" component={TestContainer} />
             <Route exact path="/stats" component={StatsContainer} />
             <Route exact path="/login" component={LogIn} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/about" component={About} />
             <Route exact path="/privacy" component={Privacy} />
             <Route exact path="/help" component={Help} />
-            <Route path="/" component={TestContainer} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </div>
@@ -42,8 +65,20 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.test.user
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
+    updateUser: user => {
+      dispatch(updateUser(user));
+    },
+    loading: () => {
+      dispatch(loading());
+    },
     fetchingQueue: () => {
       dispatch(fetchingQueue());
     },
@@ -55,7 +90,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(App)
 );

@@ -1,5 +1,30 @@
 import { combineReducers } from "redux";
 
+const initialUserState = {
+  user: null,
+  loading: true,
+  userData: null,
+  errorMsg: "",
+  authenticatingUser: false
+};
+
+const userReducer = (state = initialUserState, action) => {
+  switch (action.type) {
+    case "USER":
+      return { ...state, user: action.payload };
+    case "LOADING":
+      return { ...state, loading: false };
+    case "SET_CURRENT_USER":
+      return { ...state, userData: action.payload };
+    case "FAILED_LOGIN":
+      return { ...state, errorMsg: action.payload };
+    case "AUTHENTICATING_USER":
+      return { ...state, authenticatingUser: true };
+    default:
+      return state;
+  }
+};
+
 const initialTestState = {
   // currentTestLanguage: null,
   queue: [],
@@ -39,7 +64,13 @@ const testReducer = (state = initialTestState, action) => {
           state.selectedSnippet.code.length === action.payload.typedText.length
       };
     case "ON_NEXT":
-      return { ...state, typedText: "", currentTestResults: [], isAccurate: true, isComplete: false };
+      return {
+        ...state,
+        typedText: "",
+        currentTestResults: [],
+        isAccurate: true,
+        isComplete: false
+      };
     case "SAVED_TEST":
       return { ...state, testSummary: action.payload, isComplete: false };
     case "SNIPPET_INDEX":
@@ -79,6 +110,7 @@ const statsReducer = (state = initialStatsState, action) => {
 };
 
 const rootReducer = combineReducers({
+  user: userReducer,
   test: testReducer,
   modal: modalReducer,
   stats: statsReducer

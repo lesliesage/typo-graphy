@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
 class SignUp extends Component {
-  state = { email: "", password: "" };
+  state = { username: "", email: "", password: "", confirm: "" };
 
   submitSignUp = e => {
     e.preventDefault();

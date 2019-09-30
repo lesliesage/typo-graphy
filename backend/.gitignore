@@ -26,3 +26,6 @@
 /public/packs
 /public/packs-test
 /node_modules
+
+# Secrets for generating token
+/.Secrets.rb
