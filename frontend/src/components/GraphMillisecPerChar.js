@@ -28,7 +28,6 @@ const GraphMillisecPerChar = props => {
     // return values for y-axis
     return arr.map(el => {
       return Math.round(el[1]); // milliseconds per character
-      // return Math.round((1 / el[1]) * 1000000) / 1000; // char per second
     });
   }
 
@@ -36,7 +35,7 @@ const GraphMillisecPerChar = props => {
 
   const options = () => {
     let darkblue = COLORS["darkblue"];
-    let grey = COLORS["grey"];
+    // let grey = COLORS["grey"];
     let darkgrey = COLORS["darkgrey"];
     let midgrey = COLORS["midgrey"];
     return {

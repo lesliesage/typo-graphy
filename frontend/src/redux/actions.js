@@ -2,9 +2,7 @@ import store from "../redux/store";
 import {
   URL_QUEUE,
   URL_TESTS,
-  URL_MEDIANS,
-  URL_PROFILE,
-  URL_LOGIN
+  URL_MEDIANS
 } from "../constants/constants";
 
 function onChange(onChangeObj) {
@@ -35,10 +33,6 @@ function modalStatus(status) {
   return { type: "MODAL_STATUS", payload: status };
 }
 
-// function modalType(type) {
-//   return { type: "MODAL_TYPE", payload: type };
-// }
-
 function openingModal() {
   return dispatch => {
     dispatch(modalStatus(true));
@@ -51,85 +45,13 @@ function closingModal() {
   };
 }
 
-// function settingModalType(type) {
-//   return dispatch => {
-//     dispatch(modalType(type));
-//   };
-// }
-
-function updateUser(user){
-  return { type: "USER", payload: user }
+function updateUser(currentUser){
+  return { type: "CURRENT_USER", payload: currentUser }
 }
 
 function loading() {
   return { type: "LOADING", payload: false };
 }
-
-const loginUser = (username, password) => {
-  return (dispatch) => {
-    console.log(process.env.REACT_APP_API_ENDPOINT)
-    dispatch(authenticatingUser())
-    // fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/login`)
-    fetch(URL_LOGIN, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify({
-        user: {
-          username: username,
-          password: password
-        }
-      })
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw response
-        }
-      })
-      // {user: {}, jwt: 'aaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccc'}
-      .then(({ user, jwt }) => {
-        localStorage.setItem('jwt', jwt)
-        dispatch(setCurrentUser(user))
-      })
-      .catch(r => r.json().then(e => dispatch(failedLogin(e.message))))
-      // .then((jsonResponse) => {
-      //   localStorage.setItem('jwt', jsonResponse.jwt)
-      //   dispatch(setCurrentUser(jsonResponse.user))
-      // })
-  }
-}
-
-const fetchCurrentUser = () => {
-  // takes the token in localStorage and finds out who it belongs to
-  return (dispatch) => {
-    dispatch(authenticatingUser())
-    fetch(URL_PROFILE, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    })
-      .then(response => response.json())
-      .then(({ user }) => dispatch(setCurrentUser(user)))
-  }
-}
-
-const setCurrentUser = (userData) => ({
-  type: 'SET_CURRENT_USER',
-  payload: userData
-})
-
-const failedLogin = (errorMsg) => ({
-  type: 'FAILED_LOGIN',
-  payload: errorMsg
-})
-
-// tell our app we're currently fetching
-const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })
 
 function fetchingQueue() {
   return dispatch => {
@@ -216,11 +138,6 @@ function fetchedMedians(medianSet) {
 export {
   updateUser,
   loading,
-  loginUser,
-  fetchCurrentUser,
-  setCurrentUser,
-  failedLogin,
-  authenticatingUser,
   fetchingQueue,
   fetchedQueue,
   selectingSnippet,
@@ -233,8 +150,6 @@ export {
   savingTest,
   fetchingMedians,
   modalStatus,
-  // modalType,
   openingModal,
   closingModal
-  // settingModalType,
 };

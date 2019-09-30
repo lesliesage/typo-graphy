@@ -32,7 +32,6 @@ class LogIn extends Component {
           alert("incorrect username or password");
         }
       });
-    //update the state of user
   };
 
   render() {
@@ -79,7 +78,7 @@ class LogIn extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.user
+    user: state.user.currentUser
   };
 };
 

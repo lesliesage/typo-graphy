@@ -123,9 +123,10 @@ class TestContainer extends Component {
 
   processAverages = arr => {
     const n = {};
+    console.log(this.props)
     FIELDS.forEach(field => {
       if (field === "user_id") {
-        n[field] = 17;
+        n[field] = this.props.user.id;
       } else if (field === "snippet_id") {
         n[field] = this.props.selectedSnippet.id;
       } else {
@@ -140,7 +141,7 @@ class TestContainer extends Component {
     return n;
   };
 
-  testToSave = props => {
+  testToSave = () => {
     let ans = this.processAverages(
       this.renameChars(
         this.removeSpaces(
@@ -200,7 +201,9 @@ class TestContainer extends Component {
             <span aria-hidden="true">&times;</span>
           </button>
           <div className="annotation">
-            <div className="annotation-preface">this regex script lets you:</div >
+            <div className="annotation-preface">
+              this regex script lets you:
+            </div>
             {this.props.selectedSnippet &&
               this.props.selectedSnippet.annotation}
           </div>
@@ -215,7 +218,8 @@ const mapStateToProps = state => {
     isAccurate: state.test.isAccurate,
     isComplete: state.test.isComplete,
     selectedSnippet: state.test.selectedSnippet,
-    currentTestResults: state.test.currentTestResults
+    currentTestResults: state.test.currentTestResults,
+    user: state.user.currentUser ? state.user.currentUser : null
   };
 };
 

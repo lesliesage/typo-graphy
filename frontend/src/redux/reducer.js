@@ -1,25 +1,19 @@
 import { combineReducers } from "redux";
 
 const initialUserState = {
-  user: null,
+  currentUser: null,
   loading: true,
-  userData: null,
-  errorMsg: "",
-  authenticatingUser: false
+  userData: null
 };
 
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
-    case "USER":
-      return { ...state, user: action.payload };
+    case "CURRENT_USER":
+      return { ...state, currentUser: action.payload };
     case "LOADING":
       return { ...state, loading: false };
-    case "SET_CURRENT_USER":
-      return { ...state, userData: action.payload };
-    case "FAILED_LOGIN":
-      return { ...state, errorMsg: action.payload };
-    case "AUTHENTICATING_USER":
-      return { ...state, authenticatingUser: true };
+    // case "SET_CURRENT_USER":
+    //   return { ...state, userData: action.payload };
     default:
       return state;
   }

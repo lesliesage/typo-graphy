@@ -59,7 +59,6 @@ const ModalContainer = props => {
 const mapStateToProps = state => {
   return {
     modalStatus: state.modal.modalStatus,
-    // modalType: state.modal.modalType,
     currentTestResults: state.test.currentTestResults
   };
 };
@@ -68,7 +67,6 @@ const mapDispatchToProps = dispatch => {
   return {
     nextIndex: () => dispatch(nextIndex()),
     closingModal: () => dispatch(closingModal()),
-    // settingModalType: type => dispatch(settingModalType(type)),
     onNext: () => dispatch(onNext())
   };
 };

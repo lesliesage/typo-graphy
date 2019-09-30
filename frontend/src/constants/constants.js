@@ -4,6 +4,7 @@ const URL_TESTS = URL_BASE + "tests";
 const URL_MEDIANS = URL_BASE + "medians";
 const URL_HELP_ARTICLES = URL_BASE + "help_articles";
 const URL_LOGIN = URL_BASE + "login";
+const URL_LOGOUT = URL_BASE + "logout";
 const URL_PROFILE = URL_BASE + "profile";
 
 const FIELDS = [
@@ -129,6 +130,7 @@ export {
   URL_MEDIANS,
   URL_HELP_ARTICLES,
   URL_LOGIN,
+  URL_LOGOUT,
   URL_PROFILE,
   MODAL_STYLE,
   COLORS

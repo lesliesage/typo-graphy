@@ -9,6 +9,7 @@ class UsersController < ApplicationController
           authenticated: true,
           message: "logging in...",
           user: user,
+          # user: user.to_json(user_serializer),
           token: token
       }, status: :accepted
     end
@@ -27,4 +28,11 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:username, :email, :password) 
     end
+
+    def user_serializer
+      {
+        :only => [:id, :username, :email]
+      }
+    end
+
 end

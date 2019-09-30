@@ -12,7 +12,7 @@ const About = props => {
         <br />
         the app is built on a <b>ruby/rails</b> backend and <b>react/redux</b>{" "}
         frontend with <b>chart.js</b> for visualizations. it's open source on{" "}
-        <a href="https://github.com/lesliesage/typo-graphy" target="_blank">
+        <a href="https://github.com/lesliesage/typo-graphy" target="_blank" rel="noopener noreferrer">
           github
         </a>
         . 
@@ -44,7 +44,7 @@ const About = props => {
         </ul><div>
         leslie sage is a tech- and data-enthusiast in the internaitonal
         development community. check out her company at{" "}
-        <a href="https://www.devresults.com/" target="_blank">
+        <a href="https://www.devresults.com/" target="_blank" rel="noopener noreferrer">
           devresults.com
         </a>
         . thanks for visiting.
