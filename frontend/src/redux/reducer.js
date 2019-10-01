@@ -3,7 +3,8 @@ import { combineReducers } from "redux";
 const initialUserState = {
   currentUser: null,
   loading: true,
-  userData: null
+  userData: null,
+  errorMsg: ""
 };
 
 const userReducer = (state = initialUserState, action) => {
@@ -12,8 +13,10 @@ const userReducer = (state = initialUserState, action) => {
       return { ...state, currentUser: action.payload };
     case "LOADING":
       return { ...state, loading: false };
-    // case "SET_CURRENT_USER":
-    //   return { ...state, userData: action.payload };
+    case "SET_CURRENT_USER":
+      return { ...state, userData: action.payload };
+    case "FAILED_LOGIN":
+      return { ...state, errorMsg: action.payload };
     default:
       return state;
   }

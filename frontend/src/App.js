@@ -8,6 +8,7 @@ import TestContainer from "./components/TestContainer";
 import StatsContainer from "./components/StatsContainer";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
+import Profile from "./components/Profile";
 import About from "./components/About";
 import Privacy from "./components/Privacy";
 import Help from "./components/Help";
@@ -50,10 +51,10 @@ class App extends Component {
           <ModalContainer />
           <Switch>
             <Route exact path="/" component={TestContainer} />
-            <Route exact path="/profile" component={TestContainer} />
             <Route exact path="/stats" component={StatsContainer} />
             <Route exact path="/login" component={LogIn} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/profile" component={Profile} />
             <Route exact path="/about" component={About} />
             <Route exact path="/privacy" component={Privacy} />
             <Route exact path="/help" component={Help} />

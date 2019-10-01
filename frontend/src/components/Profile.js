@@ -1,19 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { URL_SIGNUP } from "../constants/constants.js";
-import { updateUser } from "../redux/actions";
+import { URL_LOGIN } from "../constants/constants.js";
+import { fetchCurrentUser, updateUser } from "../redux/actions";
 
-class SignUp extends Component {
-  state = { username: "", email: "", password: "" };
+class Profile extends Component {
+  state = { username: "", password: "" };
+
+  componentDidMount(){
+    this.props.fetchCurrentUser()
+  }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmitSignUp = e => {
+  handleEditProfileSubmit = e => {
     e.preventDefault();
-    // console.log("hit handleSubmitSignup")
-    fetch(URL_SIGNUP, {
+    fetch(URL_LOGIN, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,36 +24,32 @@ class SignUp extends Component {
       },
       body: JSON.stringify({
         username: this.state.username,
-        email: this.state.email,
         password: this.state.password
       })
     })
-      // .then(res => console.log(res))
       .then(res => res.json())
-      // .then(data => console.log(data))
       .then(data => {
         if (data.authenticated) {
           localStorage.setItem("token", data.token);
           this.props.updateUser(data.user);
         } else {
-          alert("invalid signup");
+          alert("incorrect username or password");
         }
       });
   };
 
   render() {
     return (
-      <div className="main info-pg signup">
-        <h1>signup</h1>
+      <div className="main info-pg profile">
+        <h1>profile</h1>
         <div className="form-container">
           <div className="form-labels-container">
             <div className="form-label">username:</div>
-            <div className="form-label">email:</div>
             <div className="form-label">password:</div>
           </div>
           <form
             className="form-inputs-container"
-            onSubmit={this.handleSubmitSignUp}
+            onSubmit={this.handleEditProfileSubmit}
           >
             <input
               className="form-input"
@@ -81,7 +80,7 @@ class SignUp extends Component {
             ></input>
             <br />
             <button type="submit" className="btn">
-              sign up
+              edit profile
             </button>
           </form>
         </div>
@@ -98,6 +97,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchCurrentUser: user => {
+      dispatch(fetchCurrentUser(user));
+    },
     updateUser: user => {
       dispatch(updateUser(user));
     }
@@ -107,4 +109,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignUp);
+)(Profile);

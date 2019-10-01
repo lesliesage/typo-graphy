@@ -12,6 +12,7 @@ class Nav extends Component {
     stats: false,
     login: false,
     signup: false,
+    profile: false,
     about: false,
     privacy: false,
     help: false
@@ -22,6 +23,7 @@ class Nav extends Component {
     const currentStats = this.state.stats;
     const currentLogin = this.state.login;
     const currentSignup = this.state.signup;
+    const currentProfile = this.state.profile;
     const currentAbout = this.state.about;
     const currentPrivacy = this.state.privacy;
     const currentHelp = this.state.help;
@@ -30,6 +32,7 @@ class Nav extends Component {
       stats: !currentStats,
       login: !currentLogin,
       signup: !currentSignup,
+      profile: !currentProfile,
       about: !currentAbout,
       privacy: !currentPrivacy,
       help: !currentHelp
@@ -49,6 +52,7 @@ class Nav extends Component {
   stats = (<NavLink className="navlink" exact to="/stats">stats</NavLink>);
   login = (<NavLink className="navlink" exact to="/login">login</NavLink>);
   signup = (<NavLink className="navlink" exact to="/signup">signup</NavLink>);
+  signup = (<NavLink className="navlink" exact to="/profile">profile</NavLink>);
   // contact = (<NavLink className="navlink" exact to="/">contact</NavLink>);
   about = (<NavLink className="navlink" exact to="/about">about</NavLink>);
   privacy = (<NavLink className="navlink" exact to="/privacy">privacy</NavLink>);
@@ -61,6 +65,7 @@ class Nav extends Component {
         {this.stats}
         {this.props.user ? null : this.login}
         {this.props.user ? null : this.signup}
+        {this.profile}
         {/* {this.props.user ? this.logoutButton : null} */}
         {this.about}
         {this.privacy}

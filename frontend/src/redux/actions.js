@@ -2,58 +2,87 @@ import store from "../redux/store";
 import {
   URL_QUEUE,
   URL_TESTS,
-  URL_MEDIANS
+  URL_MEDIANS,
+  URL_PROFILE
 } from "../constants/constants";
 
-function onChange(onChangeObj) {
+export function onChange(onChangeObj) {
   return { type: "ON_CHANGE", payload: onChangeObj };
 }
 
-function onNext() {
+export function onNext() {
   return { type: "ON_NEXT" };
 }
 
-function fetchedQueue(snippets) {
+export function fetchedQueue(snippets) {
   return { type: "FETCHED_QUEUE", payload: snippets };
 }
 
-function selectedSnippet(snippet) {
+export function selectedSnippet(snippet) {
   return { type: "SELECTED_SNIPPET", payload: snippet };
 }
 
-function usedSnippets(arr) {
+export function usedSnippets(arr) {
   return { type: "USED_SNIPPETS", payload: arr };
 }
 
-function savedTest(t) {
+export function savedTest(t) {
   return { type: "SAVED_TEST", payload: t };
 }
 
-function modalStatus(status) {
+export function modalStatus(status) {
   return { type: "MODAL_STATUS", payload: status };
 }
 
-function openingModal() {
+export function openingModal() {
   return dispatch => {
     dispatch(modalStatus(true));
   };
 }
 
-function closingModal() {
+export function closingModal() {
   return dispatch => {
     dispatch(modalStatus(false));
   };
 }
 
-function updateUser(currentUser){
+export function updateUser(currentUser){
   return { type: "CURRENT_USER", payload: currentUser }
 }
 
-function loading() {
+export function loading() {
   return { type: "LOADING", payload: false };
 }
 
-function fetchingQueue() {
+export const fetchCurrentUser = () => {
+  // takes the token in localStorage and finds out who it belongs to
+  return (dispatch) => {
+    dispatch(authenticatingUser())
+    fetch('URL_PROFILE', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+      .then(response => response.json())
+      .then(({ user }) => dispatch(setCurrentUser(user)))
+  }
+}
+
+export const setCurrentUser = (userData) => ({
+  type: 'SET_CURRENT_USER',
+  payload: userData
+})
+
+export const failedLogin = (errorMsg) => ({
+  type: 'FAILED_LOGIN',
+  payload: errorMsg
+})
+
+// tell our app we're currently fetching
+export const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })
+
+export function fetchingQueue() {
   return dispatch => {
     fetch(URL_QUEUE)
       .then(res => res.json())
@@ -66,7 +95,7 @@ function fetchingQueue() {
   };
 }
 
-function savingTest(testToSave) {
+export function savingTest(testToSave) {
   return dispatch => {
     fetch(URL_TESTS, {
       method: "POST",
@@ -78,7 +107,7 @@ function savingTest(testToSave) {
   };
 }
 
-function nextIndex() {
+export function nextIndex() {
   return dispatch => {
     const queue = store.getState().test.queue
       ? store.getState().test.queue
@@ -99,11 +128,11 @@ function nextIndex() {
   };
 }
 
-function snippetIndex(i) {
+export function snippetIndex(i) {
   return { type: "SNIPPET_INDEX", payload: i };
 }
 
-function selectingSnippet() {
+export function selectingSnippet() {
   return dispatch => {
     const queue = store.getState().test.queue
       ? store.getState().test.queue
@@ -121,7 +150,7 @@ function selectingSnippet() {
   };
 }
 
-function fetchingMedians() {
+export function fetchingMedians() {
   return dispatch => {
     fetch(URL_MEDIANS)
       .then(res => res.json())
@@ -131,25 +160,6 @@ function fetchingMedians() {
   };
 }
 
-function fetchedMedians(medianSet) {
+export function fetchedMedians(medianSet) {
   return { type: "FETCHED_MEDIANS", payload: medianSet };
 }
-
-export {
-  updateUser,
-  loading,
-  fetchingQueue,
-  fetchedQueue,
-  selectingSnippet,
-  selectedSnippet,
-  nextIndex,
-  snippetIndex,
-  usedSnippets,
-  onChange,
-  onNext,
-  savingTest,
-  fetchingMedians,
-  modalStatus,
-  openingModal,
-  closingModal
-};

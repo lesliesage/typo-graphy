@@ -1,13 +1,14 @@
-const URL_BASE = "http://localhost:3000/";
-const URL_QUEUE = URL_BASE + "queue";
-const URL_TESTS = URL_BASE + "tests";
-const URL_MEDIANS = URL_BASE + "medians";
-const URL_HELP_ARTICLES = URL_BASE + "help_articles";
-const URL_LOGIN = URL_BASE + "login";
-const URL_LOGOUT = URL_BASE + "logout";
-const URL_PROFILE = URL_BASE + "profile";
+export const URL_BASE = "http://localhost:3000/";
+export const URL_QUEUE = URL_BASE + "queue";
+export const URL_TESTS = URL_BASE + "tests";
+export const URL_MEDIANS = URL_BASE + "medians";
+export const URL_HELP_ARTICLES = URL_BASE + "help_articles";
+export const URL_LOGIN = URL_BASE + "login";
+export const URL_SIGNUP= URL_BASE + "signup";
+export const URL_LOGOUT = URL_BASE + "logout";
+export const URL_PROFILE = URL_BASE + "profile";
 
-const FIELDS = [
+export const FIELDS = [
   "user_id",
   "snippet_id",
   "alpha",
@@ -46,7 +47,7 @@ const FIELDS = [
   "slash"
 ];
 
-const FIELDKEY = {
+export const FIELDKEY = {
   alpha: "a-z",
   numeric: "0-9",
   tilde: "~",
@@ -83,7 +84,7 @@ const FIELDKEY = {
   slash: "/"
 };
 
-const MODAL_STYLE = {
+export const MODAL_STYLE = {
   content: {
     bottom: "auto",
     height: "200px",
@@ -105,7 +106,7 @@ const MODAL_STYLE = {
   }
 };
 
-const COLORS = {
+export const COLORS = {
   cream: "#f9f6f0",
   lightgrey: "#e3e7e6",
   midgrey: "#dedede",
@@ -119,19 +120,4 @@ const COLORS = {
   dark: "#002733",
   red: "#cc0000",
   shadow: "rgba(0, 0, 0, 0.2)"
-};
-
-export {
-  FIELDS,
-  FIELDKEY,
-  URL_BASE,
-  URL_QUEUE,
-  URL_TESTS,
-  URL_MEDIANS,
-  URL_HELP_ARTICLES,
-  URL_LOGIN,
-  URL_LOGOUT,
-  URL_PROFILE,
-  MODAL_STYLE,
-  COLORS
 };
