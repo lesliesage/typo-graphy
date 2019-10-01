@@ -45,7 +45,7 @@ class ModalContainer extends Component {
           type="button"
           className="close"
           aria-label="Close"
-          onClick={this.props.closeAndSaveIfLoggedIn}
+          onClick={this.closeAndSaveIfLoggedIn}
         >
           <span aria-hidden="true">&times;</span>
         </button>

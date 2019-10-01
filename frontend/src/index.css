@@ -180,6 +180,10 @@ body {
   outline: none;
 }
 
+.btn.modalnav {
+  width: 130px;
+}
+
 .close {
   width: 30px;
   margin-bottom: 0px;
