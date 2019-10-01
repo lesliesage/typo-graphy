@@ -5,9 +5,10 @@ import TestInput from "./TestInput";
 import ReactModal from "react-modal";
 import {
   openingModal,
-  savingTest,
+  // savingTest,
   nextIndex,
-  onNext
+  onNext,
+  tempTestStore
 } from "../redux/actions";
 import GraphThisTest from "./GraphThisTest";
 import { FIELDS, MODAL_STYLE } from "../constants/constants";
@@ -139,7 +140,7 @@ class TestContainer extends Component {
     return n;
   };
 
-  testToSave = () => {
+  generateTestToSave = () => {
     let ans = this.processAverages(
       this.renameChars(
         this.removeSpaces(
@@ -151,7 +152,7 @@ class TestContainer extends Component {
   };
 
   openModal = () => {
-    this.props.savingTest(this.testToSave(this.props));
+    this.props.tempTestStore(this.generateTestToSave());
     this.props.openingModal();
   };
 
@@ -223,12 +224,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    savingTest: testToSave => {
-      dispatch(savingTest(testToSave));
-    },
     nextIndex: () => dispatch(nextIndex()),
     openingModal: () => dispatch(openingModal()),
-    onNext: () => dispatch(onNext())
+    onNext: () => dispatch(onNext()),
+    tempTestStore: t => dispatch(tempTestStore(t))
   };
 };
 

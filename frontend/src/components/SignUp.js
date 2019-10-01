@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { URL_SIGNUP } from "../constants/constants.js";
 import { updateUser } from "../redux/actions";
+import { Redirect } from "react-router-dom";
+
 
 class SignUp extends Component {
-  state = { username: "", email: "", password: "" };
+  state = { username: "", email: "", password: "", redirect: false  };
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -32,11 +34,14 @@ class SignUp extends Component {
         } else {
           alert("invalid signup");
         }
-      });
+      })
+      .then(this.setState({ redirect: true }));
   };
 
   render() {
-    return (
+    return this.state.redirect ? (
+      <Redirect to="/" />
+    ) : (
       <div className="main info-pg signup">
         <h1>signup</h1>
         <div className="form-container">

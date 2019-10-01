@@ -12,7 +12,12 @@ const initialUserState = {
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
     case "CURRENT_USER":
-      return { ...state, id: action.payload.id, username: action.payload.username, email: action.payload.email };
+      return {
+        ...state,
+        id: action.payload.id,
+        username: action.payload.username,
+        email: action.payload.email
+      };
     case "LOADING":
       return { ...state, loading: false };
     case "SET_CURRENT_USER":
@@ -33,7 +38,8 @@ const initialTestState = {
   currentTestResults: [],
   isAccurate: true,
   isComplete: false,
-  testSummary: {}
+  testSummary: {},
+  tempTestStore: null
 };
 
 const testReducer = (state = initialTestState, action) => {
@@ -69,6 +75,8 @@ const testReducer = (state = initialTestState, action) => {
         isAccurate: true,
         isComplete: false
       };
+    case "TEMP_TEST_STORE":
+      return { ...state, tempTestStore: action.payload };
     case "SAVED_TEST":
       return { ...state, testSummary: action.payload, isComplete: false };
     case "SNIPPET_INDEX":

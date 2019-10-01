@@ -26,6 +26,10 @@ export function usedSnippets(arr) {
   return { type: "USED_SNIPPETS", payload: arr };
 }
 
+export function tempTestStore(t) {
+  return { type: "TEMP_TEST_STORE", payload: t };
+}
+
 export function savedTest(t) {
   return { type: "SAVED_TEST", payload: t };
 }
@@ -95,7 +99,7 @@ export function fetchingQueue() {
   };
 }
 
-export function savingTest(testToSave) {
+export function savingTest(test) {
   return dispatch => {
     fetch(URL_TESTS, {
       method: "POST",
@@ -103,7 +107,7 @@ export function savingTest(testToSave) {
         "Content-Type": "application/json",
         Authentication: `Bearer ${localStorage.getItem("token")}`
       },
-      body: JSON.stringify(testToSave)
+      body: JSON.stringify(test)
     })
       .then(res => res.json())
       .then(t => dispatch(savedTest(t)));
