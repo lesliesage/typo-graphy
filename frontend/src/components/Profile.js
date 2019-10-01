@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { URL_LOGIN } from "../constants/constants.js";
 import { fetchCurrentUser, updateUser } from "../redux/actions";
+import { Redirect } from "react-router-dom";
 
 class Profile extends Component {
-  state = { username: "", password: "" };
+  state = { username: "", email: "", password: "", redirect: false };
 
   componentDidMount() {
     this.props.fetchCurrentUser();
@@ -66,38 +67,22 @@ class Profile extends Component {
 
   handleLogout = e => {
     e.preventDefault();
-    fetch(URL_LOGIN, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authentication: `Bearer ${localStorage.getItem("token")}` // ?
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.jwt) {
-          localStorage.setItem("token", data.jwt);
-          this.props.updateUser(JSON.parse(data.user));
-        } else {
-          alert("incorrect username or password");
-        }
-      });
+    this.props.updateUser({user: null})
+    localStorage.clear(); // is this the best way to log out?
+    this.setState({ redirect: true });
   };
 
   render() {
-    return (
+    return this.state.redirect ? (
+      <Redirect to="/login" />
+    ) : (
       <div className="main info-pg profile">
         <h1>profile</h1>
         <div className="form-container">
           <div className="form-labels-container">
             <div className="form-label">edit username:</div>
             <div className="form-label">edit email:</div>
-            <div className="form-label">edit password:</div>
+            <div className="form-label">change password:</div>
           </div>
           <form
             className="form-inputs-container"
@@ -109,7 +94,7 @@ class Profile extends Component {
               name="username"
               onChange={this.handleChange}
               value={this.state.username}
-              placeholder="username"
+              placeholder={this.props.user.username}
             ></input>
             <br />
             <input
@@ -118,7 +103,7 @@ class Profile extends Component {
               name="email"
               onChange={this.handleChange}
               value={this.state.email}
-              placeholder="email"
+              placeholder={this.props.user.email}
             ></input>
             <br />
             <input
@@ -128,7 +113,7 @@ class Profile extends Component {
               name="password"
               onChange={this.handleChange}
               value={this.state.password}
-              placeholder="password"
+              placeholder="new password"
             ></input>
             <br />
             <button type="submit" className="btn">

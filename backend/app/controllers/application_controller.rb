@@ -13,12 +13,12 @@ class ApplicationController < ActionController::Base
     end
     
     def decoded_token
-        if auth_header
+        if !!auth_header
             token = auth_header.split(' ')[1]
             # header: { 'Authentication': 'Bearer <token>' }
             JWT.decode(token, SECRET_KEY, true, {algorithm: ENCRYPTION_ALGORITHM})[0]
         else
-            byebug
+            nil
         end
     end
     
@@ -34,6 +34,6 @@ class ApplicationController < ActionController::Base
     end
     
     def authorized
-        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+        render json: { message: 'No access for you.' }, status: :unauthorized unless logged_in?
     end
 end

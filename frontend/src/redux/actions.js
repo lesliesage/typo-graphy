@@ -2,8 +2,8 @@ import store from "../redux/store";
 import {
   URL_QUEUE,
   URL_TESTS,
-  URL_MEDIANS
-  // URL_PROFILE
+  URL_MEDIANS,
+  URL_PROFILE
 } from "../constants/constants";
 
 export function onChange(onChangeObj) {
@@ -57,11 +57,11 @@ export function loading() {
 export const fetchCurrentUser = () => {
   // takes the token in localStorage and finds out who it belongs to
   return dispatch => {
-    dispatch(authenticatingUser());
-    fetch("URL_PROFILE", {
+    // dispatch(authenticatingUser());  // is this supposed to dispatch a message?
+    fetch(URL_PROFILE, {
       method: "GET",
       headers: {
-        Authentication: `Bearer ${localStorage.getItem("jwt")}`
+        Authentication: `Bearer ${localStorage.getItem("token")}`
       }
     })
       .then(response => response.json())

@@ -63,10 +63,10 @@ class Nav extends Component {
       <div className="navbar">
         {this.home}
         {this.stats}
-        {this.props.user ? null : this.login}
-        {this.props.user ? null : this.signup}
-        {this.profile}
-        {/* {this.props.user ? this.logoutButton : null} */}
+        {this.props.loggedIn ? null : this.login}
+        {this.props.loggedIn ? null : this.signup}
+        {this.props.loggedIn? this.profile : null}
+        {/* {this.props.loggedIn ? this.logoutButton : null} */}
         {this.about}
         {this.privacy}
         {this.help}
@@ -74,6 +74,12 @@ class Nav extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.user.id > 0 ? true : false
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -83,6 +89,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Nav);
