@@ -1,4 +1,6 @@
 class SnippetsController < ApplicationController
+    skip_before_action :authorized, only: [:queue] #
+
     def index
         snippets = Snippet.all
         render json: snippets.to_json(snippet_serializer)

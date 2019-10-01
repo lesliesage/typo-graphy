@@ -2,8 +2,8 @@ import store from "../redux/store";
 import {
   URL_QUEUE,
   URL_TESTS,
-  URL_MEDIANS,
-  URL_PROFILE
+  URL_MEDIANS
+  // URL_PROFILE
 } from "../constants/constants";
 
 export function onChange(onChangeObj) {
@@ -46,8 +46,8 @@ export function closingModal() {
   };
 }
 
-export function updateUser(currentUser){
-  return { type: "CURRENT_USER", payload: currentUser }
+export function updateUser(currentUser) {
+  return { type: "CURRENT_USER", payload: currentUser };
 }
 
 export function loading() {
@@ -56,31 +56,31 @@ export function loading() {
 
 export const fetchCurrentUser = () => {
   // takes the token in localStorage and finds out who it belongs to
-  return (dispatch) => {
-    dispatch(authenticatingUser())
-    fetch('URL_PROFILE', {
-      method: 'GET',
+  return dispatch => {
+    dispatch(authenticatingUser());
+    fetch("URL_PROFILE", {
+      method: "GET",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authentication: `Bearer ${localStorage.getItem("jwt")}`
       }
     })
       .then(response => response.json())
-      .then(({ user }) => dispatch(setCurrentUser(user)))
-  }
-}
+      .then(({ user }) => dispatch(setCurrentUser(user)));
+  };
+};
 
-export const setCurrentUser = (userData) => ({
-  type: 'SET_CURRENT_USER',
+export const setCurrentUser = userData => ({
+  type: "SET_CURRENT_USER",
   payload: userData
-})
+});
 
-export const failedLogin = (errorMsg) => ({
-  type: 'FAILED_LOGIN',
+export const failedLogin = errorMsg => ({
+  type: "FAILED_LOGIN",
   payload: errorMsg
-})
+});
 
 // tell our app we're currently fetching
-export const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })
+export const authenticatingUser = () => ({ type: "AUTHENTICATING_USER" });
 
 export function fetchingQueue() {
   return dispatch => {
@@ -99,7 +99,10 @@ export function savingTest(testToSave) {
   return dispatch => {
     fetch(URL_TESTS, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authentication: `Bearer ${localStorage.getItem("token")}`
+      },
       body: JSON.stringify(testToSave)
     })
       .then(res => res.json())

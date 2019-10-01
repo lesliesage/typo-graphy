@@ -1,15 +1,12 @@
 class TestsController < ApplicationController
-    skip_before_action :verify_authenticity_token  # remove once auth is set up
-    
-    def index
-        tests = Test.all
-        render json: tests.to_json(test_serializer)
-    end
+    skip_before_action :verify_authenticity_token  # how to remove?
+    skip_before_action :authorized, only: [:medians]
 
     def create
         test = Test.create(test_params)
         render json: test.to_json(test_serializer)
     end
+
 
     def medians
         median_set = Test.medians()

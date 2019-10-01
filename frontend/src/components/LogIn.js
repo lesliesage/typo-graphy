@@ -25,9 +25,9 @@ class LogIn extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.authenticated) {
-          localStorage.setItem("token", data.token);
-          this.props.updateUser(data.user);
+        if (data.jwt) {
+          localStorage.setItem("token", data.jwt);
+          this.props.updateUser(JSON.parse(data.user));
         } else {
           alert("incorrect username or password");
         }
@@ -78,7 +78,7 @@ class LogIn extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.currentUser
+    user: state.user
   };
 };
 

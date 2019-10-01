@@ -5,7 +5,6 @@ import TestInput from "./TestInput";
 import ReactModal from "react-modal";
 import {
   openingModal,
-  // settingModalType,
   savingTest,
   nextIndex,
   onNext
@@ -123,7 +122,6 @@ class TestContainer extends Component {
 
   processAverages = arr => {
     const n = {};
-    console.log(this.props)
     FIELDS.forEach(field => {
       if (field === "user_id") {
         n[field] = this.props.user.id;
@@ -219,7 +217,7 @@ const mapStateToProps = state => {
     isComplete: state.test.isComplete,
     selectedSnippet: state.test.selectedSnippet,
     currentTestResults: state.test.currentTestResults,
-    user: state.user.currentUser ? state.user.currentUser : null
+    user: state.user ? state.user : null
   };
 };
 
@@ -230,7 +228,6 @@ const mapDispatchToProps = dispatch => {
     },
     nextIndex: () => dispatch(nextIndex()),
     openingModal: () => dispatch(openingModal()),
-    // settingModalType: type => dispatch(settingModalType(type)),
     onNext: () => dispatch(onNext())
   };
 };

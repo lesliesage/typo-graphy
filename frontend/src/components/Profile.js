@@ -6,8 +6,8 @@ import { fetchCurrentUser, updateUser } from "../redux/actions";
 class Profile extends Component {
   state = { username: "", password: "" };
 
-  componentDidMount(){
-    this.props.fetchCurrentUser()
+  componentDidMount() {
+    this.props.fetchCurrentUser();
   }
 
   handleChange = e => {
@@ -20,7 +20,8 @@ class Profile extends Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
+        Authentication: `Bearer ${localStorage.getItem("token")}` // ?
       },
       body: JSON.stringify({
         username: this.state.username,
@@ -29,9 +30,59 @@ class Profile extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.authenticated) {
-          localStorage.setItem("token", data.token);
-          this.props.updateUser(data.user);
+        if (data.jwt) {
+          localStorage.setItem("token", data.jwt);
+          this.props.updateUser(JSON.parse(data.user));
+        } else {
+          alert("incorrect username or password");
+        }
+      });
+  };
+
+  handleDelete = e => {
+    e.preventDefault();
+    fetch(URL_LOGIN, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authentication: `Bearer ${localStorage.getItem("token")}` // ?
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.jwt) {
+          localStorage.setItem("token", data.jwt);
+          this.props.updateUser(JSON.parse(data.user));
+        } else {
+          alert("incorrect username or password");
+        }
+      });
+  };
+
+  handleLogout = e => {
+    e.preventDefault();
+    fetch(URL_LOGIN, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authentication: `Bearer ${localStorage.getItem("token")}` // ?
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.jwt) {
+          localStorage.setItem("token", data.jwt);
+          this.props.updateUser(JSON.parse(data.user));
         } else {
           alert("incorrect username or password");
         }
@@ -44,8 +95,9 @@ class Profile extends Component {
         <h1>profile</h1>
         <div className="form-container">
           <div className="form-labels-container">
-            <div className="form-label">username:</div>
-            <div className="form-label">password:</div>
+            <div className="form-label">edit username:</div>
+            <div className="form-label">edit email:</div>
+            <div className="form-label">edit password:</div>
           </div>
           <form
             className="form-inputs-container"
@@ -80,7 +132,15 @@ class Profile extends Component {
             ></input>
             <br />
             <button type="submit" className="btn">
-              edit profile
+              save edits
+            </button>
+            <br />
+            <button className="btn" onClick={this.handleLogout}>
+              logout
+            </button>
+            <br />
+            <button className="btn" onClick={this.handleDelete}>
+              delete profile
             </button>
           </form>
         </div>
@@ -91,7 +151,7 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.currentUser
+    user: state.user
   };
 };
 

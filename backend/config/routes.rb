@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :snippets, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :users, only: [:new, :edit, :update, :destroy]
-  resources :tests, only: [:index, :create]
+  resources :tests, only: [:create]
   # resources :languages, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   # resources :bookmarks, only: [:index, :new, :create, :show, :destroy]
   resources :help_articles, only: [:index, :show]

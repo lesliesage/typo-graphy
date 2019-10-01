@@ -52,7 +52,7 @@ class Nav extends Component {
   stats = (<NavLink className="navlink" exact to="/stats">stats</NavLink>);
   login = (<NavLink className="navlink" exact to="/login">login</NavLink>);
   signup = (<NavLink className="navlink" exact to="/signup">signup</NavLink>);
-  signup = (<NavLink className="navlink" exact to="/profile">profile</NavLink>);
+  profile = (<NavLink className="navlink" exact to="/profile">profile</NavLink>);
   // contact = (<NavLink className="navlink" exact to="/">contact</NavLink>);
   about = (<NavLink className="navlink" exact to="/about">about</NavLink>);
   privacy = (<NavLink className="navlink" exact to="/privacy">privacy</NavLink>);

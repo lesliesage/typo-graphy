@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
 const initialUserState = {
-  currentUser: null,
+  id: 0,
+  username: "",
+  email: "",
   loading: true,
   userData: null,
   errorMsg: ""
@@ -10,7 +12,7 @@ const initialUserState = {
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
     case "CURRENT_USER":
-      return { ...state, currentUser: action.payload };
+      return { ...state, id: action.payload.id, username: action.payload.username, email: action.payload.email };
     case "LOADING":
       return { ...state, loading: false };
     case "SET_CURRENT_USER":
@@ -23,7 +25,6 @@ const userReducer = (state = initialUserState, action) => {
 };
 
 const initialTestState = {
-  // currentTestLanguage: null,
   queue: [],
   selectedSnippet: null,
   used: [],

@@ -12,7 +12,6 @@ class SignUp extends Component {
 
   handleSubmitSignUp = e => {
     e.preventDefault();
-    // console.log("hit handleSubmitSignup")
     fetch(URL_SIGNUP, {
       method: "POST",
       headers: {
@@ -25,13 +24,11 @@ class SignUp extends Component {
         password: this.state.password
       })
     })
-      // .then(res => console.log(res))
       .then(res => res.json())
-      // .then(data => console.log(data))
       .then(data => {
-        if (data.authenticated) {
-          localStorage.setItem("token", data.token);
-          this.props.updateUser(data.user);
+        if (data.jwt) {
+          localStorage.setItem("token", data.jwt);
+          this.props.updateUser(JSON.parse(data.user));
         } else {
           alert("invalid signup");
         }
@@ -92,7 +89,7 @@ class SignUp extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.currentUser
+    user: state.user
   };
 };
 
