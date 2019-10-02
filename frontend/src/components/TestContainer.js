@@ -5,7 +5,6 @@ import TestInput from "./TestInput";
 import ReactModal from "react-modal";
 import {
   openingModal,
-  // savingTest,
   nextIndex,
   onNext,
   tempTestStore

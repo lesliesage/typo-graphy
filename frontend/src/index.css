@@ -217,7 +217,7 @@ body {
   margin-right: 15px;
 }
 
-.annotation {
+.annotation, .confirm {
   justify-content: center;
   margin-top: 5px;
   margin-bottom: 15px;
@@ -232,7 +232,7 @@ body {
   overflow-y: auto;
 }
 
-.annotation-preface {
+.annotation-preface, .confirm-preface {
   margin-bottom: 18px;
   font-size: 22px;
 }

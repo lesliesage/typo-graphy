@@ -7,6 +7,8 @@ export const URL_LOGIN = URL_BASE + "login";
 export const URL_SIGNUP= URL_BASE + "signup";
 export const URL_LOGOUT = URL_BASE + "logout";
 export const URL_PROFILE = URL_BASE + "profile";
+export const URL_USERS_UPDATE = URL_BASE + "users/update";
+export const URL_USERS_DESTROY = URL_BASE + "users/destroy";
 
 export const FIELDS = [
   "user_id",

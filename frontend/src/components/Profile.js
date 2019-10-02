@@ -1,11 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { URL_LOGIN } from "../constants/constants.js";
+import {
+  URL_LOGIN,
+  URL_PROFILE,
+  URL_USERS_UPDATE,
+  URL_USERS_DESTROY,
+  MODAL_STYLE
+} from "../constants/constants.js";
 import { fetchCurrentUser, updateUser } from "../redux/actions";
 import { Redirect } from "react-router-dom";
+import ReactModal from "react-modal";
 
 class Profile extends Component {
-  state = { username: "", email: "", password: "", redirect: false };
+  state = {
+    username: "",
+    email: "",
+    password: "",
+    redirect: false,
+    showConfirmModal: false
+  };
 
   componentDidMount() {
     this.props.fetchCurrentUser();
@@ -17,15 +30,16 @@ class Profile extends Component {
 
   handleEditProfileSubmit = e => {
     e.preventDefault();
-    fetch(URL_LOGIN, {
-      method: "POST",
+    fetch(URL_PROFILE, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authentication: `Bearer ${localStorage.getItem("token")}` // ?
+        Authentication: `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify({
         username: this.state.username,
+        email: this.state.email,
         password: this.state.password
       })
     })
@@ -35,41 +49,42 @@ class Profile extends Component {
           localStorage.setItem("token", data.jwt);
           this.props.updateUser(JSON.parse(data.user));
         } else {
-          alert("incorrect username or password");
+          alert("invalid submission. please try again.");
         }
       });
   };
 
   handleDelete = e => {
     e.preventDefault();
-    fetch(URL_LOGIN, {
-      method: "POST",
+    fetch(URL_PROFILE, {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authentication: `Bearer ${localStorage.getItem("token")}` // ?
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
-      })
+        Authentication: `Bearer ${localStorage.getItem("token")}`
+      }
     })
       .then(res => res.json())
-      .then(data => {
-        if (data.jwt) {
-          localStorage.setItem("token", data.jwt);
-          this.props.updateUser(JSON.parse(data.user));
-        } else {
-          alert("incorrect username or password");
-        }
+      .then(json => {
+        this.props.updateUser({ user: null });
+        localStorage.clear();
+        this.setState({ redirect: true });
+        alert("profile deleted. bye!");
+      })
+      .catch(err => {
+        alert(err.text());
       });
   };
 
   handleLogout = e => {
     e.preventDefault();
-    this.props.updateUser({user: null})
-    localStorage.clear(); // is this the best way to log out?
+    this.props.updateUser({ user: null });
+    localStorage.clear();
     this.setState({ redirect: true });
+  };
+
+  toggleConfirmModal = () => {
+    this.setState({ showConfirmModal: !this.state.showConfirmModal });
   };
 
   render() {
@@ -120,15 +135,46 @@ class Profile extends Component {
               save edits
             </button>
             <br />
-            <button className="btn" onClick={this.handleLogout}>
+            <button type="button" className="btn" onClick={this.handleLogout}>
               logout
             </button>
             <br />
-            <button className="btn" onClick={this.handleDelete}>
+            <button
+              type="button"
+              className="btn"
+              onClick={this.toggleConfirmModal}
+            >
               delete profile
             </button>
           </form>
         </div>
+        <ReactModal
+          isOpen={this.state.showConfirmModal}
+          onRequestClose={this.toggleConfirmModal}
+          contentLabel="Confirm Delete Modal"
+          ariaHideApp={false}
+          style={MODAL_STYLE}
+        >
+          <button
+            type="button"
+            className="close"
+            aria-label="Close"
+            onClick={this.toggleConfirmModal}
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div className="confirm">
+            <div className="confirm-preface">
+              sure you want to delete your profile?
+            </div>
+            <button className="btn" onClick={this.handleDelete}>
+              confirm delete
+            </button>
+            <button className="btn" onClick={this.toggleConfirmModal}>
+              nevermind
+            </button>
+          </div>
+        </ReactModal>
       </div>
     );
   }

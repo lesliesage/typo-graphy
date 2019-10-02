@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
-  resources :snippets, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  resources :users, only: [:new, :edit, :update, :destroy]
-  resources :tests, only: [:create]
-  # resources :languages, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  # resources :bookmarks, only: [:index, :new, :create, :show, :destroy]
-  resources :help_articles, only: [:index, :show]
-
+  resources :snippets, only: [:index]
   get '/queue', to: 'snippets#queue'
-  get '/medians', to: 'tests#medians'
+  
   post '/signup', to: 'users#create'
-  post '/login', to: 'auth#create'
   get '/profile', to: 'users#show'
+  put '/profile', to: 'users#update'
+  delete '/profile', to: 'users#destroy'
+  
+  resources :tests, only: [:create]
+  get '/medians', to: 'tests#medians'
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :help_articles, only: [:index]
+
+  post '/login', to: 'auth#create'
 end

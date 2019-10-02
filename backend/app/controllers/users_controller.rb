@@ -22,6 +22,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+
+  end
+
+  def destroy
+    if logged_in? 
+      current_user.destroy
+      render json: { message: "profile deleted. bye!" }
+    else
+      render json: { message: "server error. please try again." }
+    end 
+  end
+
   private
 
   def user_params

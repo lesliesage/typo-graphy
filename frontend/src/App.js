@@ -43,11 +43,11 @@ class App extends Component {
 
   }
 
-  PrivateRouteToLogin = ({ component: Component, ...rest }) => (
+  PrivateRouteToSignup = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
       this.props.user.id > 0
         ? <Component {...props} />
-        : <Redirect to='/login' />
+        : <Redirect to='/signup' />
     )} />
   )
 
@@ -71,7 +71,7 @@ class App extends Component {
             <Route exact path="/stats" component={StatsContainer} />
             <this.PrivateRouteToHome exact path='/login' component={LogIn} />
             <this.PrivateRouteToHome exact path='/signup' component={SignUp} />
-            <this.PrivateRouteToLogin exact path='/profile' component={Profile} />
+            <this.PrivateRouteToSignup exact path='/profile' component={Profile} />
             <Route exact path="/about" component={About} />
             <Route exact path="/privacy" component={Privacy} />
             <Route exact path="/help" component={Help} />
