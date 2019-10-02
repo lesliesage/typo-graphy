@@ -22,5 +22,6 @@ module TypoGraphy
         resource '*', :headers => :any, :methods => [:get, :post, :put, :patch, :delete, :options, :head]
       end
     end
+    config.api_only = true
   end
 end
