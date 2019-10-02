@@ -26,7 +26,6 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchingQueue();
     this.props.fetchingMedians();
-
     if (localStorage.getItem("token")) {
       fetch(URL_PROFILE, {
         headers: {
@@ -43,22 +42,6 @@ class App extends Component {
 
   }
 
-  PrivateRouteToSignup = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-      this.props.user.id > 0
-        ? <Component {...props} />
-        : <Redirect to='/signup' />
-    )} />
-  )
-
-  PrivateRouteToHome = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-      this.props.user.id > 0
-        ? <Redirect to='/' />
-        : <Component {...props} />
-    )} />
-  )
-
   render() {
     return (
       <div className="app">
@@ -69,9 +52,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={TestContainer} />
             <Route exact path="/stats" component={StatsContainer} />
-            <this.PrivateRouteToHome exact path='/login' component={LogIn} />
-            <this.PrivateRouteToHome exact path='/signup' component={SignUp} />
-            <this.PrivateRouteToSignup exact path='/profile' component={Profile} />
+            <Route exact path='/login' render={() => (this.props.user.id > 0) ? <Redirect to="/" /> : <LogIn /> } />
+            <Route exact path='/signup' render={() => (this.props.user.id > 0) ? <Redirect to="/" /> : <SignUp /> } />
+            <Route exact path='/profile' render={() => (this.props.user.id > 0) ? <Profile /> : <Redirect to="/" /> } />
             <Route exact path="/about" component={About} />
             <Route exact path="/privacy" component={Privacy} />
             <Route exact path="/help" component={Help} />
