@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
 import Nav from "./components/Nav";
@@ -40,7 +40,24 @@ class App extends Component {
     } else {
       this.props.loading();
     }
+
   }
+
+  PrivateRouteToLogin = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+      this.props.user.id > 0
+        ? <Component {...props} />
+        : <Redirect to='/login' />
+    )} />
+  )
+
+  PrivateRouteToHome = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+      this.props.user.id > 0
+        ? <Redirect to='/' />
+        : <Component {...props} />
+    )} />
+  )
 
   render() {
     return (
@@ -52,9 +69,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={TestContainer} />
             <Route exact path="/stats" component={StatsContainer} />
-            <Route exact path="/login" component={LogIn} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/profile" component={Profile} />
+            <this.PrivateRouteToHome exact path='/login' component={LogIn} />
+            <this.PrivateRouteToHome exact path='/signup' component={SignUp} />
+            <this.PrivateRouteToLogin exact path='/profile' component={Profile} />
             <Route exact path="/about" component={About} />
             <Route exact path="/privacy" component={Privacy} />
             <Route exact path="/help" component={Help} />

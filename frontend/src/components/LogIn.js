@@ -29,11 +29,11 @@ class LogIn extends Component {
         if (data.jwt) {
           localStorage.setItem("token", data.jwt);
           this.props.updateUser(JSON.parse(data.user));
+          this.setState({ redirect: true });
         } else {
           alert("incorrect username or password");
         }
-      })
-      .then(this.setState({ redirect: true }));
+      });
   };
 
   render() {

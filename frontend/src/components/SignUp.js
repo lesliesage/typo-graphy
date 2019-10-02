@@ -4,9 +4,8 @@ import { URL_SIGNUP } from "../constants/constants.js";
 import { updateUser } from "../redux/actions";
 import { Redirect } from "react-router-dom";
 
-
 class SignUp extends Component {
-  state = { username: "", email: "", password: "", redirect: false  };
+  state = { username: "", email: "", password: "", redirect: false };
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -31,11 +30,11 @@ class SignUp extends Component {
         if (data.jwt) {
           localStorage.setItem("token", data.jwt);
           this.props.updateUser(JSON.parse(data.user));
+          this.setState({ redirect: true });
         } else {
           alert("invalid signup");
         }
-      })
-      .then(this.setState({ redirect: true }));
+      });
   };
 
   render() {
