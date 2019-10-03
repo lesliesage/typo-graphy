@@ -16,6 +16,9 @@ module TypoGraphy
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    # added because https://stackoverflow.com/questions/19650621/heroku-upload-precompiling-assets-failed
+    config.assets.initialize_on_precompile = false
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'

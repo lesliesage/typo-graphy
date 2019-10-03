@@ -28,3 +28,6 @@
 
 # Secrets for generating token
 /.Secrets.rb
+
+# node modules
+/node_modules
