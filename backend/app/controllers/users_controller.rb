@@ -23,7 +23,11 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    if logged_in? && current_user.update_attributes(user_params)
+      render json: current_user.to_json(user_serializer), status: :accepted
+    else
+      render json: { message: "server error. please try again." }
+    end
   end
 
   def destroy

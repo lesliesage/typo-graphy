@@ -1,20 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  URL_LOGIN,
-  URL_PROFILE,
-  URL_USERS_UPDATE,
-  URL_USERS_DESTROY,
-  MODAL_STYLE
-} from "../constants/constants.js";
+import { URL_PROFILE, MODAL_STYLE } from "../constants/constants.js";
 import { fetchCurrentUser, updateUser } from "../redux/actions";
 import { Redirect } from "react-router-dom";
 import ReactModal from "react-modal";
 
 class Profile extends Component {
   state = {
-    username: "",
-    email: "",
+    username: this.props.user.username,
+    email: this.props.user.email,
     password: "",
     redirect: false,
     showConfirmModal: false
@@ -44,13 +38,12 @@ class Profile extends Component {
       })
     })
       .then(res => res.json())
-      .then(data => {
-        if (data.jwt) {
-          localStorage.setItem("token", data.jwt);
-          this.props.updateUser(JSON.parse(data.user));
-        } else {
-          alert("invalid submission. please try again.");
-        }
+      .then(user => {
+        this.props.updateUser(user);
+        alert("profile updated!");
+      })
+      .catch(err => {
+        console.log(err)
       });
   };
 
@@ -72,7 +65,7 @@ class Profile extends Component {
         alert("profile deleted. bye!");
       })
       .catch(err => {
-        alert(err.text());
+        console.log(err)
       });
   };
 
@@ -97,7 +90,7 @@ class Profile extends Component {
           <div className="form-labels-container">
             <div className="form-label">edit username:</div>
             <div className="form-label">edit email:</div>
-            <div className="form-label">change password:</div>
+            <div className="form-label">new password:</div>
           </div>
           <form
             className="form-inputs-container"
@@ -109,7 +102,6 @@ class Profile extends Component {
               name="username"
               onChange={this.handleChange}
               value={this.state.username}
-              placeholder={this.props.user.username}
             ></input>
             <br />
             <input
@@ -118,7 +110,6 @@ class Profile extends Component {
               name="email"
               onChange={this.handleChange}
               value={this.state.email}
-              placeholder={this.props.user.email}
             ></input>
             <br />
             <input
@@ -128,7 +119,6 @@ class Profile extends Component {
               name="password"
               onChange={this.handleChange}
               value={this.state.password}
-              placeholder="new password"
             ></input>
             <br />
             <button type="submit" className="btn">
