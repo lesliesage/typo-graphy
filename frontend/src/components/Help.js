@@ -27,7 +27,7 @@ class Help extends Component {
           <input
             type="text"
             className="search"
-            placeHolder="search for help topics"
+            placeholder="search for help topics"
             onChange={this.handleChange}
           ></input>
         </div>
