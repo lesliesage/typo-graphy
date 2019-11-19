@@ -24,7 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 # use jwt for auth
 gem "jwt", "~> 2.1"
 # allow cross-origin requests
-gem 'rack-cors', '~> 1.0.3'
+gem 'rack-cors', '~> 1.0.5'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
