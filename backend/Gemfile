@@ -8,7 +8,7 @@ gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -24,7 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 # use jwt for auth
 gem "jwt", "~> 2.1"
 # allow cross-origin requests
-gem 'rack-cors', '~> 1.0.3'
+gem 'rack-cors', '~> 1.0.5'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
