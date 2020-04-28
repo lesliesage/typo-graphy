@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
 import { nextIndex, closingModal, onNext, savingTest } from "../redux/actions";
 import { MODAL_STYLE } from "../constants/constants";
-import { Redirect } from "react-router-dom";
 
 class ModalContainer extends Component {
   state = { redirect: false };
