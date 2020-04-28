@@ -1,16 +1,16 @@
 const prod = "https://typo-graphy-backend.herokuapp.com/";
 const dev = "http://localhost:3000";
 export const API_URL = process.env.NODE_ENV === "development" ? dev : prod;
-export const URL_QUEUE = URL_BASE + "queue";
-export const URL_TESTS = URL_BASE + "tests";
-export const URL_MEDIANS = URL_BASE + "medians";
-export const URL_HELP_ARTICLES = URL_BASE + "help_articles";
-export const URL_LOGIN = URL_BASE + "login";
-export const URL_SIGNUP = URL_BASE + "signup";
-export const URL_LOGOUT = URL_BASE + "logout";
-export const URL_PROFILE = URL_BASE + "profile";
-export const URL_USERS_UPDATE = URL_BASE + "users/update";
-export const URL_USERS_DESTROY = URL_BASE + "users/destroy";
+export const URL_QUEUE = API_URL + "queue";
+export const URL_TESTS = API_URL + "tests";
+export const URL_MEDIANS = API_URL + "medians";
+export const URL_HELP_ARTICLES = API_URL + "help_articles";
+export const URL_LOGIN = API_URL + "login";
+export const URL_SIGNUP = API_URL + "signup";
+export const URL_LOGOUT = API_URL + "logout";
+export const URL_PROFILE = API_URL + "profile";
+export const URL_USERS_UPDATE = API_URL + "users/update";
+export const URL_USERS_DESTROY = API_URL + "users/destroy";
 
 export const FIELDS = [
   "user_id",
