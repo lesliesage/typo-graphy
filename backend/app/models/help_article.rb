@@ -1,2 +1,0 @@
-class HelpArticle < ApplicationRecord
-end

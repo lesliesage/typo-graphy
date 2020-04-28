@@ -1,4 +1,4 @@
-import store from "../redux/store";
+import store from "./store";
 import {
   URL_QUEUE,
   URL_TESTS,
