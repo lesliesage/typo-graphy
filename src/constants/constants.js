@@ -1,10 +1,12 @@
-export const URL_BASE = "http://localhost:3000/";
+const prod = "https://myapp.herokuapp.com";
+const dev = "http://localhost:3000";
+export const API_URL = process.env.NODE_ENV === "development" ? dev : prod;
 export const URL_QUEUE = URL_BASE + "queue";
 export const URL_TESTS = URL_BASE + "tests";
 export const URL_MEDIANS = URL_BASE + "medians";
 export const URL_HELP_ARTICLES = URL_BASE + "help_articles";
 export const URL_LOGIN = URL_BASE + "login";
-export const URL_SIGNUP= URL_BASE + "signup";
+export const URL_SIGNUP = URL_BASE + "signup";
 export const URL_LOGOUT = URL_BASE + "logout";
 export const URL_PROFILE = URL_BASE + "profile";
 export const URL_USERS_UPDATE = URL_BASE + "users/update";
@@ -46,7 +48,7 @@ export const FIELDS = [
   "comma",
   "period",
   "question",
-  "slash"
+  "slash",
 ];
 
 export const FIELDKEY = {
@@ -83,7 +85,7 @@ export const FIELDKEY = {
   comma: ",",
   period: ".",
   question: "?",
-  slash: "/"
+  slash: "/",
 };
 
 export const MODAL_STYLE = {
@@ -104,8 +106,8 @@ export const MODAL_STYLE = {
     fontWeight: "700",
     fontSize: "12px",
     whiteSpace: "nowrap",
-    boxShadow: "1px 1px 1px 0px rgba(0, 0, 0, 0.2)"
-  }
+    boxShadow: "1px 1px 1px 0px rgba(0, 0, 0, 0.2)",
+  },
 };
 
 export const COLORS = {
@@ -121,5 +123,5 @@ export const COLORS = {
   darkblue: "#214f6a",
   dark: "#002733",
   red: "#cc0000",
-  shadow: "rgba(0, 0, 0, 0.2)"
+  shadow: "rgba(0, 0, 0, 0.2)",
 };
