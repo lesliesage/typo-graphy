@@ -1,5 +1,5 @@
 const prod = "https://typo-graphy-backend.herokuapp.com/";
-const dev = "http://localhost:3000";
+const dev = "http://localhost:3000/";
 export const API_URL = process.env.NODE_ENV === "development" ? dev : prod;
 export const URL_QUEUE = API_URL + "queue";
 export const URL_TESTS = API_URL + "tests";
