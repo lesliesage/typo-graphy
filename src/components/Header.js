@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Pie } from "react-chartjs-2";
 
-const Header = props => {
+const Header = (props) => {
   const typedLength = () => {
     return props.typedText && props.typedText.length;
   };
@@ -20,41 +20,39 @@ const Header = props => {
         hoverBackgroundColor: ["#214f6a", "#214f6a"],
         borderColor: "white",
         hoverBorderColor: "white",
-        borderWidth: 3
-      }
-    ]
+        borderWidth: 3,
+      },
+    ],
   };
   const options = {
     responsive: false,
     tooltips: {
-      enabled: false
+      enabled: false,
     },
     layout: {
       padding: {
         left: 50,
         right: 50,
         top: -10,
-        bottom: -10
-      }
-    }
+        bottom: 0,
+      },
+    },
   };
 
   return (
     <div className="header">
-      t • y • p • o • - • g • r • a • p • h • y<Pie data={data} options={options} height={40} width={200} />
+      t • y • p • o • - • g • r • a • p • h • y
+      <Pie data={data} options={options} height={40} width={140} />
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     selectedSnippet: state.test.selectedSnippet,
     currentTestResults: state.test.currentTestResults,
-    typedText: state.test.typedText
+    typedText: state.test.typedText,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(Header);
+export default connect(mapStateToProps, null)(Header);
