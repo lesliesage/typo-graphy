@@ -6,6 +6,7 @@ export const URL_TESTS = API_URL + "tests";
 export const URL_MEDIANS = API_URL + "medians";
 export const URL_HELP_ARTICLES = API_URL + "help_articles";
 export const URL_LOGIN = API_URL + "login";
+export const URL_FORGOT = API_URL + "forgot";
 export const URL_SIGNUP = API_URL + "signup";
 export const URL_LOGOUT = API_URL + "logout";
 export const URL_PROFILE = API_URL + "profile";

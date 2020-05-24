@@ -196,6 +196,20 @@ body {
   margin-bottom: 1px;
 }
 
+.stacked {
+  margin-top: 11px;
+  margin-bottom: 0px;
+}
+
+.stacked:hover {
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+
+.outside-form {
+  margin-left: 51px;
+}
+
 .modal-banner {
   text-align: center;
   font-size: 24px;
@@ -217,7 +231,8 @@ body {
   margin-right: 15px;
 }
 
-.annotation, .confirm {
+.annotation,
+.confirm {
   justify-content: center;
   margin-top: 5px;
   margin-bottom: 15px;
@@ -232,7 +247,8 @@ body {
   overflow-y: auto;
 }
 
-.annotation-preface, .confirm-preface {
+.annotation-preface,
+.confirm-preface {
   margin-bottom: 18px;
   font-size: 22px;
 }
@@ -349,3 +365,4 @@ a.navlink:hover {
   font-size: 20px;
   color: var(--darkblue);
 }
+

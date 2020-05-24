@@ -121,17 +121,17 @@ class Profile extends Component {
               value={this.state.password}
             ></input>
             <br />
-            <button type="submit" className="btn">
+            <button type="submit" className="btn stacked">
               save edits
             </button>
             <br />
-            <button type="button" className="btn" onClick={this.handleLogout}>
+            <button type="button" className="btn stacked" onClick={this.handleLogout}>
               logout
             </button>
             <br />
             <button
               type="button"
-              className="btn"
+              className="btn stacked"
               onClick={this.toggleConfirmModal}
             >
               delete profile
