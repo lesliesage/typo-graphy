@@ -26,14 +26,13 @@ class Reset extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        // if (data.jwt) {
-        //   localStorage.setItem("token", data.jwt);
-        //   this.props.updateUser(JSON.parse(data.user));
-        //   this.setState({ redirect: true });
-        // } else {
-        //   alert("invalid reset");
-        // }
+        if (data.jwt) {
+          localStorage.setItem("token", data.jwt);
+          this.props.updateUser(JSON.parse(data.user));
+          this.setState({ redirect: true });
+        } else {
+          alert("invalid reset");
+        }
       });
   };
 
