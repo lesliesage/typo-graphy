@@ -5,7 +5,7 @@ import { updateUser } from "../redux/actions";
 import { Redirect } from "react-router-dom";
 
 class Reset extends Component {
-  state = { email: "", token: "", password: "", redirect: false };
+  state = { email: "", password: "", redirect: false };
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -20,19 +20,20 @@ class Reset extends Component {
       },
       body: JSON.stringify({
         email: this.state.email,
-        token: "56ac31db0cf4e6b5df90", //TODO: replace with query params
+        code: this.props.location.search.slice(1),
         password: this.state.password,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.jwt) {
-          localStorage.setItem("token", data.jwt);
-          this.props.updateUser(JSON.parse(data.user));
-          this.setState({ redirect: true });
-        } else {
-          alert("invalid reset");
-        }
+        console.log(data);
+        // if (data.jwt) {
+        //   localStorage.setItem("token", data.jwt);
+        //   this.props.updateUser(JSON.parse(data.user));
+        //   this.setState({ redirect: true });
+        // } else {
+        //   alert("invalid reset");
+        // }
       });
   };
 

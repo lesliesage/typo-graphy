@@ -75,8 +75,12 @@ class App extends Component {
             />
             <Route
               path="/reset"
-              render={() =>
-                this.props.user.id > 0 ? <Redirect to="/" /> : <Reset />
+              render={(props) =>
+                this.props.user.id > 0 ? (
+                  <Redirect to="/" />
+                ) : (
+                  <Reset {...props} />
+                )
               }
             />
             <Route exact path="/about" component={About} />

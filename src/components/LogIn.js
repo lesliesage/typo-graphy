@@ -38,7 +38,6 @@ class LogIn extends Component {
 
   handleForgot = (e) => {
     e.preventDefault();
-    console.log(this.state);
     fetch(URL_FORGOT, {
       method: "POST",
       headers: {
@@ -52,7 +51,7 @@ class LogIn extends Component {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          console.log(data);
+          console.log("email found", data);
         } else {
           alert("email not found");
         }
