@@ -207,7 +207,7 @@ body {
 }
 
 .outside-form {
-  margin-left: 51px;
+  margin-left: -59px;
 }
 
 .modal-banner {
@@ -364,5 +364,5 @@ a.navlink:hover {
   border: 1px solid var(--darkgrey);
   font-size: 20px;
   color: var(--darkblue);
+  width: 300px;
 }
-

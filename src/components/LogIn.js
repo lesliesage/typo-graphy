@@ -27,9 +27,9 @@ class LogIn extends Component {
       .then((res) => res.json())
       .then((data) => {
         if (data.jwt) {
+          this.setState({ redirect: true });
           localStorage.setItem("token", data.jwt);
           this.props.updateUser(JSON.parse(data.user));
-          this.setState({ redirect: true });
         } else {
           alert("incorrect email or password");
         }

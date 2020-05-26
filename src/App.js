@@ -69,9 +69,7 @@ class App extends Component {
             <Route
               exact
               path="/profile"
-              render={() =>
-                this.props.user.id > 0 ? <Profile /> : <Redirect to="/" />
-              }
+              render={() => (this.props.user.id > 0 ? <Profile /> : <LogIn />)}
             />
             <Route
               path="/reset"
