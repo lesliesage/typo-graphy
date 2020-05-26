@@ -50,10 +50,12 @@ class LogIn extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data) {
-          console.log("email found", data);
+        if (data.status == "ok") {
+          console.log(data);
+          alert("reset link has been emailed. check your spam folder.");
         } else {
-          alert("email not found");
+          console.log(data);
+          alert("unsuccessful");
         }
       });
   };
