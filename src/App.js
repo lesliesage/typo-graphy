@@ -9,6 +9,7 @@ import StatsContainer from "./components/StatsContainer";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile";
+import Reset from "./components/Reset";
 import About from "./components/About";
 import Privacy from "./components/Privacy";
 import Help from "./components/Help";
@@ -18,7 +19,7 @@ import {
   updateUser,
   loading,
   fetchingQueue,
-  fetchingMedians
+  fetchingMedians,
 } from "./redux/actions";
 import { URL_PROFILE } from "./constants/constants.js";
 
@@ -29,17 +30,16 @@ class App extends Component {
     if (localStorage.getItem("token")) {
       fetch(URL_PROFILE, {
         headers: {
-          Authentication: `Bearer ${localStorage.getItem("token")}`
-        }
+          Authentication: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
-        .then(res => res.json())
-        .then(user => {
+        .then((res) => res.json())
+        .then((user) => {
           this.props.updateUser(user);
         });
     } else {
       this.props.loading();
     }
-
   }
 
   render() {
@@ -52,9 +52,35 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={TestContainer} />
             <Route exact path="/stats" component={StatsContainer} />
-            <Route exact path='/login' render={() => (this.props.user.id > 0) ? <Redirect to="/" /> : <LogIn /> } />
-            <Route exact path='/signup' render={() => (this.props.user.id > 0) ? <Redirect to="/" /> : <SignUp /> } />
-            <Route exact path='/profile' render={() => (this.props.user.id > 0) ? <Profile /> : <Redirect to="/" /> } />
+            <Route
+              exact
+              path="/login"
+              render={() =>
+                this.props.user.id > 0 ? <Redirect to="/" /> : <LogIn />
+              }
+            />
+            <Route
+              exact
+              path="/signup"
+              render={() =>
+                this.props.user.id > 0 ? <Redirect to="/" /> : <SignUp />
+              }
+            />
+            <Route
+              exact
+              path="/profile"
+              render={() => (this.props.user.id > 0 ? <Profile /> : <LogIn />)}
+            />
+            <Route
+              path="/reset"
+              render={(props) =>
+                this.props.user.id > 0 ? (
+                  <Redirect to="/" />
+                ) : (
+                  <Reset {...props} />
+                )
+              }
+            />
             <Route exact path="/about" component={About} />
             <Route exact path="/privacy" component={Privacy} />
             <Route exact path="/help" component={Help} />
@@ -66,15 +92,15 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    updateUser: user => {
+    updateUser: (user) => {
       dispatch(updateUser(user));
     },
     loading: () => {
@@ -85,16 +111,11 @@ const mapDispatchToProps = dispatch => {
     },
     fetchingMedians: () => {
       dispatch(fetchingMedians());
-    }
+    },
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 // deal with copy/paste:
 

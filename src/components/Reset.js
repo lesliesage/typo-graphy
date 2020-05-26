@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { URL_LOGIN, URL_FORGOT } from "../constants/constants.js";
+import { URL_RESET } from "../constants/constants.js";
 import { updateUser } from "../redux/actions";
 import { Redirect } from "react-router-dom";
 
-class LogIn extends Component {
+class Reset extends Component {
   state = { email: "", password: "", redirect: false };
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
-  handleLoginSubmit = (e) => {
+  handleSubmitReset = (e) => {
     e.preventDefault();
-    fetch(URL_LOGIN, {
+    fetch(URL_RESET, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,39 +20,18 @@ class LogIn extends Component {
       },
       body: JSON.stringify({
         email: this.state.email,
+        code: this.props.location.search.slice(1),
         password: this.state.password,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.jwt) {
-          this.setState({ redirect: true });
           localStorage.setItem("token", data.jwt);
           this.props.updateUser(JSON.parse(data.user));
+          this.setState({ redirect: true });
         } else {
-          alert("incorrect email or password");
-        }
-      });
-  };
-
-  handleForgot = (e) => {
-    e.preventDefault();
-    fetch(URL_FORGOT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          console.log("email found", data);
-        } else {
-          alert("email not found");
+          alert("invalid reset");
         }
       });
   };
@@ -62,16 +40,16 @@ class LogIn extends Component {
     return this.state.redirect ? (
       <Redirect to="/" />
     ) : (
-      <div className="main info-pg login">
-        <h1>login</h1>
+      <div className="main info-pg reset">
+        <h1>reset</h1>
         <div className="form-container">
           <div className="form-labels-container">
             <div className="form-label">email:</div>
-            <div className="form-label">password:</div>
+            <div className="form-label">new password:</div>
           </div>
           <form
             className="form-inputs-container"
-            onSubmit={this.handleLoginSubmit}
+            onSubmit={this.handleSubmitReset}
           >
             <input
               className="form-input"
@@ -92,18 +70,11 @@ class LogIn extends Component {
               placeholder="password"
             ></input>
             <br />
-            <button type="submit" className="btn stacked">
-              log in
+            <button type="submit" className="btn">
+              save
             </button>
-            <br />
           </form>
         </div>
-        <button
-          onClick={this.handleForgot}
-          className="btn stacked outside-form"
-        >
-          forgot password
-        </button>
       </div>
     );
   }
@@ -123,4 +94,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
+export default connect(mapStateToProps, mapDispatchToProps)(Reset);

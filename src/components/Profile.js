@@ -10,66 +10,69 @@ class Profile extends Component {
     username: this.props.user.username,
     email: this.props.user.email,
     password: "",
+    newPassword: "",
     redirect: false,
-    showConfirmModal: false
+    showConfirmModal: false,
   };
 
   componentDidMount() {
     this.props.fetchCurrentUser();
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleEditProfileSubmit = e => {
+  handleEditProfileSubmit = (e) => {
     e.preventDefault();
     fetch(URL_PROFILE, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authentication: `Bearer ${localStorage.getItem("token")}`
+        Authentication: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         username: this.state.username,
         email: this.state.email,
-        password: this.state.password
-      })
+        password: this.state.password,
+        newPassword: this.state.newPassword,
+      }),
     })
-      .then(res => res.json())
-      .then(user => {
+      .then((res) => res.json())
+      .then((user) => {
         this.props.updateUser(user);
+        this.setState({ password: "", newPassword: "" });
         alert("profile updated!");
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err) => {
+        console.log(err);
       });
   };
 
-  handleDelete = e => {
+  handleDelete = (e) => {
     e.preventDefault();
     fetch(URL_PROFILE, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authentication: `Bearer ${localStorage.getItem("token")}`
-      }
+        Authentication: `Bearer ${localStorage.getItem("token")}`,
+      },
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         this.props.updateUser({ user: null });
         localStorage.clear();
         this.setState({ redirect: true });
         alert("profile deleted. bye!");
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err) => {
+        console.log(err);
       });
   };
 
-  handleLogout = e => {
+  handleLogout = (e) => {
     e.preventDefault();
     this.props.updateUser({ user: null });
     localStorage.clear();
@@ -90,6 +93,7 @@ class Profile extends Component {
           <div className="form-labels-container">
             <div className="form-label">edit username:</div>
             <div className="form-label">edit email:</div>
+            <div className="form-label">current password:</div>
             <div className="form-label">new password:</div>
           </div>
           <form
@@ -121,17 +125,30 @@ class Profile extends Component {
               value={this.state.password}
             ></input>
             <br />
-            <button type="submit" className="btn">
+            <input
+              type="password"
+              className="form-input"
+              id="new-password"
+              name="newPassword"
+              onChange={this.handleChange}
+              value={this.state.newPassword}
+            ></input>
+            <br />
+            <button type="submit" className="btn stacked">
               save edits
             </button>
             <br />
-            <button type="button" className="btn" onClick={this.handleLogout}>
+            <button
+              type="button"
+              className="btn stacked"
+              onClick={this.handleLogout}
+            >
               logout
             </button>
             <br />
             <button
               type="button"
-              className="btn"
+              className="btn stacked"
               onClick={this.toggleConfirmModal}
             >
               delete profile
@@ -170,24 +187,21 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCurrentUser: user => {
+    fetchCurrentUser: (user) => {
       dispatch(fetchCurrentUser(user));
     },
-    updateUser: user => {
+    updateUser: (user) => {
       dispatch(updateUser(user));
-    }
+    },
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
