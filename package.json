@@ -8,7 +8,7 @@
     "fstream": "^1.0.12",
     "global-prefix": "^3.0.0",
     "html-webpack-plugin": "^4.2.1",
-    "node-gyp": "^9.4.0",
+    "node-gyp": "^12.1.0",
     "rcolor": "^1.0.1",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.7.6",
